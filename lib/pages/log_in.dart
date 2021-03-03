@@ -100,27 +100,30 @@ class Login extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(
                     left: 0, right: 0, top: 0, bottom: 10),
-                child: Container(
-                  height: 50,
-                  width: 250,
-                  decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: FlatButton(
-                    onPressed: () async {
-                      var result = await context
-                          .read<AuthenticationProvider>()
-                          .logIn(
-                              email: emailController.text.trim(),
-                              password: passwordController.text.trim());
-                      if (result == 1) {
-                        Get.to(ListCategories());
-                      } else
-                        print("Create new account");
-                    },
-                    child: Text(
-                      'Login',
-                      style: TextStyle(color: Colors.white, fontSize: 25),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    // height: 50,
+                    // width: 210,
+                    decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: FlatButton(
+                      onPressed: () async {
+                        var result = await context
+                            .read<AuthenticationProvider>()
+                            .logIn(
+                                email: emailController.text.trim(),
+                                password: passwordController.text.trim());
+                        if (result == 1) {
+                          Get.to(ListCategories());
+                        } else
+                          print("Create new account");
+                      },
+                      child: Text(
+                        'Login',
+                        style: TextStyle(color: Colors.white, fontSize: 25),
+                      ),
                     ),
                   ),
                 ),
