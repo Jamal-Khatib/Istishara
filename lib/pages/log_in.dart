@@ -1,5 +1,5 @@
-import 'package:firebase_app/list_of_categories.dart';
-import 'package:firebase_app/sign_up.dart';
+import 'package:firebase_app/pages/list_of_categories.dart';
+import 'package:firebase_app/pages/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_app/authenticationProvider.dart';
 import 'package:provider/provider.dart';
