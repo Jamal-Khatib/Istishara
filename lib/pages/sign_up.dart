@@ -1,6 +1,6 @@
 import 'package:firebase_app/authenticationProvider.dart';
-import 'package:firebase_app/list_of_categories.dart';
-import 'package:firebase_app/log_in.dart';
+import 'package:firebase_app/pages/list_of_categories.dart';
+import 'package:firebase_app/pages/log_in.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';

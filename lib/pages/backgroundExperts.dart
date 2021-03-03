@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'ExpertList.dart';
 import 'package:get/get.dart';
-import 'ListExperts.dart';
+import '../models/ListExperts.dart';
 
 class backgroundExperts extends StatefulWidget {
   @override

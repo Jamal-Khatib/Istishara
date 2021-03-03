@@ -1,5 +1,5 @@
 import 'categories_build.dart';
-import 'package:firebase_app/log_in.dart';
+import 'package:firebase_app/pages/log_in.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_app/authenticationProvider.dart';
 import 'package:provider/provider.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'SearchingExpert.dart';
+import '../widgets/SearchingExpert.dart';
 import 'backgroundExperts.dart';
 
 class PostingQuestion extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:firebase_app/PostingQuestion.dart';
+import 'package:firebase_app/pages/PostingQuestion.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
