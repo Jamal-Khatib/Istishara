@@ -1,4 +1,4 @@
-import 'file:///C:/Users/student/Desktop/istisharaaa/Istishara/assets/categories_build.dart';
+import 'categories_build.dart';
 import 'package:firebase_app/log_in.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_app/authenticationProvider.dart';
@@ -53,7 +53,9 @@ class _ListCategoriesState extends State<ListCategories> {
             label: Text(
               "Log out",
               style: TextStyle(
+                fontWeight: FontWeight.bold,
                 color: Colors.white,
+                fontSize: 15,
               ),
             )),
       ],
