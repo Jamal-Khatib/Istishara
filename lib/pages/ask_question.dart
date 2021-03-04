@@ -12,13 +12,95 @@ class AskQuestion extends StatefulWidget {
 class _AskQuestionState extends State<AskQuestion> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: RaisedButton(
-                child: Text('Click me',style: TextStyle(color: Colors.white),),
-                onPressed: () {
-                  Get.to(ListCategories()) ; 
-                },
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('My Questions'),
+        ), 
+        body: SafeArea(
+          child: ListView(
+            children: <Widget>[
+            Image.asset(
+                "assets/ask.jpg",
+                fit: BoxFit.cover,
+                height: 300,
+                width: 300,
               ),
+              SizedBox(
+                  height: 50.0,
+                  width: 150.0,
+                  child: Divider(
+                    color: Colors.white,
+                  )),
+              Column(
+                children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 15.0, right: 15.0, top: 0.0, bottom: 18),
+                  child: Text("No Question Yet?", style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                    ),),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 15.0, right: 15.0, top: 0.0, bottom: 28),
+                  child: Text("Ready to get thing done by talented experts? Get started now",  
+                              textAlign: TextAlign.center,
+                      style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                    ),),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(4),
+                        
+                      ),
+                      
+                  child: FlatButton(
+                    onPressed: () {Get.to(ListCategories()) ; },
+                    child: Text(
+                        'POST A QUESTION',
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize: 25),
+
+                  ),
+                ),
+                ),
+
+                TextButton(
+                    child: Text(
+                      "Search for an expert",
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 19,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    onPressed: () {
+                      Get.to(ListCategories()) ; 
+                    },
+                  ),
+                
+                ],
+              ),
+            ]
+          ),
+        ),
+        
+        //AppBar
+        // body: _questionIndex < _questions.length
+        //     ? Quiz(
+        //         answerQuestion: _answerQuestion,
+        //         questionIndex: _questionIndex,
+        //         questions: _questions,
+        //       )
+        //     : Result(_totalScore, _resetQuiz),
+      ),
     );
   }
 }
