@@ -1,9 +1,12 @@
 import 'package:firebase_app/pages/list_of_categories.dart';
+import 'package:firebase_app/pages/reset.dart';
 import 'package:firebase_app/pages/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_app/authenticationProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 class Login extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -88,7 +91,9 @@ class Login extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(ResetScreen()) ; 
+                  },
                 ),
               ]),
               SizedBox(
@@ -116,8 +121,12 @@ class Login extends StatelessWidget {
                                 email: emailController.text.trim(),
                                 password: passwordController.text.trim());
                         if (result == 1) {
-                          Get.to(ListCategories());
-                        } else
+        
+                            Get.to(ListCategories());
+                          }
+                          // Get.to(ListCategories());
+                          
+                        else
                           print("Create new account");
                       },
                       child: Text(

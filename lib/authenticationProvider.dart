@@ -1,4 +1,7 @@
+import 'package:firebase_app/pages/verify.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class AuthenticationProvider {
@@ -19,7 +22,9 @@ class AuthenticationProvider {
     try 
     {
       var result = await firebaseAuth.createUserWithEmailAndPassword(
-        email: email, password: password);
+      email: email, password: password).then((_) {
+        Get.to(Verify()) ; 
+      });
       if(result!=null)
       {
         return 1 ; 
@@ -45,6 +50,11 @@ class AuthenticationProvider {
     } 
     on FirebaseAuthException catch (e) 
     {
+      // if (e.code == 'user-not-found') {
+      //           print('No user found for that email.');
+      // } else if (e.code == 'wrong-password') {
+      //   print('Wrong password provided for that user.');
+      //   }
       return 0 ; 
     }
   }
