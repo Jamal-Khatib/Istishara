@@ -23,7 +23,7 @@ class AuthenticationProvider {
     {
       var result = await firebaseAuth.createUserWithEmailAndPassword(
       email: email, password: password).then((_) {
-        Get.to(Verify()) ; 
+      Get.to(Verify()) ; 
       });
       if(result!=null)
       {
