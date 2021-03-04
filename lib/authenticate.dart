@@ -1,4 +1,4 @@
-import 'package:firebase_app/pages/home.dart';
+import 'package:firebase_app/pages/list_of_categories.dart';
 import 'package:firebase_app/pages/log_in.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,7 +12,7 @@ class Authenticate extends StatelessWidget {
     
     if (firebaseUser != null) {
       //Means that the user is logged in already and hence navigate to HomePage
-      return Home();
+      return ListCategories();
     }
     //The user isn't logged in and hence navigate to SignInPage.
     return Login();
