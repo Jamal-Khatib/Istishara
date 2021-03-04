@@ -3,6 +3,20 @@ import 'package:flutter/material.dart';
 class SearchingExpert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text('Search for an expert'),
@@ -63,11 +77,14 @@ class ListItemWidget extends State<SwipeList> {
                     height: 100.0,
                     width: 50.0,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(5),
-                        topLeft: Radius.circular(5),
-                      ),
-                    ),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(5),
+                          topLeft: Radius.circular(5),
+                        ),
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                                "https://cdn4.iconfinder.com/data/icons/instagram-ui-twotone/48/Paul-18-512.png"))),
                   ),
                   Container(
                     height: 100,
@@ -79,9 +96,7 @@ class ListItemWidget extends State<SwipeList> {
                           TextButton(
                             child: Text(
                               experts[index],
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             onPressed: () {},
                           ),
@@ -121,14 +136,14 @@ class ListItemWidget extends State<SwipeList> {
 
   static List pricelst() {
     List list = List.generate(10, (i) {
-      return "Price ${i + 1}";
+      return "Price:  ${i + 1}";
     });
     return list;
   }
 
   static List ratinglst() {
     List list = List.generate(10, (i) {
-      return "Rating  ${i + 1}";
+      return "Rating ${i + 1}";
     });
     return list;
   }
