@@ -6,7 +6,7 @@ import 'package:firebase_app/authenticationProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'ask_question.dart';
 
 class Login extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -92,7 +92,7 @@ class Login extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   onPressed: () {
-                    Get.to(ResetScreen()) ; 
+                    Get.to(ResetScreen());
                   },
                 ),
               ]),
@@ -121,11 +121,11 @@ class Login extends StatelessWidget {
                                 email: emailController.text.trim(),
                                 password: passwordController.text.trim());
                         if (result == 1) {
-        
-                            Get.to(ListCategories());
-                          }
-                          // Get.to(ListCategories());
-                          
+                          Get.to(AskQuestion());
+                          ;
+                        }
+                        // Get.to(ListCategories());
+
                         else
                           print("Create new account");
                       },

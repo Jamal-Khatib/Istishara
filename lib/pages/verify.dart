@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:firebase_app/authenticationProvider.dart';
 import 'dart:async';
 import 'package:get/get.dart';
+import 'ask_question.dart';
 
 class Verify extends StatefulWidget {
   @override
@@ -51,7 +52,7 @@ class _VerifyState extends State<Verify> {
             child: ListBody(
               children: <Widget>[
                 Text(
-                  'An email has been sent to  fatima kaaraki',
+                  'An email has been sent to ${user.email}. ',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.blue,
@@ -90,8 +91,7 @@ class _VerifyState extends State<Verify> {
     if (user.emailVerified) {
       timer.cancel();
 
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => ListCategories()));
+      Get.to(AskQuestion());
     }
   }
 }
