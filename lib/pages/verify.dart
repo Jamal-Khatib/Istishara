@@ -91,7 +91,7 @@ class _VerifyState extends State<Verify> {
     if (user.emailVerified) {
       timer.cancel();
 
-      Get.to(AskQuestion());
+      Get.off(ListCategories());
     }
   }
 }

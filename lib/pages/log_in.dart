@@ -121,7 +121,7 @@ class Login extends StatelessWidget {
                                 email: emailController.text.trim(),
                                 password: passwordController.text.trim());
                         if (result == 1) {
-                          Get.to(AskQuestion());
+                          Get.off(ListCategories());
                           ;
                         }
                         // Get.to(ListCategories());

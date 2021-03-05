@@ -48,7 +48,7 @@ class _ListCategoriesState extends State<ListCategories> {
             icon: Icon(Icons.login),
             onPressed: () {
               context.read<AuthenticationProvider>().signOut();
-              Get.to(Login());
+              Get.off(Login());
             },
             label: Text(
               "Log out",

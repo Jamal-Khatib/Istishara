@@ -143,11 +143,11 @@ class _Sign_upState extends State<Sign_up> {
                     .signUp(
                         email: emailController.text.trim(),
                         password: passwordController.text.trim());
-                if (result == 1) {
-                  Get.to(ListCategories());
-                } else {
-                  print("Can't create new account");
-                }
+                // if (result == 1) {
+                //   Get.to(ListCategories());
+                // } else {
+                //   print("Can't create new account");
+                // }
               },
               child: Text(
                 'Sign Up',

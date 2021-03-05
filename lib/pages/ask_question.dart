@@ -1,4 +1,6 @@
+import 'package:firebase_app/pages/PostingQuestion.dart';
 import 'package:firebase_app/pages/list_of_categories.dart';
+import 'package:firebase_app/widgets/SearchingExpert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -62,7 +64,7 @@ class _AskQuestionState extends State<AskQuestion> {
                 ),
                 child: FlatButton(
                   onPressed: () {
-                    Get.to(ListCategories());
+                    Get.to(PostingQuestion());
                   },
                   child: Text(
                     'POST A QUESTION',
@@ -84,7 +86,7 @@ class _AskQuestionState extends State<AskQuestion> {
                   textAlign: TextAlign.center,
                 ),
                 onPressed: () {
-                  Get.to(ListCategories());
+                  Get.to(SearchingExpert());
                 },
               ),
             ],

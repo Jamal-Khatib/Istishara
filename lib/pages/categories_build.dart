@@ -1,4 +1,5 @@
 import 'package:firebase_app/pages/PostingQuestion.dart';
+import 'package:firebase_app/pages/ask_question.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,7 +37,7 @@ class CategoriesListBuild extends StatelessWidget {
                         ))),
                 TextButton(
                   onPressed: () {
-                    Get.to(PostingQuestion());
+                    Get.to(AskQuestion());
                   },
                   child: Text(
                     categoriesList[index],
