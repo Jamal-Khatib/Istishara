@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'ask_question.dart';
+import 'navigationClient.dart';
 
 class Login extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -121,8 +122,7 @@ class Login extends StatelessWidget {
                                 email: emailController.text.trim(),
                                 password: passwordController.text.trim());
                         if (result == 1) {
-                          Get.off(ListCategories());
-                          ;
+                          Get.off(navigationClient());
                         }
                         // Get.to(ListCategories());
 

@@ -7,6 +7,7 @@ import 'package:firebase_app/authenticationProvider.dart';
 import 'dart:async';
 import 'package:get/get.dart';
 import 'ask_question.dart';
+import 'navigationClient.dart';
 
 class Verify extends StatefulWidget {
   @override
@@ -91,7 +92,7 @@ class _VerifyState extends State<Verify> {
     if (user.emailVerified) {
       timer.cancel();
 
-      Get.off(ListCategories());
+      Get.off(navigationClient());
     }
   }
 }

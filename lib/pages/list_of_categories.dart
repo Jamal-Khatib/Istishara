@@ -1,9 +1,13 @@
+import 'package:firebase_app/pages/search.dart';
+
 import 'categories_build.dart';
 import 'package:firebase_app/pages/log_in.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_app/authenticationProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
+
+import 'myProfile.dart';
 
 final List<String> categoriesList = [
   "Architect",
@@ -69,20 +73,21 @@ class _ListCategoriesState extends State<ListCategories> {
         child: CategoriesListBuild(categoriesList, categoriesListIcons));
 
     return Scaffold(
-        appBar: appBar,
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Center(
-                child: Container(
-                  padding: EdgeInsets.all(9),
-                ),
+      appBar: appBar,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Center(
+              child: Container(
+                padding: EdgeInsets.all(9),
               ),
-              txListWidget,
-            ],
-          ),
-        ));
+            ),
+            txListWidget,
+          ],
+        ),
+      ),
+    );
   }
 }
