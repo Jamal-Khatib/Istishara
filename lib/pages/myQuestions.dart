@@ -22,9 +22,12 @@ class myQuestions extends StatelessWidget {
         child: new Center(
           child: new Column(
             children: <Widget>[
-              new Image(
-                  image: NetworkImage(
-                      "https://image.freepik.com/free-vector/consulting-concept-illustration_114360-2579.jpg")),
+              Image.asset(
+                "assets/images/noMessage.png",
+                fit: BoxFit.cover,
+                height: 300,
+                width: 300,
+              ),
               Text(
                 'Welcome to your messages',
                 style: TextStyle(

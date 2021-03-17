@@ -59,6 +59,8 @@ flutter:
     - assets/
     - assets/images/icons/
     - assets/images/expert.jpg
+    - assets/images/
+
     
   #   - images/a_dot_ham.jpeg
 
