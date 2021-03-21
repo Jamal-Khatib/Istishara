@@ -27,8 +27,9 @@ dependencies:
   cloud_firestore: ^0.16.0+1
   firebase_core: ^0.7.0
   provider: ^4.3.3
-  flutter_rating_bar: ^4.0.0
-  
+  fluttertoast: ^7.1.8
+  # flutter_rating_bar: ^4.0.0
+
 
 
 
@@ -61,7 +62,7 @@ flutter:
     - assets/images/expert.jpg
     - assets/images/
 
-    
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,9 +1,9 @@
+import 'package:firebase_app/pages/Profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'profile.dart';
 
-class myProfile extends StatelessWidget {
+class ExpertProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,13 +47,18 @@ class myProfile extends StatelessWidget {
           SizedBox(height: 20),
           Center(
             child: Container(
-              child: Text(
-                "MY NAME",
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
+              child: TextButton(
+                child: Text(
+                  "MY NAME",
+                  style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+                onPressed: () {
+                  Get.to(Profile());
+                },
               ),
             ),
           ),

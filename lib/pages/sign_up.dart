@@ -1,10 +1,10 @@
 import 'package:firebase_app/authenticationProvider.dart';
-import 'package:firebase_app/pages/list_of_categories.dart';
-import 'package:firebase_app/pages/log_in.dart';
+// import 'package:firebase_app/pages/list_of_categories.dart';
+// import 'package:firebase_app/pages/log_in.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:get/get.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:get/get.dart';
 
 class Sign_up extends StatefulWidget {
   @override
@@ -14,8 +14,10 @@ class Sign_up extends StatefulWidget {
 class _Sign_upState extends State<Sign_up> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
 
-  bool valuefirst = false;
+  bool isexpert = false;
   String dropdownValue = 'Doctor';
 
   @override
@@ -33,6 +35,7 @@ class _Sign_upState extends State<Sign_up> {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             child: TextField(
+              controller: nameController,
               decoration: InputDecoration(
                 hintText: "Full Name",
                 labelText: "Full Name",
@@ -65,6 +68,7 @@ class _Sign_upState extends State<Sign_up> {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
             child: TextField(
+              controller: phoneController,
               decoration: InputDecoration(
                 hintText: "Phone Number",
                 labelText: "Phone Number",
@@ -82,14 +86,14 @@ class _Sign_upState extends State<Sign_up> {
               Checkbox(
                   checkColor: Colors.white,
                   activeColor: Colors.blue,
-                  value: this.valuefirst,
+                  value: this.isexpert,
                   onChanged: (bool value) {
                     setState(() {
-                      this.valuefirst = value;
+                      this.isexpert = value;
                     });
                   }),
               Container(
-                child: !valuefirst
+                child: !isexpert
                     ? Container(
                         width: 0,
                       )
@@ -138,16 +142,13 @@ class _Sign_upState extends State<Sign_up> {
                 color: Colors.blue, borderRadius: BorderRadius.circular(20)),
             child: FlatButton(
               onPressed: () async {
-                var result = await context
-                    .read<AuthenticationProvider>()
-                    .signUp(
-                        email: emailController.text.trim(),
-                        password: passwordController.text.trim());
-                // if (result == 1) {
-                //   Get.to(ListCategories());
-                // } else {
-                //   print("Can't create new account");
-                // }
+                await context.read<AuthenticationProvider>().signUp(
+                    email: emailController.text.trim(),
+                    password: passwordController.text.trim(),
+                    name: nameController.text.trim(),
+                    phoneNumber: phoneController.text.trim(),
+                    isexpert: isexpert,
+                    field: dropdownValue);
               },
               child: Text(
                 'Sign Up',

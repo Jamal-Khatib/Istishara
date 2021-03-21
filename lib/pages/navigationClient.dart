@@ -21,7 +21,6 @@ class navigationClient extends StatelessWidget {
     final navController navcontrol = Get.put(navController());
     final List<Widget> bodyContent = [
       ListCategories(),
-      search(),
       myQuestions(),
       myProfile(),
 
@@ -38,19 +37,15 @@ class navigationClient extends StatelessWidget {
           type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.home, color: Colors.blue),
               label: "Home",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: "Search",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.library_books),
+              icon: Icon(Icons.library_books, color: Colors.blue),
               label: "Chat",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.person, color: Colors.blue),
               label: "My Profile",
             ),
           ],

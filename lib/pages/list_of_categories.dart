@@ -1,5 +1,4 @@
-import 'package:firebase_app/pages/search.dart';
-
+import 'package:firebase_app/pages/user_controller.dart';
 import 'categories_build.dart';
 import 'package:firebase_app/pages/log_in.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,7 @@ import 'package:firebase_app/authenticationProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 
-import 'myProfile.dart';
+// import 'myProfile.dart';
 
 final List<String> categoriesList = [
   "Architect",
@@ -39,12 +38,15 @@ class ListCategories extends StatefulWidget {
 }
 
 class _ListCategoriesState extends State<ListCategories> {
+  UserController controller = Get.put(UserController());
+
   @override
   Widget build(BuildContext context) {
+    controller.getUser();
     final appBar = AppBar(
-      title: Text('Choose a category',
+      title: Obx(() => Text('${controller.myUser.value.type}',
           style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 19)),
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 19))),
       backgroundColor: Colors.blue,
       actions: [
         RaisedButton.icon(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../widgets/SearchingExpert.dart';
+import 'InterestedExperts.dart';
 import 'backgroundExperts.dart';
 
 class PostingQuestion extends StatelessWidget {
@@ -62,7 +63,7 @@ class PostingQuestion extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20)),
                 child: FlatButton(
                   onPressed: () {
-                    Get.to(backgroundExperts());
+                    Get.to(InterestedExperts());
                   },
                   child: Text(
                     'Post Your Question',

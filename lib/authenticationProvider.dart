@@ -1,68 +1,84 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_app/pages/Profile.dart';
+import 'package:firebase_app/pages/list_of_categories.dart';
+import 'package:firebase_app/pages/navigationClient.dart';
+import 'package:firebase_app/pages/navigationExpert.dart';
 import 'package:firebase_app/pages/verify.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AuthenticationProvider {
-
   final FirebaseAuth firebaseAuth;
   //FirebaseAuth instance
 
   AuthenticationProvider(this.firebaseAuth);
   //Constuctor to initalize the FirebaseAuth instance
 
-
   //Using Stream to listen to Authentication State
   Stream<User> get authState => firebaseAuth.idTokenChanges();
 
-
   //SIGN UP METHOD
-  Future<int> signUp({String email, String password}) async {
-    try 
-    {
-      var result = await firebaseAuth.createUserWithEmailAndPassword(
-      email: email, password: password).then((_) {
-      Get.to(Verify()) ; 
+  Future<void> signUp(
+      {String email,
+      String password,
+      String phoneNumber,
+      String name,
+      bool isexpert,
+      String field}) async {
+    try {
+      await firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      Get.to(Verify(), arguments: {
+        "email": email,
+        "password": password,
+        "phoneNumber": phoneNumber,
+        "name": name,
+        "isexpert": isexpert,
+        "field": field
       });
-      if(result!=null)
-      {
-        return 1 ; 
-      }
-      else return 0 ; 
-    } 
-    on FirebaseAuthException catch (e) 
-    {
-      return(0);
+    } on FirebaseAuthException catch (e) {
+      Fluttertoast.showToast(
+          msg: e.message,
+          gravity: ToastGravity.CENTER,
+          toastLength: Toast.LENGTH_LONG);
+      print(e.message);
     }
   }
+
   //SIGN IN METHOD
-  Future<int> logIn({String email, String password}) async {
-    try 
-    {
-      var result = await firebaseAuth.signInWithEmailAndPassword(
+  Future<void> logIn({String email, String password}) async {
+    try {
+      await firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
-      if(result!=null)
-      {
-        return 1 ; 
+      DocumentSnapshot c = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(firebaseAuth.currentUser.uid)
+          .get();
+      if (c["type"] == "client") {
+        print("he is an client //provider");
+        Get.off(navigationClient());
+      } else {
+        print("he is an expert //provider");
+        Get.off(navigationExpert());
       }
-      else return 0 ; 
-    } 
-    on FirebaseAuthException catch (e) 
-    {
+    } on FirebaseAuthException catch (e) {
       // if (e.code == 'user-not-found') {
       //           print('No user found for that email.');
       // } else if (e.code == 'wrong-password') {
       //   print('Wrong password provided for that user.');
       //   }
-      return 0 ; 
+      Fluttertoast.showToast(
+          msg: e.message,
+          gravity: ToastGravity.CENTER,
+          toastLength: Toast.LENGTH_LONG);
     }
   }
-  
+
   //SIGN OUT METHOD
   Future<void> signOut() async {
     await firebaseAuth.signOut();
   }
-
 }
-
