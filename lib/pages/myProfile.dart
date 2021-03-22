@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'profile.dart';
+// import 'profile.dart';
+import 'package:firebase_app/pages/user_controller.dart';
 
 class myProfile extends StatelessWidget {
   @override
+
+        UserController controller = Get.put(UserController());
+
   Widget build(BuildContext context) {
+    controller.getUser() ; 
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -47,27 +52,32 @@ class myProfile extends StatelessWidget {
           SizedBox(height: 20),
           Center(
             child: Container(
-              child: Text(
-                "MY NAME",
+              child:
+                Obx( () => 
+                Text("${controller.myUser.value.name}",
                 style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
+                ), 
+             
             ),
           ),
           SizedBox(height: 5),
           Center(
             child: Container(
-              child: Text(
-                "thisismyemail@gmail.com",
+              child: Obx( () => 
+              Text(
+                "${controller.myUser.value.email}",
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.blue[200],
                   fontWeight: FontWeight.bold,
                 ),
               ),
+               ),
             ),
           ),
           Padding(

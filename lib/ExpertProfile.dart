@@ -2,10 +2,15 @@ import 'package:firebase_app/pages/Profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:firebase_app/pages/user_controller.dart';
+
 
 class ExpertProfile extends StatelessWidget {
+      UserController controller = Get.put(UserController());
+
   @override
   Widget build(BuildContext context) {
+      // controller.getUser();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -48,14 +53,15 @@ class ExpertProfile extends StatelessWidget {
           Center(
             child: Container(
               child: TextButton(
-                child: Text(
-                  "MY NAME",
-                  style: TextStyle(
+                child: Obx( () => 
+                Text("${controller.myUser.value.name}",
+                style: TextStyle(
                     fontSize: 25,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                ), 
                 onPressed: () {
                   Get.to(Profile());
                 },
@@ -65,14 +71,16 @@ class ExpertProfile extends StatelessWidget {
           SizedBox(height: 5),
           Center(
             child: Container(
-              child: Text(
-                "thisismyemail@gmail.com",
+              child: Obx( () => 
+              Text(
+                "${controller.myUser.value.email}",
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.blue[200],
                   fontWeight: FontWeight.bold,
                 ),
               ),
+               ),
             ),
           ),
           Padding(
@@ -241,3 +249,5 @@ class ExpertProfile extends StatelessWidget {
     );
   }
 }
+
+

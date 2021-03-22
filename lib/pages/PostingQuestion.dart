@@ -1,19 +1,28 @@
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../widgets/SearchingExpert.dart';
 import 'InterestedExperts.dart';
-import 'backgroundExperts.dart';
+// import 'backgroundExperts.dart';
+import 'package:firebase_app/pages/user_controller.dart';
+
 
 class PostingQuestion extends StatelessWidget {
+
+    TextEditingController mycontroller = TextEditingController() ; 
+      UserController controller = Get.put(UserController());
+
+
   @override
   Widget build(BuildContext context) {
+      controller.getUser() ; 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
           "Asking a Question",
           style: TextStyle(
-            fontSize: 25,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -28,6 +37,7 @@ class PostingQuestion extends StatelessWidget {
             Container(
               margin: EdgeInsets.all(15),
               child: TextField(
+                controller: mycontroller,
                 maxLines: 7,
                 decoration: InputDecoration(
                   labelText: "Post Your Question",
@@ -63,7 +73,17 @@ class PostingQuestion extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20)),
                 child: FlatButton(
                   onPressed: () {
-                    Get.to(InterestedExperts());
+                     if(mycontroller.text.isBlank) 
+                    {
+                      //toast that tells him that his question is blank
+                    }
+                    else
+                    {
+                      controller.add_question(question: mycontroller.text, category: Get.arguments) ; 
+                       Get.off(InterestedExperts(),arguments: Get.arguments);
+                    }
+
+                   
                   },
                   child: Text(
                     'Post Your Question',
@@ -84,6 +104,7 @@ class PostingQuestion extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
+                   
                     Get.to(SearchingExpert());
                   },
                   child: Text(

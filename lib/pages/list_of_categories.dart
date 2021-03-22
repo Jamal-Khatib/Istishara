@@ -44,7 +44,8 @@ class _ListCategoriesState extends State<ListCategories> {
   Widget build(BuildContext context) {
     controller.getUser();
     final appBar = AppBar(
-      title: Obx(() => Text('${controller.myUser.value.type}',
+      // leading: Container(height: 0, width: 0,),
+      title: Obx(() => Text('${controller.myUser.value.name}',
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 19))),
       backgroundColor: Colors.blue,

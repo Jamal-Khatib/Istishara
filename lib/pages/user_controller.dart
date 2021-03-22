@@ -31,6 +31,15 @@ class UserController extends GetxController {
           value.email = c["email"];
           value.phoneNumber = c["phoneNumber"];
           value.type = "client";
+          value.architect = c["architect"] ;
+          value.civil = c["civil"] ;
+          value.construction = c["construction"] ;
+          value.doctor = c["doctor"] ;
+          value.electrical = c["electrical"] ;
+          value.family = c["family"] ;
+          value.heating = c["heating"] ;
+          value.mechanical = c["mechanical"] ;
+          value.psych = c["psych"] ; 
         });
         update();
       } else if (myMap["type"] == "expert") {
@@ -50,4 +59,145 @@ class UserController extends GetxController {
       print(e);
     }
   }
+
+
+  void add_question({String question, String category})
+  {
+    myUser.value.add_question(question: question, field: category) ; 
+    print("Yalaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    print(myUser.value.psych) ;
+    if(category=="architect") 
+    {
+         myUser.update((value) {value.architect = question ; }) ; 
+
+    }
+    else if(category=="civil") 
+    {
+         myUser.update((value) {value.civil = question ; }) ; 
+    }
+    else if(category=="construction") 
+    {
+         myUser.update((value) {value.construction = question ; }) ; 
+    }
+    else if(category=="doctor") 
+    {
+         myUser.update((value) {value.doctor = question ; }) ; 
+    }
+     else if(category=="electrical") 
+    {
+         myUser.update((value) {value.electrical = question ; }) ; 
+    }
+    else if(category=="family") 
+    {
+         myUser.update((value) {value.family = question ; }) ; 
+    }
+    else if(category=="heating") 
+    {
+         myUser.update((value) {value.heating = question ; }) ; 
+    }
+    else if(category=="mechanical") 
+    {
+         myUser.update((value) {value.mechanical = question ; }) ; 
+    }
+    else if(category=="psych") 
+    {
+         myUser.update((value) {value.psych = question ; }) ; 
+    }
+  }
+
+  String get_question({String category}) 
+  {
+    if(category=="architect") 
+    {
+        return(myUser.value.architect)  ; 
+    }
+    else if (category =="civil")
+    {
+      return(myUser.value.civil) ; 
+    }
+    else if (category =="construction")
+    {
+      return(myUser.value.construction) ; 
+    }
+     else if (category =="doctor")
+    {
+      return(myUser.value.doctor) ; 
+    }
+     else if (category =="electrical")
+    {
+      return(myUser.value.electrical) ; 
+    }
+     else if (category =="family")
+    {
+      return(myUser.value.family) ; 
+    }
+     else if (category =="heating")
+    {
+      return(myUser.value.heating) ; 
+    }
+     else if (category =="mechanical")
+    {
+      return(myUser.value.mechanical) ; 
+    }
+     else if (category =="psych")
+    {
+      return(myUser.value.psych) ; 
+    }
+
+  }
+
+  void delete_question({String category}) 
+  {
+    if(category=="architect") 
+    {
+        myUser.update((value) {value.architect = "" ; }) ; 
+        myUser.value.delete_question(category: category) ; 
+    }
+    else if (category =="civil")
+    {
+      myUser.update((value) {value.civil = "" ; }) ; 
+      myUser.value.delete_question(category: category) ; 
+    }
+    else if (category =="construction")
+    {
+      myUser.update((value) {value.construction = "" ; }) ; 
+      myUser.value.delete_question(category: category) ; 
+    }
+     else if (category =="doctor")
+    {
+      myUser.update((value) {value.doctor = "" ; }) ; 
+      myUser.value.delete_question(category: category) ; 
+    }
+     else if (category =="electrical")
+    {
+      myUser.update((value) {value.electrical = "" ; }) ; 
+      myUser.value.delete_question(category: category) ; 
+    }
+     else if (category =="family")
+    {
+      myUser.update((value) {value.family = "" ; }) ; 
+      myUser.value.delete_question(category: category) ; 
+    }
+     else if (category =="heating")
+    {
+      myUser.update((value) {value.heating = "" ; }) ; 
+      myUser.value.delete_question(category: category) ; 
+    }
+     else if (category =="mechanical")
+    {
+      myUser.update((value) {value.mechanical = "" ; }) ; 
+      myUser.value.delete_question(category: category) ; 
+    }
+     else if (category =="psych")
+    {
+      myUser.update((value) {value.psych = "" ; }) ; 
+      myUser.value.delete_question(category: category) ; 
+    }
+  }
+
+  String get_field()
+  {
+    return(myUser.value.field) ; 
+  }
+
 }

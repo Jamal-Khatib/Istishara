@@ -64,7 +64,7 @@ class _AskQuestionState extends State<AskQuestion> {
                 ),
                 child: FlatButton(
                   onPressed: () {
-                    Get.to(PostingQuestion());
+                    Get.off(PostingQuestion(),arguments: Get.arguments);
                   },
                   child: Text(
                     'POST A QUESTION',

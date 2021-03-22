@@ -1,225 +1,101 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_app/pages/experthome_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_app/authenticationProvider.dart';
+import 'package:firebase_app/pages/log_in.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_app/pages/user_controller.dart';
+
 
 class Experthome extends StatelessWidget {
   List questions = myquestionlst();
   List dates = datelst();
   List bides = bidelst();
+  UserController controller = Get.put(UserController());
+
+  PickController pcontroller = Get.put(PickController()) ; 
+
   Widget build(BuildContext context) {
+    controller.getUser() ; 
     return Scaffold(
         appBar: AppBar(
+          // leading: Container(height: 0,width: 0,),
           title: Text("Questions"),
           actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.search,
+           RaisedButton.icon(
+            color: Colors.blue,
+            icon: Icon(Icons.login),
+            onPressed: () {
+              context.read<AuthenticationProvider>().signOut();
+              Get.off(Login());
+            },
+            label: Text(
+              "Log out",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
                 color: Colors.white,
+                fontSize: 15,
               ),
-              onPressed: () {
-                //increment the counter + icon becomes blue
-              },
-            ),
+            )),
           ],
         ),
         body: Container(
-          child: ListView(
-            children: <Widget>[
-              ListTile(
-                title: Text(questions[1] + "\n" + "\n"),
-                subtitle: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: Container(
-                        width: 200,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            /*Row(
-                            children: <Widget>[
-                              Icon(Icons.access_time),
-                              Text("   "+dates[2]),
-                            ]
-                        ),*/
-                            /*Container(
-                          margin: const EdgeInsets.only(top:5.0),
-                        ),*/
-                            Row(
-                              children: <Widget>[
-                                IconButton(
-                                  icon: const Icon(Icons.person_add_alt_1),
-                                  onPressed: () {},
-                                ),
-                                Text(bides[2]),
-                              ],
-                            ),
-                          ],
-                        ),
+          child:StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('users').snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text('Something went wrong');
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Text("Loading");
+        }
+        return new ListView(
+          children: snapshot.data.docs.map((DocumentSnapshot document) {
+            if(document.data()["type"]=="client" && document.data()["${controller.myUser.value.field}"] != "") 
+            {
+              String s = "${controller.myUser.value.field}" ;
+              print("heyyyyyyyyyyyyyyyyyyyyyyyy")  ; 
+              print(s) ; 
+              return  Card(
+                child: Column(
+                children: [
+                  Text(document.data()["name"],style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),),
+                  SizedBox(height: 15),
+                  Text(document.data()[s]),
+                  SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      RaisedButton.icon(
+                       icon: "${pcontroller.s}"=="Pick" ? Icon(Icons.library_add_check_rounded) : Icon(Icons.cancel),
+                       onPressed: () { pcontroller.change() ; },
+                       label :  Obx(() => Text("${pcontroller.s}"))
                       ),
-                    ),
-                  ],
-                ),
-                enabled: true,
-              ),
-              Divider(color: Colors.black),
-              ListTile(
-                title: Text(questions[1] + "\n" + "\n"),
-                subtitle: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: Container(
-                        width: 200,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            /*Row(
-                            children: <Widget>[
-                              Icon(Icons.access_time),
-                              Text("   "+dates[2]),
-                            ]
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(top:5.0),
-                        ),*/
-                            Row(
-                              children: <Widget>[
-                                IconButton(
-                                  icon: const Icon(Icons.person_add_alt_1),
-                                  onPressed: () {},
-                                ),
-                                Text(bides[2]),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                enabled: true,
-              ),
-              Divider(color: Colors.black),
-              ListTile(
-                title: Text(questions[1] + "\n" + "\n"),
-                subtitle: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: Container(
-                        width: 200,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            /*Row(
-                            children: <Widget>[
-                              Icon(Icons.access_time),
-                              Text("   "+dates[2]),
-                            ]
-                        ),*/
-                            /*Container(
-                          margin: const EdgeInsets.only(top:5.0),
-                        ),*/
-                            Row(
-                              children: <Widget>[
-                                IconButton(
-                                  icon: const Icon(Icons.person_add_alt_1),
-                                  onPressed: () {},
-                                ),
-                                Text(bides[2]),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                enabled: true,
-              ),
-              Divider(color: Colors.black),
-              ListTile(
-                title: Text(questions[1] + "\n" + "\n"),
-                subtitle: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: Container(
-                        width: 200,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            /*Row(
-                            children: <Widget>[
-                              Icon(Icons.access_time),
-                              Text("   "+dates[2]),
-                            ]
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(top:5.0),
-                        ),*/
-                            Row(
-                              children: <Widget>[
-                                IconButton(
-                                  icon: const Icon(Icons.person_add_alt_1),
-                                  onPressed: () {},
-                                ),
-                                Text(bides[2]),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                enabled: true,
-              ),
-              Divider(color: Colors.black),
-              ListTile(
-                title: Text(questions[1] + "\n" + "\n"),
-                subtitle: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: Container(
-                        width: 200,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            /*Row(
-                            children: <Widget>[
-                              Icon(Icons.access_time),
-                              Text("   "+dates[2]),
-                            ]
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(top:5.0),
-                        ),*/
-                            Row(
-                              children: <Widget>[
-                                IconButton(
-                                  icon: const Icon(Icons.person_add_alt_1),
-                                  onPressed: () {},
-                                ),
-                                Text(bides[2]),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                enabled: true,
-              ),
-              Divider(color: Colors.black),
-            ],
-          ),
+                    ],
+                  )
+
+                ],
+            ),
+              );
+            }
+            else 
+            {
+              return Container() ; 
+            }
+            // return new ListTile(
+            //   title: new Text(document.data()['name']),
+            //   // subtitle: new Text(document.data()['company']),
+            // );
+            
+          }).toList(),
+        );
+      },
+    ),
         ));
   }
 
@@ -244,3 +120,14 @@ class Experthome extends StatelessWidget {
     return list;
   }
 }
+
+
+
+              // Divider(color: Colors.black),
+
+
+
+
+
+
+
