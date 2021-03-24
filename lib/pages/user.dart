@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class MyUser {
+
+  String uid ; 
   String name;
   String email;
   String phoneNumber;
@@ -18,6 +20,16 @@ class MyUser {
   String heating =""; 
   String mechanical="" ; 
   String psych =""; 
+
+  List interestedArchitect = [] ;
+  List interestedCivil = [] ;
+  List interestedConstruction = [] ;
+  List interestedDoctor = [] ;
+  List interestedElectrical = [] ;
+  List interestedFamily = [] ; 
+  List interestedHeating = [] ; 
+  List interestedMechanical = [] ; 
+  List interestedPsych = [] ; 
 
 
   MyUser({this.name, this.field, this.email, this.type, this.phoneNumber});

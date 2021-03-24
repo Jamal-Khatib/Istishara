@@ -1,25 +1,14 @@
 import 'package:get/get.dart';
-
+import 'package:flutter/material.dart';
 
 
 class PickController extends GetxController
 {
-  var s = "Pick".obs ; 
+  var pick = Colors.red.obs ; 
+
+  var cancel = Colors.white.obs ; 
 
   
 
-  void change()
-  {
-    if(s.value=="Pick") 
-    {
-      s.value = "Cancel" ; 
-      
-
-    }
-    else 
-    {
-      s.value = "Pick" ; 
-    }
-  }
 
 }

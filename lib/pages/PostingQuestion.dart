@@ -95,11 +95,15 @@ class PostingQuestion extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(
-                  "Want To Ask A Specific Expert?",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
+                Padding(
+                  padding: const EdgeInsets.only(left:8.0),
+                  child: Text(
+                    "Want To Ask A Specific Expert?",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
                   ),
                 ),
                 TextButton(
@@ -112,7 +116,7 @@ class PostingQuestion extends StatelessWidget {
                     style: TextStyle(
                       color: Colors.blue,
                       fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                      fontSize: 16,
                     ),
                   ),
                 ),

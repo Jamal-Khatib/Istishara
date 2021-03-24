@@ -7,11 +7,12 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_app/pages/user_controller.dart';
 
+import 'package:fluttertoast/fluttertoast.dart';
+
+
 
 class Experthome extends StatelessWidget {
-  List questions = myquestionlst();
-  List dates = datelst();
-  List bides = bidelst();
+ 
   UserController controller = Get.put(UserController());
 
   PickController pcontroller = Get.put(PickController()) ; 
@@ -43,7 +44,7 @@ class Experthome extends StatelessWidget {
         body: Container(
           child:StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('users').snapshots(),
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot)   {
         if (snapshot.hasError) {
           return Text('Something went wrong');
         }
@@ -68,17 +69,101 @@ class Experthome extends StatelessWidget {
                   SizedBox(height: 15),
                   Text(document.data()[s]),
                   SizedBox(height: 15),
+                  // Text( controller.si(ClientId: document.id)),
+                  SizedBox(height: 15),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      RaisedButton.icon(
-                       icon: "${pcontroller.s}"=="Pick" ? Icon(Icons.library_add_check_rounded) : Icon(Icons.cancel),
-                       onPressed: () { pcontroller.change() ; },
-                       label :  Obx(() => Text("${pcontroller.s}"))
+                      RaisedButton.icon  (
+                        color: Colors.blue,
+                        icon:   Icon(Icons.library_add_check_rounded,color: Colors.white) ,
+                       onPressed: () {
+                         String f = "${controller.myUser.value.field}".capitalize ; 
+                         print("interested$f") ; 
+                         List l = document.data()["interested$f"] ; 
+                         for(var i = 0 ; i<l.length ; i++) 
+                         {
+                           if(l[i]==controller.myUser.value.name) 
+                           {
+                             Fluttertoast.showToast(
+                               msg: "You have already picked this question",
+                              gravity: ToastGravity.CENTER,
+                              toastLength: Toast.LENGTH_LONG,
+                              fontSize: 15,
+                              
+                              ) ; 
+                              return ; 
+                           }
+                         }
+        
+                         l.add(controller.myUser.value.name.toString()) ; 
+                         FirebaseFirestore.instance.collection('users').doc(document.id).update(
+                           {
+                             "interested$f" : l,
+                           }
+                        
+                         ) ; 
+                         Fluttertoast.showToast(
+                               msg: "You have pickesd this question successfully", //yalla
+                              gravity: ToastGravity.CENTER,
+                              toastLength: Toast.LENGTH_LONG,
+                              fontSize: 15,
+                              
+                              ) ; 
+                        // document.data()["interested$f"].se     add(controller.myUser.value.uid) ; 
+                          },
+                      label :  Text("Pick",style: TextStyle(color: Colors.white),)
                       ),
-                    ],
-                  )
+                      SizedBox(width: 20),
+                      RaisedButton.icon  (
+                        icon:   Icon(Icons.cancel) ,
+                       onPressed: () {
+                         String f = "${controller.myUser.value.field}".capitalize ; 
+                         print("interested$f") ; 
+                         List l = document.data()["interested$f"] ; 
+                         int c = 0 ; 
+                         for(var i = 0 ; i<l.length ; i++) 
+                         {
+                           if(l[i]==controller.myUser.value.name) 
+                           {
+                             
+                             c++; 
+                           }
+                         }
+                         if(c==0) 
+                         {
+                           Fluttertoast.showToast(
+                               msg: "You have not picked this question yet to cancel it ", 
+                              gravity: ToastGravity.CENTER,
+                              toastLength: Toast.LENGTH_LONG
+                              ) ; 
+                            return ; 
+                         }
+                         else
+                         {
+                           l.remove(controller.myUser.value.name) ; 
 
+                         FirebaseFirestore.instance.collection('users').doc(document.id).update(
+                           {
+                             "interested$f" : l,
+                           }
+                         ) ; 
+                          Fluttertoast.showToast(
+                               msg: "You have canceled your pick for this question successfully",   ///yalla
+                              gravity: ToastGravity.CENTER,
+                              toastLength: Toast.LENGTH_LONG,
+                              fontSize: 15,
+                              
+                              ) ; 
+                         }
+                         
+                          },
+                       label :  Text("Cancel")
+                      ),
+
+                    ], 
+                  ),
+                   Divider(color: Colors.blue,thickness: 5,),
                 ],
             ),
               );
@@ -87,11 +172,6 @@ class Experthome extends StatelessWidget {
             {
               return Container() ; 
             }
-            // return new ListTile(
-            //   title: new Text(document.data()['name']),
-            //   // subtitle: new Text(document.data()['company']),
-            // );
-            
           }).toList(),
         );
       },
@@ -99,34 +179,12 @@ class Experthome extends StatelessWidget {
         ));
   }
 
-  static List myquestionlst() {
-    List list = List.generate(10, (i) {
-      return "Question ${i + 1}";
-    });
-    return list;
-  }
-
-  static List datelst() {
-    List list = List.generate(10, (i) {
-      return "${i + 1} days ago";
-    });
-    return list;
-  }
-
-  static List bidelst() {
-    List list = List.generate(10, (i) {
-      return "${i + 1} bides";
-    });
-    return list;
-  }
-}
-
 
 
               // Divider(color: Colors.black),
 
 
-
+}
 
 
 

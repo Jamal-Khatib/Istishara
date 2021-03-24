@@ -67,8 +67,8 @@ class _VerifyState extends State<Verify> {
                 Text(
                   'An email has been sent to ${user.email}. ',
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue,
+                    // fontWeight: FontWeight.bold,
+                    color: Colors.black,
                   ),
                 ),
                 SizedBox(
@@ -86,7 +86,7 @@ class _VerifyState extends State<Verify> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Cancel'),
+              child: Text('Ok'),
               onPressed: () {
                 Get.back();
               },
@@ -127,7 +127,9 @@ class _VerifyState extends State<Verify> {
           "email": data["email"],
           "phoneNumber": data["phoneNumber"],
           "field": field1,
-          "type": "expert"
+          "type": "expert",
+          "uid" : FirebaseAuth.instance.currentUser.uid
+
         });
         Get.off(navigationExpert());
       } else {
@@ -148,7 +150,18 @@ class _VerifyState extends State<Verify> {
           "family" : "",
           "heating" : "",
           "mechanical" : "",
-          "psych" : "",
+          "psych" : "", 
+          "uid" : FirebaseAuth.instance.currentUser.uid,
+
+          "interestedArchitect" : [],
+          "interestedCivil" : [],
+          "interestedConstruction" : [],
+          "interestedDoctor" : [],
+          "interestedElectrical" : [],
+          "interestedFamily" : [],
+          "interestedHeating" : [],
+          "interestedMechanical" : [],
+          "interestedPsych" : []
 
 
         });

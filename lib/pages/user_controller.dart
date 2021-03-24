@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 class UserController extends GetxController {
   var myUser = MyUser().obs;
 
+
+
   @override
   void onInit() async {
     super.onInit();
@@ -40,6 +42,18 @@ class UserController extends GetxController {
           value.heating = c["heating"] ;
           value.mechanical = c["mechanical"] ;
           value.psych = c["psych"] ; 
+          value.interestedArchitect = c["interestedArchitect"] ; 
+          value.interestedCivil = c["interestedCivil"] ; 
+          value.interestedConstruction = c["interestedConstruction"] ; 
+          value.interestedDoctor = c["interestedDoctor"] ; 
+          value.interestedElectrical = c["interestedElectrical"] ; 
+          value.interestedFamily = c["interestedFamily"] ; 
+          value.interestedHeating = c["interestedHeating"] ; 
+          value.interestedMechanical = c["interestedMechanical"] ; 
+          value.interestedPsych = c["interestedPsych"] ; 
+          value.uid = c["uid"] ;
+          
+
         });
         update();
       } else if (myMap["type"] == "expert") {
@@ -49,7 +63,9 @@ class UserController extends GetxController {
           value.phoneNumber = c["phoneNumber"];
           value.type = "expert";
           value.field = c["field"];
+          value.uid = c["uid"] ;
         });
+
         update();
       } else {
         print("There is something in User controller");
@@ -199,5 +215,118 @@ class UserController extends GetxController {
   {
     return(myUser.value.field) ; 
   }
+
+  Future<bool> is_intersted({String ClientId}) async
+  { 
+    var myclient = await FirebaseFirestore.instance.collection("users").doc(ClientId).get() ; 
+    if(myUser.value.field=="architect") 
+    {
+      List intersted = myclient["interestedArchitect"] ; 
+      for (var i = 0 ; i< intersted.length ; i++)
+      {
+        if(myUser.value.uid == intersted[i] ) return true ; 
+      }
+      return false ; 
+    }
+    else if(myUser.value.field=="civil") 
+    {
+      List intersted = myclient["interestedCivil"] ; 
+      for (var i = 0 ; i< intersted.length ; i++)
+      {
+        if(myUser.value.uid == intersted[i] ) return true ; 
+      }
+      return false ; 
+    }
+    else if(myUser.value.field=="construction") 
+    {
+      List intersted = myclient["interestedConstruction"] ; 
+      for (var i = 0 ; i< intersted.length ; i++)
+      {
+        if(myUser.value.uid == intersted[i] ) return true ; 
+      }
+      return false ; 
+    }
+    else if(myUser.value.field=="doctor") 
+    {
+      List intersted = myclient["interestedDoctor"] ; 
+      for (var i = 0 ; i< intersted.length ; i++)
+      {
+        if(myUser.value.uid == intersted[i] ) return true ; 
+      }
+      return false ; 
+    }
+    else if(myUser.value.field=="electrical") 
+    {
+      List intersted = myclient["interestedElectrical"] ; 
+      for (var i = 0 ; i< intersted.length ; i++)
+      {
+        if(myUser.value.uid == intersted[i] ) return true ; 
+      }
+      return false ; 
+    }
+    else if(myUser.value.field=="family") 
+    {
+      List intersted = myclient["interestedFamily"] ; 
+      for (var i = 0 ; i< intersted.length ; i++)
+      {
+        if(myUser.value.uid == intersted[i] ) return true ; 
+      }
+      return false ; 
+    }
+     else if(myUser.value.field=="heating") 
+    {
+      List intersted = myclient["interestedHeating"] ; 
+      for (var i = 0 ; i< intersted.length ; i++)
+      {
+        if(myUser.value.uid == intersted[i] ) return true ; 
+      }
+      return false ; 
+    }
+    else if(myUser.value.field=="mechanical") 
+    {
+      List intersted = myclient["interestedMechanical"] ; 
+      for (var i = 0 ; i< intersted.length ; i++)
+      {
+        if(myUser.value.uid == intersted[i] ) return true ; 
+      }
+      return false ; 
+    }
+     else if(myUser.value.field=="psych") 
+    {
+      List intersted = myclient["interestedPsych"] ; 
+      for (var i = 0 ; i< intersted.length ; i++)
+      {
+        if(myUser.value.uid == intersted[i] ) return true ; 
+      }
+      return false ; 
+    }
+
+
+
+
+    
+
+
+
+  }
+
+
+  
+    Future<String> si({String ClientId}) async 
+    {
+      if( await is_intersted(ClientId: ClientId)) return ("Picked") ; 
+      else return("") ; 
+
+    }
+
+    // Future<String> getById(String Id) async
+    // {
+    //    DocumentSnapshot c = await FirebaseFirestore.instance
+    //       .collection("users")
+    //       .doc(FirebaseAuth.instance.currentUser.uid)
+    //       .get();
+    //   Map<String, dynamic> myMap = c.data();
+    //     return(myMap["name"]) ; 
+    // }
 
 }
