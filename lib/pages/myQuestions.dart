@@ -80,7 +80,7 @@ class myQuestions extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     onPressed: () {
-                      Get.to(ListCategories());
+                      // Get.to(ListCategories());
                     },
                   ),
                 ],

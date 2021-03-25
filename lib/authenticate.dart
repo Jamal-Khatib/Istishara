@@ -23,7 +23,6 @@ class Authenticate extends StatelessWidget {
       //Means that the user is logged in already and hence navigate to HomePage
       UserController controller = Get.put(UserController());
 
-      print("Payyyyy attention");
       print(controller.myUser.value.type);
       if (controller.myUser.value.type == "client") {
         return (navigationClient());

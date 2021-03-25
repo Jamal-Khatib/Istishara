@@ -32,6 +32,9 @@ class MyUser {
   List interestedPsych = [] ; 
 
 
+  // String currentfield = "" ; 
+
+
   MyUser({this.name, this.field, this.email, this.type, this.phoneNumber});
 
  
@@ -54,6 +57,15 @@ class MyUser {
         "$category" : "" 
       }
     );
+
+    String capCategory = category[0].toUpperCase() + category.substring(1) ;  
+    // String s = "interested$capCategory" ; 
+    FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser.uid).update(
+      {
+        "interested$capCategory" : [] 
+      }
+    );
+
   }
 
   

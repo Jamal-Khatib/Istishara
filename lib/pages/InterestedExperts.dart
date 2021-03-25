@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_app/pages/list_of_categories.dart';
+import 'package:firebase_app/pages/navigationClient.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_app/pages/user_controller.dart';
 import 'package:get/get.dart';
@@ -15,11 +16,20 @@ class _InterestedExpertsState extends State<InterestedExperts> {
   Widget build(BuildContext context) {
 
 
-      //  String s = Get.arguments.capatilzie ; 
+      // String s = Get.arguments.capatilzie ; 
       // String s2 = "interested$s" ; 
 
+
+
+
+
+    //  String itemcount = controller.myUser.value.s2.length.obs.toInt() ; 
+
     controller.getUser() ; 
-    List experts = controller.myUser.value.interestedDoctor ; 
+
+
+    int x = controller.get_list(Get.arguments).length ; 
+
 
 
     return Scaffold(
@@ -39,9 +49,9 @@ class _InterestedExpertsState extends State<InterestedExperts> {
                     color: Colors.red,
                     onPressed: () {
                       controller.delete_question(category: Get.arguments)  ; 
-                      Get.off(ListCategories()) ; 
+                      Get.off(navigationClient()) ; 
                     }),
-                title: Obx( () => 
+                title:  
                 Text(
                   
                   "${controller.get_question(category: Get.arguments)}",
@@ -51,7 +61,7 @@ class _InterestedExpertsState extends State<InterestedExperts> {
                     
                   ),
                 ),
-                ),
+                
               ),
             ),
             SizedBox(
@@ -69,21 +79,24 @@ class _InterestedExpertsState extends State<InterestedExperts> {
             ),
             SizedBox(height: 10),
 
-            Obx(() =>ListView.builder(
+
+            // controller.myUser.value.{$s2}.length.obs.toInt()
+
+            ListView.builder(
             shrinkWrap: true,
             physics: ClampingScrollPhysics(),
-              itemCount: controller.myUser.value.interestedDoctor.length.obs.toInt(),
+              itemCount: x,
               itemBuilder: (BuildContext context, int index)  
               {
-                return( Obx(() => Card( 
+                return(Card( 
                   child: ListTile(
                     leading: Icon(Icons.person),                             //s2
-                    title: TextButton(child: Text("${controller.myUser.value.interestedDoctor[index]}"), onPressed: ()  {},               ),
+                    title: TextButton(child: Text("${controller.get_list(Get.arguments)[index]}"), onPressed: ()  {},               ),
                     trailing: TextButton(child: Text("Pick me"), onPressed: ()  {},               ),
                   ),
-                )  ) ); 
+                )   ); 
               },
-            ) ) ,
+            )  ,
 
           
           ],

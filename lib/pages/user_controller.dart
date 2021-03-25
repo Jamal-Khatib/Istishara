@@ -17,6 +17,48 @@ class UserController extends GetxController {
     print("2222222222222222222");
   }
 
+
+  List get_list(String category) 
+  { 
+    if(category=="architect") 
+    {
+        return(myUser.value.interestedArchitect) ; 
+
+    }
+    else if(category=="civil") 
+    {
+         return(myUser.value.interestedCivil) ;  
+    }
+    else if(category=="construction") 
+    {
+         return(myUser.value.interestedConstruction) ;  
+    }
+    else if(category=="doctor") 
+    {
+         return(myUser.value.interestedDoctor) ;  
+    }
+     else if(category=="electrical") 
+    {
+         return(myUser.value.interestedElectrical) ;  
+    }
+    else if(category=="family") 
+    {
+         return(myUser.value.interestedFamily) ;  
+    }
+    else if(category=="heating") 
+    {
+         return(myUser.value.interestedHeating) ; 
+    }
+    else if(category=="mechanical") 
+    {
+         return(myUser.value.interestedMechanical) ; 
+    }
+    else if(category=="psych") 
+    {
+        return(myUser.value.interestedPsych) ; 
+    }
+  }
+
   void getUser() async {
     try {
       DocumentSnapshot c = await FirebaseFirestore.instance
@@ -125,7 +167,7 @@ class UserController extends GetxController {
   {
     if(category=="architect") 
     {
-        return(myUser.value.architect)  ; 
+        return(myUser.value.architect)  ;  
     }
     else if (category =="civil")
     {
@@ -168,46 +210,56 @@ class UserController extends GetxController {
     {
         myUser.update((value) {value.architect = "" ; }) ; 
         myUser.value.delete_question(category: category) ; 
+        myUser.update((value) {value.interestedArchitect = [] ; }) ;
     }
     else if (category =="civil")
     {
       myUser.update((value) {value.civil = "" ; }) ; 
       myUser.value.delete_question(category: category) ; 
+      myUser.update((value) {value.interestedCivil = [] ; }) ;
+
     }
     else if (category =="construction")
     {
       myUser.update((value) {value.construction = "" ; }) ; 
       myUser.value.delete_question(category: category) ; 
+      myUser.update((value) {value.interestedConstruction = [] ; }) ;
     }
      else if (category =="doctor")
     {
       myUser.update((value) {value.doctor = "" ; }) ; 
       myUser.value.delete_question(category: category) ; 
+      myUser.update((value) {value.interestedDoctor = [] ; }) ;
     }
      else if (category =="electrical")
     {
       myUser.update((value) {value.electrical = "" ; }) ; 
       myUser.value.delete_question(category: category) ; 
+      myUser.update((value) {value.interestedElectrical = [] ; }) ;
     }
      else if (category =="family")
     {
       myUser.update((value) {value.family = "" ; }) ; 
       myUser.value.delete_question(category: category) ; 
+      myUser.update((value) {value.interestedFamily = [] ; }) ;
     }
      else if (category =="heating")
     {
       myUser.update((value) {value.heating = "" ; }) ; 
       myUser.value.delete_question(category: category) ; 
+      myUser.update((value) {value.interestedHeating = [] ; }) ;
     }
      else if (category =="mechanical")
     {
       myUser.update((value) {value.mechanical = "" ; }) ; 
       myUser.value.delete_question(category: category) ; 
+      myUser.update((value) {value.interestedMechanical = [] ; }) ;
     }
      else if (category =="psych")
     {
       myUser.update((value) {value.psych = "" ; }) ; 
       myUser.value.delete_question(category: category) ; 
+      myUser.update((value) {value.interestedPsych = [] ; }) ;
     }
   }
 

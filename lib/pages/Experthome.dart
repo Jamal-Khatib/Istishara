@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_app/pages/experthome_controller.dart';
+// import 'package:firebase_app/pages/experthome_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_app/authenticationProvider.dart';
 import 'package:firebase_app/pages/log_in.dart';
@@ -11,11 +11,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 
 
+
 class Experthome extends StatelessWidget {
  
   UserController controller = Get.put(UserController());
 
-  PickController pcontroller = Get.put(PickController()) ; 
 
   Widget build(BuildContext context) {
     controller.getUser() ; 
@@ -53,14 +53,14 @@ class Experthome extends StatelessWidget {
         }
         return new ListView(
           children: snapshot.data.docs.map((DocumentSnapshot document) {
-            if(document.data()["type"]=="client" && document.data()["${controller.myUser.value.field}"] != "") 
+            if(document.data()["type"]=="client" && document.data()["${controller.myUser.value.field}"] != "" &&  document.data()["${controller.myUser.value.field}"] != null) 
             {
               String s = "${controller.myUser.value.field}" ;
               print("heyyyyyyyyyyyyyyyyyyyyyyyy")  ; 
               print(s) ; 
-              return  Card(
+              return  Card(        
                 child: Column(
-                children: [
+                children: [ 
                   Text(document.data()["name"],style: TextStyle(
                     fontSize: 20,
                     color: Colors.black,

@@ -10,11 +10,14 @@ import 'package:firebase_app/pages/user_controller.dart';
 class PostingQuestion extends StatelessWidget {
 
     TextEditingController mycontroller = TextEditingController() ; 
-      UserController controller = Get.put(UserController());
+     UserController controller = Get.put(UserController());
+
+
 
 
   @override
   Widget build(BuildContext context) {
+    
       controller.getUser() ; 
     return Scaffold(
       appBar: AppBar(
