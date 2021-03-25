@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
-import 'ask_question.dart';
+import 'list_of_categories.dart';
 
 class myQuestions extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -80,7 +80,7 @@ class myQuestions extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     onPressed: () {
-                     Get.to(AskQuestion());
+                      Get.to(ListCategories());
                     },
                   ),
                 ],

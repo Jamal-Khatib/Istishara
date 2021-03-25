@@ -78,7 +78,7 @@ class _VerifyState extends State<Verify> {
                   'Please verify your email.',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.blue,
+                    color: Colors.black,
                   ),
                 ),
               ],

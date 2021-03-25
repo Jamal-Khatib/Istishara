@@ -4,7 +4,7 @@ import 'package:firebase_app/pages/navigationClient.dart';
 import 'package:firebase_app/pages/navigationExpert.dart';
 import 'package:firebase_app/pages/user_controller.dart';
 // import 'package:firebase_app/pages/Profile.dart';
-import 'package:firebase_app/pages/list_of_categories.dart';
+// import 'package:firebase_app/pages/list_of_categories.dart';
 import 'package:firebase_app/pages/log_in.dart';
 // import 'package:firebase_app/pages/verify.dart';
 import 'package:flutter/material.dart';
