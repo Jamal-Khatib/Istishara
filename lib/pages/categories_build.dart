@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_app/pages/user_controller.dart';
 
-
 class CategoriesListBuild extends StatelessWidget {
   final List<String> categoriesList;
   final List<String> categoriesListIconss;
@@ -79,7 +78,9 @@ class CategoriesListBuild extends StatelessWidget {
       itemBuilder: (context, index) {
         // Container(height: 20, child: Image.asset('assets/images/icons/doctor.png', fit: BoxFit.cover,)),
         return Padding(
-          padding: const EdgeInsets.all(2.0),
+          padding: index == 0 || index == 1
+              ? const EdgeInsets.only(top: 10.0, left: 4, right: 4, bottom: 4)
+              : const EdgeInsets.all(4.0),
           child: Card(
             margin: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
             elevation: 18,
@@ -92,7 +93,10 @@ class CategoriesListBuild extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(
-                      height: categoriesList[index] == "Heating & cooling Engineer" ? 90:100,
+                      height:
+                          categoriesList[index] == "Heating & cooling Engineer"
+                              ? 90
+                              : 100,
                       padding: EdgeInsets.only(top: 4),
                       child: InkWell(
                         onTap: () {
@@ -109,7 +113,7 @@ class CategoriesListBuild extends StatelessWidget {
                       )),
                   TextButton(
                     onPressed: () {
-                      gridHandler(index);       
+                      gridHandler(index);
                     },
                     child: Text(
                       categoriesList[index],

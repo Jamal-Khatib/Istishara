@@ -70,13 +70,12 @@ class _ListCategoriesState extends State<ListCategories> {
 
     final txListWidget = Container(
         height: (MediaQuery.of(context).size.height
-        //  -
-                // appBar.preferredSize.height 
-                // -
-                // MediaQuery.of(context).padding.bottom
-                // - 
-        ) *
-            0.7,
+            // - appBar.preferredSize.height
+            // -
+            // MediaQuery.of(context).padding.bottom
+            // -
+            ) *
+            0.81,
         child: CategoriesListBuild(categoriesList, categoriesListIcons));
 
     return Scaffold(
@@ -88,13 +87,13 @@ class _ListCategoriesState extends State<ListCategories> {
           children: <Widget>[
             // Center(
             //   child: Container(
-            //     padding: EdgeInsets.all(9),
+            //     padding: EdgeInsets.all(4),
             //   ),
             // ),
             txListWidget,
             // Container(
-            //     padding: EdgeInsets.all(9),
-            //   )
+            //   padding: EdgeInsets.all(9),
+            // )
           ],
         ),
       ),
