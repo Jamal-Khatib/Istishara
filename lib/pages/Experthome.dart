@@ -49,7 +49,7 @@ class Experthome extends StatelessWidget {
           return Text('Something went wrong');
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return Center(child: Text("Loading"));
         }
         return new ListView(
           children: snapshot.data.docs.map((DocumentSnapshot document) {

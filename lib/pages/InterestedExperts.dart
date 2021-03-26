@@ -11,21 +11,18 @@ class InterestedExperts extends StatefulWidget {
 }
 
 class _InterestedExpertsState extends State<InterestedExperts> {
+
+  
     UserController controller = Get.put(UserController());
 
   Widget build(BuildContext context) {
 
 
-      // String s = Get.arguments.capatilzie ; 
-      // String s2 = "interested$s" ; 
-
-
-
-
-
-    //  String itemcount = controller.myUser.value.s2.length.obs.toInt() ; 
+      
 
     controller.getUser() ; 
+
+
 
 
     int x = controller.get_list(Get.arguments).length ; 
@@ -80,23 +77,60 @@ class _InterestedExpertsState extends State<InterestedExperts> {
             SizedBox(height: 10),
 
 
-            // controller.myUser.value.{$s2}.length.obs.toInt()
 
-            ListView.builder(
-            shrinkWrap: true,
-            physics: ClampingScrollPhysics(),
-              itemCount: x,
-              itemBuilder: (BuildContext context, int index)  
-              {
-                return(Card( 
-                  child: ListTile(
-                    leading: Icon(Icons.person),                             //s2
-                    title: TextButton(child: Text("${controller.get_list(Get.arguments)[index]}"), onPressed: ()  {},               ),
-                    trailing: TextButton(child: Text("Pick me"), onPressed: ()  {},               ),
-                  ),
-                )   ); 
-              },
-            )  ,
+            StreamBuilder<DocumentSnapshot>(
+              stream: FirebaseFirestore.instance.collection("users").doc(controller.myUser.value.uid).snapshots(),
+              builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) { 
+
+                print("wathc meeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee") ; 
+                  print(snapshot.data["name"]) ; 
+                String field = Get.arguments ; 
+                String field2 = field[0].toUpperCase() + field.substring(1) ; 
+                List experts  = snapshot.data["interested$field2"] ; 
+                print(experts) ; 
+                    return  ListView.builder(
+                      shrinkWrap: true,
+                      physics: ClampingScrollPhysics(),
+                      itemCount: experts.length,
+                      itemBuilder: (BuildContext context, int index) 
+                      {
+                        print("Paulaaaaaaaaaaaaaaaaaaaaaaaaaa") ; 
+
+                        if(experts.length==0) return(Container()) ; 
+                        return Card(
+                          child: ListTile(
+                            leading: Icon(Icons.person),
+                            title: TextButton(child: Text(experts[index]),onPressed: () {},),
+                            trailing: TextButton(child: Text("Pick me"), onPressed: ()  {},               ),
+                          ),
+                        ); 
+                      },
+
+                      ); 
+              }
+                
+            ),
+
+
+
+
+
+            // ListView.builder(       
+            // shrinkWrap: true,
+            // physics: ClampingScrollPhysics(),
+            //   itemCount: x,
+            //   itemBuilder: (BuildContext context, int index)  
+            //   {
+            //     return(  Card( 
+            //       child: ListTile(
+            //         leading: Icon(Icons.person),                             //s2
+            //         title: TextButton(child: Text("${controller.get_list(Get.arguments)[index]}"), onPressed: ()  {},               ),
+            //         trailing: TextButton(child: Text("Pick me"), onPressed: ()  {},               ),
+            //       )
+            //       ,
+            //     )   ); 
+            //   },        
+            // )  ,
 
           
           ],
