@@ -72,62 +72,66 @@ class CategoriesListBuild extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
     return GridView.builder(
       gridDelegate:
-          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: (1 / 1),),
       itemBuilder: (context, index) {
         // Container(height: 20, child: Image.asset('assets/images/icons/doctor.png', fit: BoxFit.cover,)),
         return Padding(
           padding: index == 0 || index == 1
               ? const EdgeInsets.only(top: 10.0, left: 4, right: 4, bottom: 4)
               : const EdgeInsets.all(4.0),
-          child: Card(
-            margin: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
-            elevation: 18,
-            color: Colors.blue[600],
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                      height:
-                          categoriesList[index] == "Heating & cooling Engineer"
-                              ? 90
-                              : 100,
-                      padding: EdgeInsets.only(top: 4),
-                      child: InkWell(
-                        onTap: () {
-                          gridHandler(index);
-                        },
-                        child: Container(
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(0.0),
-                              child: Image.asset(
-                                categoriesListIconss[index],
-                                fit: BoxFit.cover,
-                              )),
-                        ),
-                      )),
-                  TextButton(
-                    onPressed: () {
-                      gridHandler(index);
-                    },
-                    child: Text(
-                      categoriesList[index],
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 17),
-                      textAlign: TextAlign.center,
+          
+            child: Card(
+              margin: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
+              elevation: 18,
+              color: Colors.blue[600],
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                        height:
+                            categoriesList[index] == "Heating & cooling Engineer"
+                                ? 90
+                                : 100,
+                        padding: EdgeInsets.only(top: 4),
+                        child: InkWell(
+                          onTap: () {
+                            gridHandler(index);
+                          },
+                          child: Container(
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(0.0),
+                                child: Image.asset(
+                                  categoriesListIconss[index],
+                                  fit: BoxFit.contain,
+                                )),
+                          ),
+                        )),
+                    TextButton(
+                      onPressed: () {
+                        gridHandler(index);
+                      },
+                      child: Text(
+                        categoriesList[index],
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: (MediaQuery.of(context).size.width)*0.05),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
+          
         );
       },
       itemCount: categoriesList.length,
