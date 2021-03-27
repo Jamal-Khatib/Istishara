@@ -104,18 +104,16 @@ class _VerifyState extends State<Verify> {
     if (user.emailVerified) {
       timer.cancel();
       Map data = Get.arguments;
-      String field1 ; 
-      if(data["field"]=="Architect") field1 = "architect" ; 
-      if(data["field"]=="Civil Engineer") field1 = "civil" ; 
-      if(data["field"]=="Construction Engineer") field1 = "construction" ; 
-      if(data["field"]=="Doctor") field1 = "doctor" ; 
-      if(data["field"]=="Electrical Engineer") field1 = "electrical" ; 
-      if(data["field"]=="Family practitioner") field1 = "family" ; 
-      if(data["field"]=="Heating & cooling Engineer") field1 = "heating" ; 
-      if(data["field"]=="Mechanical Enginner") field1 = "mechanical" ; 
-      if(data["field"]=="Psychologist") field1 = "psych" ; 
-          
-
+      String field1;
+      if (data["field"] == "Architect") field1 = "architect";
+      if (data["field"] == "Civil Engineer") field1 = "civil";
+      if (data["field"] == "Construction Engineer") field1 = "construction";
+      if (data["field"] == "Doctor") field1 = "doctor";
+      if (data["field"] == "Electrical Engineer") field1 = "electrical";
+      if (data["field"] == "Family practitioner") field1 = "family";
+      if (data["field"] == "Heating & cooling Engineer") field1 = "heating";
+      if (data["field"] == "Mechanical Enginner") field1 = "mechanical";
+      if (data["field"] == "Psychologist") field1 = "psych";
 
       if (data["isexpert"]) {
         // Expert expert = Expert(name: data["name"], email: data["email"], phonenumber: data["phoneNumber"],field: data["field"]) ;
@@ -128,8 +126,7 @@ class _VerifyState extends State<Verify> {
           "phoneNumber": data["phoneNumber"],
           "field": field1,
           "type": "expert",
-          "uid" : FirebaseAuth.instance.currentUser.uid
-
+          "uid": FirebaseAuth.instance.currentUser.uid
         });
         Get.off(navigationExpert());
       } else {
@@ -142,28 +139,25 @@ class _VerifyState extends State<Verify> {
           "email": data["email"],
           "phoneNumber": data["phoneNumber"],
           "type": "client",
-          "architect" : "",
-          "civil" : "",
-          "construction" : "",
-          "doctor" : "",
-          "electrical" : "",
-          "family" : "",
-          "heating" : "",
-          "mechanical" : "",
-          "psych" : "", 
-          "uid" : FirebaseAuth.instance.currentUser.uid,
-
-          "interestedArchitect" : [],
-          "interestedCivil" : [],
-          "interestedConstruction" : [],
-          "interestedDoctor" : [],
-          "interestedElectrical" : [],
-          "interestedFamily" : [],
-          "interestedHeating" : [],
-          "interestedMechanical" : [],
-          "interestedPsych" : []
-
-
+          "architect": "",
+          "civil": "",
+          "construction": "",
+          "doctor": "",
+          "electrical": "",
+          "family": "",
+          "heating": "",
+          "mechanical": "",
+          "psych": "",
+          "uid": FirebaseAuth.instance.currentUser.uid,
+          "interestedArchitect": [],
+          "interestedCivil": [],
+          "interestedConstruction": [],
+          "interestedDoctor": [],
+          "interestedElectrical": [],
+          "interestedFamily": [],
+          "interestedHeating": [],
+          "interestedMechanical": [],
+          "interestedPsych": []
         });
         Get.off(navigationClient());
       }

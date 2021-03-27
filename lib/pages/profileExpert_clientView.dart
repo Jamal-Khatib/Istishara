@@ -22,12 +22,12 @@ class MyController extends GetxController {
   ];
 }
 
-class Profile extends StatefulWidget {
+class ProfileClientView extends StatefulWidget {
   @override
-  _ProfileState createState() => _ProfileState();
+  _ProfileClientViewState createState() => _ProfileClientViewState();
 }
 
-class _ProfileState extends State<Profile> {
+class _ProfileClientViewState extends State<ProfileClientView> {
   List<String> skillslst = [
     "Flutter",
     "Software Development",
@@ -36,6 +36,7 @@ class _ProfileState extends State<Profile> {
     "Data visualization",
     "Data visualization",
   ];
+
   @override
   Widget build(BuildContext context) {
     List<double> rate = [2.5, 1.5, 1.0, 1];
@@ -55,16 +56,16 @@ class _ProfileState extends State<Profile> {
                 child: CircleAvatar(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 85, left: 100),
-                    child: IconButton(
-                      //highlightColor: Colors.grey,
-                      color: Colors.grey[600],
-                      //focusColor: Colors.grey[600],
-                      icon: Icon(
-                        Icons.mode_edit,
-                        size: 30,
-                      ),
-                      onPressed: () {},
-                    ),
+                    // child: IconButton(
+                    //   //highlightColor: Colors.grey,
+                    //   color: Colors.grey[600],
+                    //   //focusColor: Colors.grey[600],
+                    //   icon: Icon(
+                    //     Icons.mode_edit,
+                    //     size: 30,
+                    //   ),
+                    //   onPressed: () {},
+                    // ),
                   ),
                   radius: 70,
                   backgroundImage: NetworkImage(
@@ -72,25 +73,25 @@ class _ProfileState extends State<Profile> {
                   backgroundColor: Colors.blue,
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.blue, borderRadius: BorderRadius.circular(8)),
-                child: FlatButton(
-                  onPressed: () {},
-                  child: TextButton(
-                    onPressed: () {
-                      Get.to(
-                        editProfile(),
-                        arguments: m,
-                      );
-                    },
-                    child: Text(
-                      'EDIT PROFILE',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                  ),
-                ),
-              ),
+              // Container(
+              //   decoration: BoxDecoration(
+              //       color: Colors.blue, borderRadius: BorderRadius.circular(8)),
+              //   child: FlatButton(
+              //     onPressed: () {},
+              //     child: TextButton(
+              //       onPressed: () {
+              //         Get.to(
+              //           editProfile(),
+              //           arguments: m,
+              //         );
+              //       },
+              //       child: Text(
+              //         'EDIT PROFILE',
+              //         style: TextStyle(color: Colors.white, fontSize: 20),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ]),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -108,24 +109,6 @@ class _ProfileState extends State<Profile> {
                 // RatingBar(ratingWidget: ratingWidget, onRatingUpdate: onRatingUpdate),
               ],
             ),
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 12.0),
-            //   child: RatingBar.builder(
-            //     initialRating: 4.5,
-            //     minRating: 0,
-            //     direction: Axis.horizontal,
-            //     allowHalfRating: true,
-            //     itemCount: 5,
-            //     itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-            //     itemBuilder: (context, _) => Icon(
-            //       Icons.star,
-            //       color: Colors.amber,
-            //     ),
-            //     onRatingUpdate: (rating) {
-            //       print(rating);
-            //     },
-            //   ),
-            // ),
             Padding(
               padding: const EdgeInsets.fromLTRB(18, 0, 18, 0),
               child: Row(
@@ -150,29 +133,46 @@ class _ProfileState extends State<Profile> {
                 ],
               ),
             ),
-
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 12.0),
+            //   child: RatingBar.builder(
+            //     initialRating: 4.5,
+            //     minRating: 0,
+            //     direction: Axis.horizontal,
+            //     allowHalfRating: true,
+            //     itemCount: 5,
+            //     itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+            //     itemBuilder: (context, _) => Icon(
+            //       Icons.star,
+            //       color: Colors.amber,
+            //     ),
+            //     onRatingUpdate: (rating) {
+            //       print(rating);
+            //     },
+            //   ),
+            // ),
             // Row(
             //   children: [
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 19.0, top: 19),
-            //   child: Text(
-            //     "Price range per question:",
-            //     style: TextStyle(
-            //         color: Colors.black,
-            //         fontWeight: FontWeight.bold,
-            //         fontSize: 17),
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 6.0, top: 19),
-            //   child: Text(
-            //     m.price,
-            //     style: TextStyle(
-            //         color: Colors.black,
-            //         fontWeight: FontWeight.bold,
-            //         fontSize: 17),
-            //   ),
-            // ),
+            //     Padding(
+            //       padding: const EdgeInsets.only(left: 19.0, top: 19),
+            //       child: Text(
+            //         "Price range per question:",
+            //         style: TextStyle(
+            //             color: Colors.black,
+            //             fontWeight: FontWeight.bold,
+            //             fontSize: 17),
+            //       ),
+            //     ),
+            //     Padding(
+            //       padding: const EdgeInsets.only(left: 6.0, top: 19),
+            //       child: Text(
+            //         m.price,
+            //         style: TextStyle(
+            //             color: Colors.black,
+            //             fontWeight: FontWeight.bold,
+            //             fontSize: 17),
+            //       ),
+            //     ),
             //   ],
             // ),
             // Row(children: [

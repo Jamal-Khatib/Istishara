@@ -6,11 +6,11 @@ import 'package:firebase_app/pages/user_controller.dart';
 
 class myProfile extends StatelessWidget {
   @override
-
-        UserController controller = Get.put(UserController());
+  UserController controller = Get.put(UserController());
 
   Widget build(BuildContext context) {
-    controller.getUser() ; 
+    var counter = 10.obs;
+    controller.getUser();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -52,42 +52,257 @@ class myProfile extends StatelessWidget {
           SizedBox(height: 20),
           Center(
             child: Container(
-              child:
-                Obx( () => 
-                Text("${controller.myUser.value.name}",
-                style: TextStyle(
+              child: Obx(
+                () => Text(
+                  "${controller.myUser.value.name}",
+                  style: TextStyle(
                     fontSize: 25,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                ), 
-             
+              ),
             ),
           ),
           SizedBox(height: 5),
-          Center(
+          // Center(
+          //   child: Container(
+          //     child: Obx(
+          //       () => Text(
+          //         "${controller.myUser.value.email}",
+          //         style: TextStyle(
+          //           fontSize: 20,
+          //           color: Colors.blue[200],
+          //           fontWeight: FontWeight.bold,
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
             child: Container(
-              child: Obx( () => 
-              Text(
-                "${controller.myUser.value.email}",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.blue[200],
-                  fontWeight: FontWeight.bold,
-                ),
+              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  //color: Colors.yellow[100],
+                  border: Border.all(
+                    color: Colors.grey[400],
+                    // style: border_style_rounded,
+                  )),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        " My Balance:  ",
+                        style: TextStyle(
+                          fontSize: 23,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Obx(
+                        () => Text(
+                          "$counter \$",
+                          style: TextStyle(
+                            fontSize: 23,
+                            color: Colors.black87,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      IconButton(
+                          //highlightColor: Colors.grey,
+                          color: Colors.blue,
+                          icon: Icon(
+                            Icons.remove_circle,
+                            size: 30,
+                          ),
+                          onPressed: () {
+                            counter--;
+                          }),
+                      IconButton(
+                          //highlightColor: Colors.grey,
+                          color: Colors.blue,
+                          icon: Icon(
+                            Icons.add_circle,
+                            size: 30,
+                          ),
+                          onPressed: () {
+                            counter++;
+                          }),
+                    ],
+                  ),
+                ],
               ),
-               ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Divider(
-              height: 20,
               color: Colors.black26,
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 5),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              shape: StadiumBorder(
+                //Card with stadium border
+                side: BorderSide(
+                  color: Colors.blue,
+                  width: 2.0,
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                    //Padding: EdgeInsets.all(value)
+                    //mainAxisAlignment: MainAxisAlignment.,
+
+                    children: <Widget>[
+                      SizedBox(
+                        width: 7,
+                      ),
+                      Icon(
+                        Icons.notifications,
+                        color: Colors.blue,
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Notifications",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ]),
+              ),
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              shape: StadiumBorder(
+                //Card with stadium border
+                side: BorderSide(
+                  color: Colors.blue,
+                  width: 2.0,
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                    //Padding: EdgeInsets.all(value)
+                    //mainAxisAlignment: MainAxisAlignment.,
+
+                    children: <Widget>[
+                      SizedBox(
+                        width: 7,
+                      ),
+                      Icon(
+                        Icons.settings,
+                        color: Colors.blue,
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Notification Settings",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ]),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              shape: StadiumBorder(
+                //Card with stadium border
+                side: BorderSide(
+                  color: Colors.blue,
+                  width: 2.0,
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(children: <Widget>[
+                  SizedBox(
+                    width: 7,
+                  ),
+                  Icon(
+                    Icons.live_help,
+                    color: Colors.blue,
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "My Questions",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ]),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              shape: StadiumBorder(
+                //Card with stadium border
+                side: BorderSide(
+                  color: Colors.blue,
+                  width: 2.0,
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                    //Padding: EdgeInsets.all(value)
+                    //mainAxisAlignment: MainAxisAlignment.,
+
+                    children: <Widget>[
+                      SizedBox(
+                        width: 7,
+                      ),
+                      Icon(
+                        Icons.assignment,
+                        color: Colors.blue,
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Password and Security",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ]),
+              ),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
@@ -124,80 +339,6 @@ class myProfile extends StatelessWidget {
                         ),
                       ),
                     ]),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              shape: StadiumBorder(
-                //Card with stadium border
-                side: BorderSide(
-                  color: Colors.blue,
-                  width: 2.0,
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                    //Padding: EdgeInsets.all(value)
-                    //mainAxisAlignment: MainAxisAlignment.,
-
-                    children: <Widget>[
-                      SizedBox(
-                        width: 7,
-                      ),
-                      Icon(
-                        Icons.description,
-                        color: Colors.blue,
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Privacy Policy",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ]),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              shape: StadiumBorder(
-                //Card with stadium border
-                side: BorderSide(
-                  color: Colors.blue,
-                  width: 2.0,
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(children: <Widget>[
-                  SizedBox(
-                    width: 7,
-                  ),
-                  Icon(
-                    Icons.content_paste,
-                    color: Colors.blue,
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Terms and Conditions",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ]),
               ),
             ),
           ),

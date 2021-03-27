@@ -57,25 +57,25 @@ class _editProfileState extends State<editProfile> {
                     )),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: TextField(
-                controller: _controller2,
-                decoration: InputDecoration(
-                    labelText: "Price Range Per Question",
-                    labelStyle: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 23),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      borderSide: BorderSide(
-                        width: 2,
-                        color: Colors.blue,
-                      ),
-                    )),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(15.0),
+            //   child: TextField(
+            //     controller: _controller2,
+            //     decoration: InputDecoration(
+            //         labelText: "Price Range Per Question",
+            //         labelStyle: TextStyle(
+            //             color: Colors.black,
+            //             fontWeight: FontWeight.bold,
+            //             fontSize: 23),
+            //         border: OutlineInputBorder(
+            //           borderRadius: BorderRadius.circular(5),
+            //           borderSide: BorderSide(
+            //             width: 2,
+            //             color: Colors.blue,
+            //           ),
+            //         )),
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextField(
