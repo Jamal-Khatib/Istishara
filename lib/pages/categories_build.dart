@@ -123,7 +123,7 @@ class CategoriesListBuild extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: (MediaQuery.of(context).size.width)*0.05),
+                            fontSize: (MediaQuery.of(context).size.height)*0.028),
                         textAlign: TextAlign.center,
                       ),
                     ),

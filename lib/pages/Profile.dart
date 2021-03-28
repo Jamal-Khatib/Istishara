@@ -38,8 +38,11 @@ class _ProfileState extends State<Profile> {
   ];
   @override
   Widget build(BuildContext context) {
-    List<double> rate = [2.5, 1.5, 1.0, 1];
+
+    List<double> rate = [5, 4.5, 5.0, 3.5];
+    
     var mean = rate.reduce((a, b) => a + b) / rate.length;
+
     MyController m = Get.put(MyController());
     final skillsListWidget =
         Padding(padding: EdgeInsets.all(4), child: SkillsList(m.skillslst));
@@ -51,7 +54,7 @@ class _ProfileState extends State<Profile> {
             Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(
-                    top: 18.0, bottom: 18, left: 18, right: 33),
+                    top: 18.0, bottom: 18, left: 15, right: 28),
                 child: CircleAvatar(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 85, left: 100),
@@ -67,12 +70,14 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   radius: 70,
-                  backgroundImage: NetworkImage(
-                      "https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"),
+                  backgroundImage: AssetImage(
+                      "assets/images/1.png"),
                   backgroundColor: Colors.blue,
                 ),
               ),
               Container(
+                width: MediaQuery.of(context).size.width*0.44,
+                height: MediaQuery.of(context).size.height*0.07,
                 decoration: BoxDecoration(
                     color: Colors.blue, borderRadius: BorderRadius.circular(8)),
                 child: FlatButton(
@@ -86,7 +91,8 @@ class _ProfileState extends State<Profile> {
                     },
                     child: Text(
                       'EDIT PROFILE',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      // textAlign: TextAlign.start,
+                      style: TextStyle( color: Colors.white,  fontSize: MediaQuery.of(context).size.height*0.02),
                     ),
                   ),
                 ),
