@@ -46,7 +46,7 @@ class _ListCategoriesState extends State<ListCategories> {
     controller.getUser();
     final appBar = AppBar(
       // leading: Container(height: 0, width: 0,),
-      title: Obx(() => Text('${controller.myUser.value.name}',
+      title: Obx(() => Text('Choose a Category',
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 19))),
       backgroundColor: Colors.blue,
