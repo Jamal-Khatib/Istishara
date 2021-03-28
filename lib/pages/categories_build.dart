@@ -98,8 +98,8 @@ class CategoriesListBuild extends StatelessWidget {
                     Container(
                         height:
                             categoriesList[index] == "Heating & cooling Engineer"
-                                ? (MediaQuery.of(context).size.height)*0.09
-                                :   (MediaQuery.of(context).size.height)*0.1,
+                                ? (MediaQuery.of(context).size.height)*0.13
+                                : (MediaQuery.of(context).size.height)*0.14,
                         padding: EdgeInsets.only(top: 4),
                         child: InkWell(
                           onTap: () {
@@ -123,7 +123,8 @@ class CategoriesListBuild extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: (MediaQuery.of(context).size.height)*0.03),
+                            fontSize: categoriesList[index] == "Heating & cooling Engineer"
+                                ? (MediaQuery.of(context).size.height)*0.025 : (MediaQuery.of(context).size.height)*0.028),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -131,6 +132,7 @@ class CategoriesListBuild extends StatelessWidget {
                 ),
               ),
             ),
+          
         );
       },
       itemCount: categoriesList.length,
