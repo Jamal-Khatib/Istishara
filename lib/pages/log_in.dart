@@ -25,11 +25,15 @@ class Login extends StatelessWidget {
           children: <Widget>[
             Image.asset(
               "assets/images/signup.png",
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
+              // height: MediaQuery.of(context).size.height,
+              // width: MediaQuery.of(context).size.width,
               height: 300,
-              width: 300,
+              width: 200,
             ),
-            Padding(
+            Container(
+              height: MediaQuery.of(context).size.height * 0.1,
+              width: MediaQuery.of(context).size.width * 0.9,
               padding: const EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 15.0, bottom: 0),
               child: new Theme(
@@ -50,12 +54,14 @@ class Login extends StatelessWidget {
               ),
             ),
             SizedBox(
-                height: 10.0,
-                width: 150.0,
+                height: MediaQuery.of(context).size.height * 0.02,
+                width: MediaQuery.of(context).size.width,
                 child: Divider(
                   color: Colors.white,
                 )),
-            Padding(
+            Container(
+              height: MediaQuery.of(context).size.height * 0.1,
+              width: MediaQuery.of(context).size.width * 0.9,
               padding: const EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 15.0, bottom: 0),
               child: new Theme(
@@ -72,12 +78,14 @@ class Login extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-                height: 10.0,
-                width: 50.0,
-                child: Divider(
-                  color: Colors.white,
-                )),
+
+            // SizedBox(
+            //     height: MediaQuery.of(context).size.height*0.005,
+            //     width: MediaQuery.of(context).size.width,
+            //     child: Divider(
+            //       color: Colors.white,
+            //     )),
+
             Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
               TextButton(
                 child: Text(
@@ -86,7 +94,7 @@ class Login extends StatelessWidget {
                     color: Colors.blue,
                     fontWeight: FontWeight.bold,
                     decoration: TextDecoration.underline,
-                    fontSize: 18,
+                    fontSize: MediaQuery.of(context).size.width * 0.05,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -95,17 +103,23 @@ class Login extends StatelessWidget {
                 },
               ),
             ]),
-            SizedBox(
-                height: 15.0,
-                width: 50.0,
-                child: Divider(
-                  color: Colors.white,
-                )),
-            Padding(
-              padding:
-                  const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 10),
+            // SizedBox(
+            //     height: MediaQuery.of(context).size.height*0.008,
+            //     width: MediaQuery.of(context).size.width,
+            //     child: Divider(
+            //       color: Colors.white,
+            //     )),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.08,
+              width: MediaQuery.of(context).size.width * 0.9,
+              padding: const EdgeInsets.only(
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 1,
+              ),
               child: Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.only(bottom: 1.0, left: 8, right: 8),
                 child: Container(
                   // height: 50,
                   // width: 210,
@@ -120,7 +134,10 @@ class Login extends StatelessWidget {
                     },
                     child: Text(
                       'Login',
-                      style: TextStyle(color: Colors.white, fontSize: 25),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: MediaQuery.of(context).size.width * 0.07,
+                      ),
                     ),
                   ),
                 ),
@@ -134,7 +151,7 @@ class Login extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                    fontSize: MediaQuery.of(context).size.width * 0.04,
                   ),
                 ),
                 TextButton(
@@ -144,7 +161,7 @@ class Login extends StatelessWidget {
                       color: Colors.blue,
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline,
-                      fontSize: 15,
+                      fontSize: MediaQuery.of(context).size.width * 0.042,
                     ),
                     textAlign: TextAlign.center,
                   ),

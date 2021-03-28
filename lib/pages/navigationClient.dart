@@ -32,25 +32,29 @@ class navigationClient extends StatelessWidget {
           child: bodyContent.elementAt(navcontrol.selectedIndex),
         ),
       ),
-      bottomNavigationBar: Obx(
-        () => BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home, color: Colors.blue),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.library_books, color: Colors.blue),
-              label: "Chat",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person, color: Colors.blue),
-              label: "My Profile",
-            ),
-          ],
-          currentIndex: navcontrol.selectedIndex,
-          onTap: (index) => Get.to(navcontrol.selectedIndex = index),
+      bottomNavigationBar: Container(
+        height: MediaQuery.of(ctx).size.height*0.09,
+        width: MediaQuery.of(ctx).size.width,
+        child: Obx(
+          () => BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home, color: Colors.blue),
+                label: "Home",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.library_books, color: Colors.blue),
+                label: "Chat",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person, color: Colors.blue),
+                label: "My Profile",
+              ),
+            ],
+            currentIndex: navcontrol.selectedIndex,
+            onTap: (index) => Get.to(navcontrol.selectedIndex = index),
+          ),
         ),
       ),
     );

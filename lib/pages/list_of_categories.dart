@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_app/authenticationProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
+import 'navigationClient.dart';
 
 // import 'myProfile.dart';
 
@@ -69,13 +70,15 @@ class _ListCategoriesState extends State<ListCategories> {
     );
 
     final txListWidget = Container(
-        height: (MediaQuery.of(context).size.height
-            // - appBar.preferredSize.height
-            // -
-            // MediaQuery.of(context).padding.bottom
-            // -
-            ) *
-            0.81,
+        height: (MediaQuery.of(context).size.height -
+                appBar.preferredSize.height -
+                MediaQuery.of(context).padding.bottom -
+                MediaQuery.of(context).padding.top
+                
+            // - navigationClient.Scaffold.of(context).
+            - (MediaQuery.of(context).size.height)*0.09
+            ) 
+            ,
         child: CategoriesListBuild(categoriesList, categoriesListIcons));
 
     return Scaffold(
