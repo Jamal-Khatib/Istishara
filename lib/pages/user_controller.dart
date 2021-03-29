@@ -353,13 +353,6 @@ class UserController extends GetxController {
       return false ; 
     }
 
-
-
-
-    
-
-
-
   }
 
 
@@ -371,14 +364,9 @@ class UserController extends GetxController {
 
     }
 
-    // Future<String> getById(String Id) async
-    // {
-    //    DocumentSnapshot c = await FirebaseFirestore.instance
-    //       .collection("users")
-    //       .doc(FirebaseAuth.instance.currentUser.uid)
-    //       .get();
-    //   Map<String, dynamic> myMap = c.data();
-    //     return(myMap["name"]) ; 
-    // }
+   Map get_questions() 
+   {
+     
+   }
 
 }

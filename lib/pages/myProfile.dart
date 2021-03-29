@@ -1,3 +1,4 @@
+import 'package:firebase_app/pages/allQuestions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -250,7 +251,9 @@ class myProfile extends StatelessWidget {
                     color: Colors.blue,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(AllQuestions()) ; 
+                    },
                     child: Text(
                       "My Questions",
                       style: TextStyle(
