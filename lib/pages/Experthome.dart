@@ -58,21 +58,56 @@ class Experthome extends StatelessWidget {
                     print("heyyyyyyyyyyyyyyyyyyyyyyyy");
                     print(s);
                     return Card(
+                      elevation: 5,
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            document.data()["name"],
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
+
+                          // Divider(color: Colors.white,thickness: 5,),
+
+                          Row( children: [
+                            Divider(color: Colors.white,thickness: 5,),
+
+                            Container(
+                                  padding:  EdgeInsets.all(3),
+
+                              child: CircleAvatar(
+                                child: Padding(
+                                  padding:  EdgeInsets.all(115),
+                                  
+                                ),
+                                radius: 40,
+                                backgroundImage: AssetImage(
+                                  document.data()["name"]=="Malaz Tamim"? "assets/1.jpg" :
+                                    "assets/images/1.png"),
+                                backgroundColor: Colors.blue,
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 15),
-                          Text(document.data()[s]),
-                          SizedBox(height: 15),
+
+                            Container(
+                              padding: EdgeInsets.all(10),
+                            child: Text(
+                              document.data()["name"],
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            ),
+                          ],),
+
+                          Container(
+                              padding: EdgeInsets.all(10),
+                          child: Text(document.data()[s], style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.black,
+                              fontWeight: FontWeight.normal,
+                            ),),),
+                          
                           // Text( controller.si(ClientId: document.id)),
                           SizedBox(height: 15),
+
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -167,10 +202,7 @@ class Experthome extends StatelessWidget {
                                   label: Text("Cancel")),
                             ],
                           ),
-                          Divider(
-                            color: Colors.blue,
-                            thickness: 5,
-                          ),
+                          
                         ],
                       ),
                     );

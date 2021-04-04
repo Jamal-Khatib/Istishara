@@ -1,11 +1,13 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_app/pages/list_of_categories.dart';
 import 'package:firebase_app/pages/navigationClient.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_app/pages/user_controller.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'profileExpert_clientView.dart';
-
+ 
 class InterestedExperts extends StatefulWidget {
   @override
   _InterestedExpertsState createState() => _InterestedExpertsState();
@@ -13,6 +15,45 @@ class InterestedExperts extends StatefulWidget {
 
 class _InterestedExpertsState extends State<InterestedExperts> {
   UserController controller = Get.put(UserController());
+
+
+
+  bool alreadypicked(String name) 
+  {
+    List l = controller.myUser.value.chatPeople ; 
+    for(int i = 0 ; i<controller.myUser.value.chatPeople.length ; i++) 
+    {
+      if(l[i]==name) return true ; 
+    }
+    return false ; 
+  }
+
+  void pick(String name) async
+  {
+    controller.myUser.value.chatPeople.add(name) ; 
+    FirebaseFirestore.instance.collection("users").doc(controller.myUser.value.uid).update(
+      {
+        "chatPeople" : controller.myUser.value.chatPeople 
+      }
+    ); 
+    var f  = await FirebaseFirestore.instance.collection("users").limit(1).where("name", isEqualTo: name).get();
+    var f1 = f.docs.first.id ; 
+    var expert = await FirebaseFirestore.instance.collection("users").doc(f1).get() ; 
+    List l1 = expert.data()["chatPeople"] ; 
+    l1.add(controller.myUser.value.name) ; 
+    FirebaseFirestore.instance.collection("users").doc(f1).update(
+      {
+          "chatPeople" : l1 
+      }
+      ); 
+      Fluttertoast.showToast(
+                    msg:
+          "You have picked this question successfully", //yalla
+          gravity: ToastGravity.CENTER,
+         toastLength: Toast.LENGTH_LONG,
+        fontSize: 15,
+      );
+  }
 
   Widget build(BuildContext context) {
     controller.getUser();
@@ -89,13 +130,36 @@ class _InterestedExpertsState extends State<InterestedExperts> {
                           leading: Icon(Icons.person),
                           title: TextButton(
                             child: Text(experts[index]),
-                            onPressed: () {
-                              Get.to(ProfileClientView());
+                            onPressed: () async{
+
+                              // var f  = await FirebaseFirestore.instance.collection("users").limit(1).where("name", isEqualTo: experts[index]).get(); 
+                              // print(f.docs.first.id);
+                              
+                              // Get.to(ProfileClientView());
                             },
                           ),
                           trailing: TextButton(
                             child: Text("Pick me"),
-                            onPressed: () {},
+                            onPressed: ()  async{
+
+                              alreadypicked(experts[index])?  
+                               Fluttertoast.showToast(
+                                      msg:
+                                          "You have already picked this question, check the chat page", //yalla
+                                      gravity: ToastGravity.CENTER,
+                                      toastLength: Toast.LENGTH_LONG,
+                                      fontSize: 15,
+                                    ) :  pick(experts[index]) ; 
+                                
+                              
+                           
+
+
+                            
+                            
+                              
+                              
+                            },
                           ),
                         ),
                       );

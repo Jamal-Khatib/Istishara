@@ -49,10 +49,10 @@ class _ListCategoriesState extends State<ListCategories> {
       title:  Text("Choose a Category",
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.blue[600],
       actions: [
         RaisedButton.icon(
-            color: Colors.blue,
+            color: Colors.blue[600],
             icon: Icon(Icons.login),
             onPressed: () {
               context.read<AuthenticationProvider>().signOut();
@@ -76,7 +76,7 @@ class _ListCategoriesState extends State<ListCategories> {
                 MediaQuery.of(context).padding.top
                 
             // - navigationClient.Scaffold.of(context).
-            - (MediaQuery.of(context).size.height)*0.09
+            - (MediaQuery.of(context).size.height)*0.1
             ) 
             ,
         child: CategoriesListBuild(categoriesList, categoriesListIcons));

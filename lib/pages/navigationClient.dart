@@ -1,4 +1,7 @@
+import 'package:firebase_app/chat/contacts.dart';
+import 'package:firebase_app/chat/converstion.dart';
 import 'package:firebase_app/pages/PostingQuestion.dart';
+import 'package:firebase_app/pages/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,12 +19,16 @@ class navController extends GetxController {
 }
 
 class navigationClient extends StatelessWidget {
+  final UserController controller = Get.put(UserController());
+
+  
   @override
   Widget build(BuildContext ctx) {
     final navController navcontrol = Get.put(navController());
     final List<Widget> bodyContent = [
       ListCategories(),
-      myQuestions(),
+      // Converstion(),
+      controller.myUser.value.chatPeople.isEmpty? AllQuestions(): Contacts(),
       myProfile(),
 
       // put here all pages you need
@@ -33,7 +40,7 @@ class navigationClient extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Container(
-        height: MediaQuery.of(ctx).size.height*0.09,
+        height: MediaQuery.of(ctx).size.height*0.1,
         width: MediaQuery.of(ctx).size.width,
         child: Obx(
           () => BottomNavigationBar(

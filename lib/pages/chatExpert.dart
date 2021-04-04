@@ -25,7 +25,7 @@ class chatExpert extends StatelessWidget {
             children: <Widget>[
               SizedBox(height: 10),
               Image.asset(
-                "assets/images/question.png",
+                "assets/images/noMessage.png",
                 fit: BoxFit.cover,
                 height: 300,
                 width: 300,

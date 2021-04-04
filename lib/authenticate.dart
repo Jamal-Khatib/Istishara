@@ -1,5 +1,6 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_app/chat/converstion.dart';
 import 'package:firebase_app/pages/navigationClient.dart';
 import 'package:firebase_app/pages/navigationExpert.dart';
 import 'package:firebase_app/pages/user_controller.dart';
@@ -26,6 +27,7 @@ class Authenticate extends StatelessWidget {
       print(controller.myUser.value.type);
       if (controller.myUser.value.type == "client") {
         return (navigationClient());
+        // return(Converstion()) ; 
       } else if (controller.myUser.value.type == "expert") {
         return (navigationExpert());
       } else {

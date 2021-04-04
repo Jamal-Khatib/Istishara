@@ -1,5 +1,7 @@
+import 'package:firebase_app/chat/contacts.dart';
 import 'package:firebase_app/pages/Experthome.dart';
 import 'package:firebase_app/pages/PostingQuestion.dart';
+import 'package:firebase_app/pages/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,13 +17,15 @@ class navControllerexpert extends GetxController {
 }
 
 class navigationExpert extends StatelessWidget {
+     final UserController controller = Get.put(UserController());
   @override
   Widget build(BuildContext ctx) {
     final navControllerexpert navcontrol = Get.put(navControllerexpert());
     final List<Widget> bodyContent = [
       Experthome(),
-      chatExpert(),
-      ExpertProfile(),
+      // chatExpert(),
+      controller.myUser.value.chatPeople.isEmpty? chatExpert() : Contacts(),
+      ExpertProfile()
 
       // put here all pages you need
     ];

@@ -16,15 +16,14 @@ class myProfile extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Center(
-          child: Text(
+        title: Text(
             "My Profile",
             style: TextStyle(
-              fontSize: 25,
+              fontSize: 23,
               color: Colors.white,
             ),
           ),
-        ),
+        
       ),
       body: ListView(
         children: <Widget>[
@@ -46,6 +45,7 @@ class myProfile extends StatelessWidget {
               ),
               radius: 70,
               backgroundImage: NetworkImage(
+                
                   "https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"),
               backgroundColor: Colors.blue,
             ),
@@ -161,32 +161,36 @@ class myProfile extends StatelessWidget {
                   width: 2.0,
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                    //Padding: EdgeInsets.all(value)
-                    //mainAxisAlignment: MainAxisAlignment.,
+              child: InkWell(
+                  onTap: () {},             
+              
+                              child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                      //Padding: EdgeInsets.all(value)
+                      //mainAxisAlignment: MainAxisAlignment.,
 
-                    children: <Widget>[
-                      SizedBox(
-                        width: 7,
-                      ),
-                      Icon(
-                        Icons.notifications,
-                        color: Colors.blue,
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Notifications",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 7,
+                        ),
+                        Icon(
+                          Icons.notifications,
+                          color: Colors.blue,
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            "Notifications",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                    ]),
+                      ]),
+                ),
               ),
             ),
           ),
@@ -201,178 +205,70 @@ class myProfile extends StatelessWidget {
                   width: 2.0,
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                    //Padding: EdgeInsets.all(value)
-                    //mainAxisAlignment: MainAxisAlignment.,
+              child: InkWell(
+                  onTap: () {},
+                              child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                      //Padding: EdgeInsets.all(value)
+                      //mainAxisAlignment: MainAxisAlignment.,
 
-                    children: <Widget>[
-                      SizedBox(
-                        width: 7,
-                      ),
-                      Icon(
-                        Icons.settings,
-                        color: Colors.blue,
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Notification Settings",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 7,
+                        ),
+                        Icon(
+                          Icons.settings,
+                          color: Colors.blue,
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            "Notification Settings",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                    ]),
+                      ]),
+                ),
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              shape: StadiumBorder(
-                //Card with stadium border
-                side: BorderSide(
-                  color: Colors.blue,
-                  width: 2.0,
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(children: <Widget>[
-                  SizedBox(
-                    width: 7,
-                  ),
-                  Icon(
-                    Icons.live_help,
+          InkWell(
+                  onTap: () {
+                        Get.to(AllQuestions()) ; 
+
+                  },
+                      child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                shape: StadiumBorder(
+                  //Card with stadium border
+                  side: BorderSide(
                     color: Colors.blue,
+                    width: 2.0,
                   ),
-                  TextButton(
-                    onPressed: () {
-                      Get.to(AllQuestions()) ; 
-                    },
-                    child: Text(
-                      "My Questions",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ]),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              shape: StadiumBorder(
-                //Card with stadium border
-                side: BorderSide(
-                  color: Colors.blue,
-                  width: 2.0,
                 ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                    //Padding: EdgeInsets.all(value)
-                    //mainAxisAlignment: MainAxisAlignment.,
-
-                    children: <Widget>[
-                      SizedBox(
-                        width: 7,
-                      ),
-                      Icon(
-                        Icons.assignment,
-                        color: Colors.blue,
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Password and Security",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ]),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              shape: StadiumBorder(
-                //Card with stadium border
-                side: BorderSide(
-                  color: Colors.blue,
-                  width: 2.0,
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                    //Padding: EdgeInsets.all(value)
-                    //mainAxisAlignment: MainAxisAlignment.,
-
-                    children: <Widget>[
-                      SizedBox(
-                        width: 7,
-                      ),
-                      Icon(
-                        Icons.info,
-                        color: Colors.blue,
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "About App",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ]),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              shape: StadiumBorder(
-                //Card with stadium border
-                side: BorderSide(
-                  color: Colors.blue,
-                  width: 2.0,
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  //Padding: EdgeInsets.all(value)
-                  //mainAxisAlignment: MainAxisAlignment.,
-
-                  children: <Widget>[
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(children: <Widget>[
                     SizedBox(
                       width: 7,
                     ),
                     Icon(
-                      Icons.contact_phone,
+                      Icons.live_help,
                       color: Colors.blue,
                     ),
                     TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Contact Us",
+                      onPressed: () {
+                        // Get.to(AllQuestions()) ; 
+                      },
+                      child:
+                       Text(
+                        "My Questions",
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.black,
@@ -380,7 +276,144 @@ class myProfile extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ],
+                  ]),
+                ),
+              ),
+            ),
+          ),
+          InkWell(
+                  onTap: () {
+                         
+
+                  },
+                  
+                      child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                shape: StadiumBorder(
+                  //Card with stadium border
+                  side: BorderSide(
+                    color: Colors.blue,
+                    width: 2.0,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                      //Padding: EdgeInsets.all(value)
+                      //mainAxisAlignment: MainAxisAlignment.,
+
+                      children: <Widget>[
+                        SizedBox(
+                          width: 7,
+                        ),
+                        Icon(
+                          Icons.lock,
+                          color: Colors.blue,
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            "Password and Security",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ]),
+                ),
+              ),
+            ),
+          ),
+           InkWell(
+                  onTap: () {
+                         
+
+                  },
+                      child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                shape: StadiumBorder(
+                  //Card with stadium border
+                  side: BorderSide(
+                    color: Colors.blue,
+                    width: 2.0,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                      //Padding: EdgeInsets.all(value)
+                      //mainAxisAlignment: MainAxisAlignment.,
+
+                      children: <Widget>[
+                        SizedBox(
+                          width: 7,
+                        ),
+                        Icon(
+                          Icons.info,
+                          color: Colors.blue,
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            "About App",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ]),
+                ),
+              ),
+            ),
+          ),
+          InkWell(
+                  onTap: () {
+                         
+
+                  },
+                      child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                shape: StadiumBorder(
+                  //Card with stadium border
+                  side: BorderSide(
+                    color: Colors.blue,
+                    width: 2.0,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    //Padding: EdgeInsets.all(value)
+                    //mainAxisAlignment: MainAxisAlignment.,
+
+                    children: <Widget>[
+                      SizedBox(
+                        width: 7,
+                      ),
+                      Icon(
+                        Icons.contact_phone,
+                        color: Colors.blue,
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Contact Us",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

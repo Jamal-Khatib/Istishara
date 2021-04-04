@@ -32,6 +32,9 @@ class MyUser {
   List interestedPsych = [] ; 
 
 
+  List chatPeople = []; 
+
+
   // String currentfield = "" ; 
 
 

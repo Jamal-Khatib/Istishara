@@ -94,6 +94,7 @@ class UserController extends GetxController {
           value.interestedMechanical = c["interestedMechanical"] ; 
           value.interestedPsych = c["interestedPsych"] ; 
           value.uid = c["uid"] ;
+          value.chatPeople = c["chatPeople"] ; 
           
 
         });
@@ -106,6 +107,7 @@ class UserController extends GetxController {
           value.type = "expert";
           value.field = c["field"];
           value.uid = c["uid"] ;
+          value.chatPeople = c["chatPeople"] ; 
         });
 
         update();

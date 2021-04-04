@@ -126,7 +126,9 @@ class _VerifyState extends State<Verify> {
           "phoneNumber": data["phoneNumber"],
           "field": field1,
           "type": "expert",
-          "uid": FirebaseAuth.instance.currentUser.uid
+          "uid": FirebaseAuth.instance.currentUser.uid,
+          
+          "chatPeople" : []
         });
         Get.off(navigationExpert());
       } else {
@@ -157,7 +159,9 @@ class _VerifyState extends State<Verify> {
           "interestedFamily": [],
           "interestedHeating": [],
           "interestedMechanical": [],
-          "interestedPsych": []
+          "interestedPsych": [],
+
+           "chatPeople" : []
         });
         Get.off(navigationClient());
       }

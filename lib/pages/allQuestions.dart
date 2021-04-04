@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_app/pages/user_controller.dart';
 
-
-
-
 class AllQuestions extends StatelessWidget {
 
   UserController controller = Get.put(UserController());

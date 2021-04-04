@@ -2,6 +2,7 @@ import 'package:firebase_app/pages/InterestedExperts.dart';
 // import 'package:firebase_app/pages/PostingQuestion.dart';
 import 'package:firebase_app/pages/ask_question.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:firebase_app/pages/user_controller.dart';
 
@@ -72,21 +73,25 @@ class CategoriesListBuild extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return GridView.builder(
-      gridDelegate:
-          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: (1 / 1),),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        // childAspectRatio: (1 / 1),
+      ),
       itemBuilder: (context, index) {
         // Container(height: 20, child: Image.asset('assets/images/icons/doctor.png', fit: BoxFit.cover,)),
-        return Padding(
-          padding: index == 0 || index == 1
-              ? const EdgeInsets.only(top: 10.0, left: 4, right: 4, bottom: 4)
-              : const EdgeInsets.all(4.0),
-          
+        return GestureDetector(
+          onTap: () {
+            gridHandler(index);
+          },
+          child: Container(
+            // height: MediaQuery.of(context).size.height*0.2,
+            padding: index == 0 || index == 1
+                ? const EdgeInsets.only(top: 10.0, left: 4, right: 4, bottom: 4)
+                : const EdgeInsets.all(4.0),
             child: Card(
               margin: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
-              elevation: 18,
+              // elevation: 18,
               color: Colors.blue[600],
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
@@ -96,24 +101,22 @@ class CategoriesListBuild extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                        height:
-                            categoriesList[index] == "Heating & cooling Engineer"
-                                ? (MediaQuery.of(context).size.height)*0.13
-                                : (MediaQuery.of(context).size.height)*0.14,
-                        padding: EdgeInsets.only(top: 4),
-                        child: InkWell(
-                          onTap: () {
-                            gridHandler(index);
-                          },
-                          child: Container(
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(0.0),
-                                child: Image.asset(
-                                  categoriesListIconss[index],
-                                  fit: BoxFit.contain,
-                                )),
-                          ),
-                        )),
+                      height:
+                          categoriesList[index] == "Heating & cooling Engineer"
+                              ? (MediaQuery.of(context).size.height) * 0.13
+                              : (MediaQuery.of(context).size.height) * 0.14,
+                      padding: EdgeInsets.only(top: 4),
+                      child: Container(
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(0.0),
+                            child: Image.asset(
+                              categoriesListIconss[index],
+                              fit: BoxFit.contain,
+                              height: MediaQuery.of(context).size.height * 0.3,
+                              width: MediaQuery.of(context).size.width * 0.3,
+                            )),
+                      ),
+                    ),
                     TextButton(
                       onPressed: () {
                         gridHandler(index);
@@ -121,10 +124,15 @@ class CategoriesListBuild extends StatelessWidget {
                       child: Text(
                         categoriesList[index],
                         style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: categoriesList[index] == "Heating & cooling Engineer"
-                                ? (MediaQuery.of(context).size.height)*0.025 : (MediaQuery.of(context).size.height)*0.028),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: categoriesList[index] ==
+                                  "Heating & cooling Engineer"
+                              ? AdaptiveTextSize()
+                                  .getadaptiveTextSize(context, 18)
+                              : AdaptiveTextSize()
+                                  .getadaptiveTextSize(context, 18),
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -132,11 +140,20 @@ class CategoriesListBuild extends StatelessWidget {
                 ),
               ),
             ),
-          
+          ),
         );
       },
       itemCount: categoriesList.length,
     );
     // children: transactions.map((tx) {}).toList(),    replace tx with transactions[index]
+  }
+}
+
+class AdaptiveTextSize {
+  const AdaptiveTextSize();
+
+  getadaptiveTextSize(BuildContext context, dynamic value) {
+    // 720 is medium screen height
+    return (value / 720) * MediaQuery.of(context).size.height;
   }
 }
