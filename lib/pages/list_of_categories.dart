@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'dart:async';
 import 'package:firebase_app/pages/user_controller.dart';
 import 'categories_build.dart';
 import 'package:firebase_app/pages/log_in.dart';
@@ -6,6 +8,7 @@ import 'package:firebase_app/authenticationProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'navigationClient.dart';
+
 
 // import 'myProfile.dart';
 
@@ -51,10 +54,12 @@ class _ListCategoriesState extends State<ListCategories> {
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
       backgroundColor: Colors.blue[600],
       actions: [
+
+        
         RaisedButton.icon(
             color: Colors.blue[600],
             icon: Icon(Icons.login),
-            onPressed: () {
+            onPressed: ()  async{
               context.read<AuthenticationProvider>().signOut();
               Get.off(Login());
             },
@@ -65,7 +70,8 @@ class _ListCategoriesState extends State<ListCategories> {
                 color: Colors.white,
                 fontSize: 15,
               ),
-            )),
+            ))
+            ,
       ],
     );
 

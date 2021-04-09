@@ -1,9 +1,17 @@
+
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_app/pages/user_controller.dart';
+import 'package:image_picker/image_picker.dart';
+
+
 
 
 class NewMessage extends StatefulWidget {
@@ -25,6 +33,40 @@ class _NewMessageState extends State<NewMessage> {
 
   final mycontroller = new TextEditingController() ; 
 
+
+   File _image;
+  final picker = ImagePicker();
+
+
+  Future<void> sendImage() async {
+    final pickedImage = await picker.getImage(source: ImageSource.gallery, imageQuality: 50) ; 
+    setState (() async  {
+      if (pickedImage != null) {
+       _image = File(pickedImage.path);
+       String s = pickedImage.hashCode.toString() ; 
+       final ref =  FirebaseStorage.instance.ref().child("users").child("$s.jpg") ; 
+       await ref.putFile(_image) ; 
+      // to get it 
+       final url = await ref.getDownloadURL() ; 
+      // NetworkImage(url) ;  
+      String collection ; 
+      controller.myUser.value.type=="client" ? collection = me+"_"+other : collection = other+"_"+me ; 
+      FirebaseFirestore.instance.collection("$collection").add(
+      {
+        "text" : url, 
+        "time" :  Timestamp.now(), //created time
+        "uid" : FirebaseAuth.instance.currentUser.uid,
+        "type" : "image"
+
+      });
+   
+       
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
   
 
   void sendMessage(String me, String other) async
@@ -38,7 +80,8 @@ class _NewMessageState extends State<NewMessage> {
       {
         "text" : enteredMessage, 
         "time" :  Timestamp.now(), //created time
-        "uid" : FirebaseAuth.instance.currentUser.uid
+        "uid" : FirebaseAuth.instance.currentUser.uid,
+        "type" : "text"
 
       }
     ) ; 
@@ -53,6 +96,7 @@ class _NewMessageState extends State<NewMessage> {
       padding: EdgeInsets.all(8),
       child: Row(
         children: [
+          
           Expanded(
             child: TextField(
               controller: mycontroller,
@@ -68,7 +112,13 @@ class _NewMessageState extends State<NewMessage> {
             color: Colors.blue,
             icon: Icon(Icons.send),
             onPressed:  enteredMessage.trim().isEmpty?  null : ()  { sendMessage(me,other) ; }, 
-            )
+            ),
+           IconButton(
+            color: Colors.blue,
+            icon: Icon(Icons.image),
+            onPressed:   sendImage,
+            ),
+          
         ],
       ),
     );

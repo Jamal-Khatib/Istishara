@@ -111,6 +111,15 @@ class _InterestedExpertsState extends State<InterestedExperts> {
                     .snapshots(),
                 builder: (BuildContext context,
                     AsyncSnapshot<DocumentSnapshot> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return(Text("Loading")) ; 
+                  }
+                  else if (snapshot.hasError)
+                  {
+                    return(Text("Error")) ; 
+                  }
+                  else 
+                  {}
                   print("wathc meeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
                   print(snapshot.data["name"]);
                   String field = Get.arguments;

@@ -21,7 +21,7 @@ class _ConverstionState extends State<Converstion> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Chat!"),),
+      appBar: AppBar(title: Text("$other"), ),
       body: Container(
         child: Column(children: [
           SizedBox(height: 20),

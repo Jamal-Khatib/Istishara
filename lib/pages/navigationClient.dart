@@ -1,6 +1,7 @@
 import 'package:firebase_app/chat/contacts.dart';
 import 'package:firebase_app/chat/converstion.dart';
 import 'package:firebase_app/pages/PostingQuestion.dart';
+import 'package:firebase_app/pages/ask_question.dart';
 import 'package:firebase_app/pages/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -24,11 +25,13 @@ class navigationClient extends StatelessWidget {
   
   @override
   Widget build(BuildContext ctx) {
+    controller.getUser() ; 
     final navController navcontrol = Get.put(navController());
     final List<Widget> bodyContent = [
       ListCategories(),
       // Converstion(),
-      controller.myUser.value.chatPeople.isEmpty? AllQuestions(): Contacts(),
+      // controller.myUser.value.chatPeople.isEmpty? AskQuestion(): Contacts(),
+      Contacts(),
       myProfile(),
 
       // put here all pages you need

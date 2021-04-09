@@ -15,7 +15,7 @@ class _AskQuestionState extends State<AskQuestion> {
     //debugShowCheckedModeBanner: false,
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Questions'),
+        title: Text('Chat'),
       ),
       body: SafeArea(
         child: ListView(children: <Widget>[
