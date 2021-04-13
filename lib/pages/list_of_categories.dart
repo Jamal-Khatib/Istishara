@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:async';
 import 'package:firebase_app/pages/user_controller.dart';
+import 'package:firebase_app/search/search.dart';
 import 'categories_build.dart';
 import 'package:firebase_app/pages/log_in.dart';
 import 'package:flutter/material.dart';
@@ -62,6 +63,7 @@ class _ListCategoriesState extends State<ListCategories> {
             onPressed: ()  async{
               context.read<AuthenticationProvider>().signOut();
               Get.off(Login());
+              
             },
             label: Text(
               "Log out",

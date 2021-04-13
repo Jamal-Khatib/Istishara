@@ -3,6 +3,7 @@ import 'package:firebase_app/chat/converstion.dart';
 import 'package:firebase_app/pages/PostingQuestion.dart';
 import 'package:firebase_app/pages/ask_question.dart';
 import 'package:firebase_app/pages/user_controller.dart';
+import 'package:firebase_app/search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,9 +30,11 @@ class navigationClient extends StatelessWidget {
     final navController navcontrol = Get.put(navController());
     final List<Widget> bodyContent = [
       ListCategories(),
+      Search(),
       // Converstion(),
       // controller.myUser.value.chatPeople.isEmpty? AskQuestion(): Contacts(),
       Contacts(),
+      
       myProfile(),
 
       // put here all pages you need
@@ -52,6 +55,10 @@ class navigationClient extends StatelessWidget {
               BottomNavigationBarItem(
                 icon: Icon(Icons.home, color: Colors.blue),
                 label: "Home",
+              ),
+               BottomNavigationBarItem(
+                icon: Icon(Icons.search, color: Colors.blue),
+                label: "Search",
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.library_books, color: Colors.blue),
