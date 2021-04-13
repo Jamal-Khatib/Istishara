@@ -117,8 +117,8 @@ class _SearchState extends State<Search> {
     return Row(
                 children: <Widget>[
                   Container(
-                    height: 70.0,
-                    width: 40,
+                    height: MediaQuery.of(context).size.width*0.12,
+                    width: MediaQuery.of(context).size.width*0.14,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(5),
@@ -131,7 +131,8 @@ class _SearchState extends State<Search> {
                     ),
                   ),
                   Container(
-                    height: 100,
+                    height: MediaQuery.of(context).size.width*0.2,
+                    width: MediaQuery.of(context).size.width*0.5,
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(20,0,0,0),
                       child: Column(

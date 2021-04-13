@@ -9,6 +9,7 @@ import 'package:firebase_app/authenticationProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'navigationClient.dart';
+import 'package:flutter/cupertino.dart';
 
 
 // import 'myProfile.dart';
@@ -45,10 +46,53 @@ class ListCategories extends StatefulWidget {
 class _ListCategoriesState extends State<ListCategories> {
   UserController controller = Get.put(UserController());
 
+  
+
   @override
   Widget build(BuildContext context) {
     controller.getUser();
-    final appBar = AppBar(
+
+    
+    final PreferredSizeWidget appBar = Platform.isIOS ?
+
+      CupertinoNavigationBar(
+            middle:Text("Choose a Category",
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min, //it might lead to a
+              children: <Widget>[
+                RaisedButton.icon(
+            color: Colors.blue[600],
+            icon: GestureDetector(
+                  child: Icon(CupertinoIcons.arrowshape_turn_up_left),
+                  onTap: () async{
+              context.read<AuthenticationProvider>().signOut();
+              Get.off(Login());
+              
+            },
+                ),
+            onPressed: ()  async{
+              context.read<AuthenticationProvider>().signOut();
+              Get.off(Login());
+              
+            },
+            label: Text(
+              "Log out",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                fontSize: 15,
+              ),
+            ))
+
+                
+              ],
+            ),
+            backgroundColor: Colors.blue[600],
+          )
+    
+    : AppBar(
       // leading: Container(height: 0, width: 0,),
       title:  Text("Choose a Category",
           style: TextStyle(
@@ -89,9 +133,10 @@ class _ListCategoriesState extends State<ListCategories> {
             ,
         child: CategoriesListBuild(categoriesList, categoriesListIcons));
 
-    return Scaffold(
-      appBar: appBar,
-      body: SingleChildScrollView(
+        final categoriesBody = SafeArea(
+      child:
+        
+        SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -108,6 +153,19 @@ class _ListCategoriesState extends State<ListCategories> {
           ],
         ),
       ),
+        );
+
+    return Platform.isIOS
+        ? CupertinoPageScaffold(
+            child: categoriesBody,
+            navigationBar: appBar,
+          )
+    
+    : Scaffold(      
+      appBar: appBar,
+      body: categoriesBody,
     );
+
+
   }
 }
