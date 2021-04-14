@@ -43,11 +43,19 @@ class Login extends StatelessWidget {
                 ),
                 child: TextField(
                   controller: emailController,
+
+
+// shadows: [Shadow(color: Colors.yellow, blurRadius: 2)],
+
+
+
                   decoration: new InputDecoration(
                     border: new OutlineInputBorder(
                         borderSide: new BorderSide(color: Colors.blue)),
 
                     // border: OutlineInputBorder(),
+                  
+                  prefixIcon: Icon(Icons.email),
                     labelText: 'Email',
                   ),
                 ),
@@ -70,10 +78,15 @@ class Login extends StatelessWidget {
                   primaryColorDark: Colors.blue,
                 ),
                 child: TextField(
+                  
                   controller: passwordController,
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(),                  
+                   
+                  prefixIcon: Icon(Icons.lock),
+                    
                     labelText: 'Password',
+                    
                   ),
                 ),
               ),

@@ -140,7 +140,8 @@ class _SearchState extends State<Search> {
                         children: <Widget>[
                           TextButton(
                             child: Text("$s",
-                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),
+                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: AdaptiveTextSize()
+                                  .getadaptiveTextSize(context, 20)),
 
                             ),
                             onPressed: (){
@@ -148,7 +149,8 @@ class _SearchState extends State<Search> {
                             },
                           ),
                           // SizedBox(height: 30),
-                          Text("$s2",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),)
+                          Text("$s2",style: TextStyle(fontWeight: FontWeight.bold,fontSize: AdaptiveTextSize()
+                                  .getadaptiveTextSize(context, 17)),)
 
                          
                         ],
@@ -242,5 +244,15 @@ class _SearchState extends State<Search> {
         ),
       ),
     );
+  }
+}
+
+
+class AdaptiveTextSize {
+  const AdaptiveTextSize();
+
+  getadaptiveTextSize(BuildContext context, dynamic value) {
+    // 720 is medium screen height
+    return (value / 720) * MediaQuery.of(context).size.height;
   }
 }

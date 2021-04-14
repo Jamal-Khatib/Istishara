@@ -99,7 +99,8 @@ class myProfile extends StatelessWidget {
                       Text(
                         " My Balance:  ",
                         style: TextStyle(
-                          fontSize: 23,
+                          fontSize: AdaptiveTextSize()
+                                  .getadaptiveTextSize(context, 23),
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                         ),
@@ -264,7 +265,7 @@ class myProfile extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        // Get.to(AllQuestions()) ; 
+                        Get.to(AllQuestions()) ; 
                       },
                       child:
                        Text(
@@ -421,5 +422,18 @@ class myProfile extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+
+
+
+
+class AdaptiveTextSize {
+  const AdaptiveTextSize();
+
+  getadaptiveTextSize(BuildContext context, dynamic value) {
+    // 720 is medium screen height
+    return (value / 720) * MediaQuery.of(context).size.height;
   }
 }
