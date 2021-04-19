@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_app/pages/Profile.dart';
 import 'package:firebase_app/pages/list_of_categories.dart';
@@ -5,10 +7,12 @@ import 'package:firebase_app/pages/navigationClient.dart';
 import 'package:firebase_app/pages/navigationExpert.dart';
 import 'package:firebase_app/pages/verify.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 // import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AuthenticationProvider {
   final FirebaseAuth firebaseAuth;
@@ -19,7 +23,7 @@ class AuthenticationProvider {
 
   //Using Stream to listen to Authentication State
   Stream<User> get authState => firebaseAuth.idTokenChanges();
-
+  
   //SIGN UP METHOD
   Future<void> signUp(
       {String email,
@@ -27,17 +31,30 @@ class AuthenticationProvider {
       String phoneNumber,
       String name,
       bool isexpert,
-      String field}) async {
+      String field,
+      File pickedImageFile ,  
+      PickedFile pickedImage 
+      }) async {
     try {
       await firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
+
+        String imageURL = "" ; 
+        if(pickedImageFile!=null) 
+        {
+        String s = pickedImage.hashCode.toString() ; 
+        final ref =  FirebaseStorage.instance.ref().child("profiles").child("$s.jpg") ; 
+        await ref.putFile(pickedImageFile) ; 
+        imageURL = await ref.getDownloadURL() ; 
+        }
       Get.to(Verify(), arguments: {
         "email": email,
         "password": password,
         "phoneNumber": phoneNumber,
         "name": name,
         "isexpert": isexpert,
-        "field": field
+        "field": field,
+        "imageURL" : imageURL
       });
     } on FirebaseAuthException catch (e) {
       Fluttertoast.showToast(

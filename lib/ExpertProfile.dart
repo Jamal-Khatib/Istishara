@@ -1,11 +1,27 @@
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_app/pages/Profile.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:firebase_app/pages/user_controller.dart';
+import 'package:image_picker/image_picker.dart';
 
-class ExpertProfile extends StatelessWidget {
+class ExpertProfile extends StatefulWidget {
+  @override
+  _ExpertProfileState createState() => _ExpertProfileState();
+}
+
+class _ExpertProfileState extends State<ExpertProfile> {
   UserController controller = Get.put(UserController());
+
+  File pickedImageFile ; 
+
+  PickedFile pickedImage ; 
+
+  final picker = ImagePicker();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +45,7 @@ class ExpertProfile extends StatelessWidget {
         children: <Widget>[
           SizedBox(height: 20),
           Center(
-            child: CircleAvatar(
+            child: Obx( () => CircleAvatar(
               child: Padding(
                 padding: const EdgeInsets.only(top: 85, left: 100),
                 child: IconButton(
@@ -44,11 +60,42 @@ class ExpertProfile extends StatelessWidget {
                 ),
               ),
               radius: 70,
-              backgroundImage: NetworkImage(
-                  "https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"),
+              backgroundImage: controller.myUser.value.imageURL==""?  
+              AssetImage("assets\\blank-profile-picture")
+              : NetworkImage(controller.myUser.value.imageURL)               
+              ,
+                
               backgroundColor: Colors.blue,
-            ),
-          ),
+            ))),
+          TextButton.icon( 
+            onPressed: ()  async{
+               pickedImage = await picker.getImage(source: ImageSource.gallery, imageQuality: 50) ;  
+              setState(() async {
+
+                if(pickedImage!=null) 
+                {
+                pickedImageFile = File(pickedImage.path) ;
+                String s = pickedImage.hashCode.toString() ; 
+                final ref =  FirebaseStorage.instance.ref().child("profiles").child("$s.jpg") ; 
+                await ref.putFile(pickedImageFile) ; 
+                String imageURL = await ref.getDownloadURL() ; 
+                controller.myUser.value.imageURL = imageURL ; 
+                FirebaseFirestore.instance.collection("users").doc(controller.myUser.value.uid).update(
+                  {
+                    "imageURL" : imageURL 
+                  }
+                ) ; 
+                }
+                else
+                {
+                  print("No image was picked siiiiiiiiiiiiiiiiiiiiiiiiiiii") ; 
+                }
+
+              });
+
+            }, 
+            icon: Icon(Icons.image), 
+            label:  Text("Change image")), 
           SizedBox(height: 20),
           Center(
             child: Container(

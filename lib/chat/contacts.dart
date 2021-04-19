@@ -11,6 +11,20 @@ class Contacts extends StatelessWidget {
    final UserController controller = Get.put(UserController());
 
 
+  Future<String>  putImage(String name) async
+  {
+    final x = await FirebaseFirestore.instance.collection("users").where("name", isEqualTo: name).get() ; 
+    final l = x.docs ; 
+    final d = l.first ; 
+    var url  = d.data()["imageURL"] ; 
+    print("Siiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii") ; 
+    print(url) ; 
+    return(url) ; 
+
+
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +61,22 @@ class Contacts extends StatelessWidget {
                   }, // Conversation("")
                   child: Card(
                     child: ListTile(
-                      leading: Text("${l[index]}"),
+                      leading:  FutureBuilder<String> (
+                        future: putImage("${l[index]}"),
+                        builder: (context, AsyncSnapshot<String> snapshot) {
+                          if (snapshot.hasData) {
+                            if(snapshot.data=="") return CircleAvatar(backgroundImage: AssetImage("assets\\blank-profile-picture")) ; 
+                            else return CircleAvatar(backgroundImage: NetworkImage(snapshot.data)) ; 
+                          }
+                          else
+                          {
+                            return CircularProgressIndicator();
+                          }
+                        }
+                      )
+                       , 
+                      title: Text("${l[index]}"),
+                      
                       
                       // leading: Text("s"),
                     ),

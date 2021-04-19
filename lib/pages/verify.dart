@@ -128,7 +128,8 @@ class _VerifyState extends State<Verify> {
           "type": "expert",
           "uid": FirebaseAuth.instance.currentUser.uid,
           
-          "chatPeople" : []
+          "chatPeople" : [],
+          "imageURL" : data["imageURL"]
         });
         Get.off(navigationExpert());
       } else {
@@ -161,7 +162,8 @@ class _VerifyState extends State<Verify> {
           "interestedMechanical": [],
           "interestedPsych": [],
 
-           "chatPeople" : []
+           "chatPeople" : [],
+           "imageURL" : data["imageURL"]
         });
         Get.off(navigationClient());
       }

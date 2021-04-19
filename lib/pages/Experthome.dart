@@ -77,9 +77,10 @@ class Experthome extends StatelessWidget {
                                   
                                 ),
                                 radius: 40,
-                                backgroundImage: AssetImage(
-                                  document.data()["name"]=="Malaz Tamim"? "assets/1.jpg" :
-                                    "assets/images/1.png"),
+                                backgroundImage: document.data()["imageURL"] !="" ?
+                                NetworkImage(document.data()["imageURL"] )
+                                : AssetImage("assets/blank-profile-picture.png")
+                                ,
                                 backgroundColor: Colors.blue,
                               ),
                             ),

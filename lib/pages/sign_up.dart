@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:firebase_app/authenticationProvider.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 // import 'package:firebase_app/pages/list_of_categories.dart';
 // import 'package:firebase_app/pages/log_in.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:get/get.dart';
@@ -20,6 +24,12 @@ class _Sign_upState extends State<Sign_up> {
   bool isexpert = false;
   String dropdownValue = 'Doctor';
 
+
+  File pickedImageFile ; 
+  PickedFile pickedImage ; 
+  final picker = ImagePicker();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +41,33 @@ class _Sign_upState extends State<Sign_up> {
       ),
       body: ListView(
         children: [
-          SizedBox(height: 30),
+          // SizedBox(height: 30),
+           CircleAvatar(radius: 70,  backgroundColor: Colors.blue,
+           backgroundImage: pickedImageFile==null ? null : FileImage(pickedImageFile),
+           ),
+          TextButton.icon( 
+            onPressed: ()  async{
+               pickedImage = await picker.getImage(source: ImageSource.gallery, imageQuality: 50) ;  
+              setState(()  {
+
+                if(pickedImage!=null) 
+                {
+                pickedImageFile = File(pickedImage.path) ;
+                // String s = pickedImage.hashCode.toString() ; 
+                // final ref =  FirebaseStorage.instance.ref().child("profiles").child("$s.jpg") ; 
+                // await ref.putFile(pickedImageFile) ; 
+                // imageURL = await ref.getDownloadURL() ; 
+                }
+                else
+                {
+                  print("No image was picked siiiiiiiiiiiiiiiiiiiiiiiiiiii") ; 
+                }
+
+              });
+
+            }, 
+            icon: Icon(Icons.image), 
+            label:  Text("Add image")),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             child: TextField(
@@ -133,7 +169,7 @@ class _Sign_upState extends State<Sign_up> {
               ),
             ],
           ),
-          SizedBox(height: 30),
+          // SizedBox(height: 30),
           Container(
             margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
             height: 50,
@@ -148,7 +184,10 @@ class _Sign_upState extends State<Sign_up> {
                     name: nameController.text.trim(),
                     phoneNumber: phoneController.text.trim(),
                     isexpert: isexpert,
-                    field: dropdownValue);
+                    field: dropdownValue,
+                    pickedImageFile: pickedImageFile,
+                    pickedImage : pickedImage 
+                    );
               },
               child: Text(
                 'Sign Up',

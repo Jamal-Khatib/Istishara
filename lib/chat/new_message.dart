@@ -44,10 +44,10 @@ class _NewMessageState extends State<NewMessage> {
       if (pickedImage != null) {
        _image = File(pickedImage.path);
        String s = pickedImage.hashCode.toString() ; 
-       final ref =  FirebaseStorage.instance.ref().child("users").child("$s.jpg") ; 
+      final ref =  FirebaseStorage.instance.ref().child("users").child("$s.jpg") ; 
        await ref.putFile(_image) ; 
       // to get it 
-       final url = await ref.getDownloadURL() ; 
+      final url = await ref.getDownloadURL() ; 
       // NetworkImage(url) ;  
       String collection ; 
       controller.myUser.value.type=="client" ? collection = me+"_"+other : collection = other+"_"+me ; 

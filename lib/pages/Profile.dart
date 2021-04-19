@@ -1,26 +1,11 @@
+import 'package:firebase_app/pages/user_controller.dart';
+
 import 'editProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 //import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 // import 'package:rating_dialog/rating_dialog.dart';
-import 'package:firebase_app/widgets/SkillsList.dart';
 import 'package:rating_bar/rating_bar.dart';
-
-class MyController extends GetxController {
-  String name = "Malaz Tamim".obs();
-  String about =
-      "My name is Malaz Tamim. I am  Computer Science studnet at the American University of Beirut."
-          .obs();
-  String price = "8-12\$".obs();
-  List<String> skillslst = [
-    "Flutter",
-    "Software Development",
-    "Java",
-    "Data analysis",
-    "Data visualization",
-    "Data visualization",
-  ];
-}
 
 class Profile extends StatefulWidget {
   @override
@@ -28,25 +13,19 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  List<String> skillslst = [
-    "Flutter",
-    "Software Development",
-    "Java",
-    "Data analysis",
-    "Data visualization",
-    "Data visualization",
-  ];
+
+    UserController controller = Get.put(UserController());
+
+  
   @override
   Widget build(BuildContext context) {
+
 
     List<double> rate = [5, 4.5, 5.0, 3.5];
     
     var mean = rate.reduce((a, b) => a + b) / rate.length;
 
-    MyController m = Get.put(MyController());
-    final skillsListWidget =
-        Padding(padding: EdgeInsets.all(4), child: SkillsList(m.skillslst));
-
+    
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -70,8 +49,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   radius: 70,
-                  backgroundImage: AssetImage(
-                      "assets/images/1.png"),
+                  backgroundImage: NetworkImage(controller.myUser.value.imageURL),
                   backgroundColor: Colors.blue,
                 ),
               ),
@@ -83,10 +61,10 @@ class _ProfileState extends State<Profile> {
                 child: FlatButton(
                   onPressed: () {},
                   child: TextButton(
-                    onPressed: () {
-                      Get.to(
-                        editProfile(),
-                        arguments: m,
+                    onPressed: () async {
+                      await Get.to(
+                        editProfile() 
+                        
                       );
                     },
                     child: Text(
@@ -104,34 +82,16 @@ class _ProfileState extends State<Profile> {
                 Padding(
                   padding: const EdgeInsets.only(left: 18.0, bottom: 18.0),
                   child: Text(
-                    m.name,
+                   controller.myUser.value.name,
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                         fontSize: 23),
                   ),
                 ),
-                // RatingBar(ratingWidget: ratingWidget, onRatingUpdate: onRatingUpdate),
               ],
             ),
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 12.0),
-            //   child: RatingBar.builder(
-            //     initialRating: 4.5,
-            //     minRating: 0,
-            //     direction: Axis.horizontal,
-            //     allowHalfRating: true,
-            //     itemCount: 5,
-            //     itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-            //     itemBuilder: (context, _) => Icon(
-            //       Icons.star,
-            //       color: Colors.amber,
-            //     ),
-            //     onRatingUpdate: (rating) {
-            //       print(rating);
-            //     },
-            //   ),
-            // ),
+          
             Padding(
               padding: const EdgeInsets.fromLTRB(18, 0, 18, 0),
               child: Row(
@@ -157,67 +117,7 @@ class _ProfileState extends State<Profile> {
               ),
             ),
 
-            // Row(
-            //   children: [
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 19.0, top: 19),
-            //   child: Text(
-            //     "Price range per question:",
-            //     style: TextStyle(
-            //         color: Colors.black,
-            //         fontWeight: FontWeight.bold,
-            //         fontSize: 17),
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 6.0, top: 19),
-            //   child: Text(
-            //     m.price,
-            //     style: TextStyle(
-            //         color: Colors.black,
-            //         fontWeight: FontWeight.bold,
-            //         fontSize: 17),
-            //   ),
-            // ),
-            //   ],
-            // ),
-            // Row(children: [
-            //   Padding(
-            //     padding: const EdgeInsets.only(left: 8.0, top: 12),
-            //     child: Container(
-            //       decoration: BoxDecoration(
-            //           color: Colors.blue,
-            //           borderRadius: BorderRadius.circular(4)),
-            //       child: FlatButton(
-            //           onPressed: () {},
-            //           child: Text(
-            //             'Profile',
-            //             textAlign: TextAlign.center,
-            //             style: TextStyle(
-            //                 color: Colors.black,
-            //                 fontWeight: FontWeight.bold,
-            //                 fontSize: 17),
-            //           )),
-            //     ),
-            //   ),
-            //   Padding(
-            //     padding: const EdgeInsets.only(top: 12, right: 8),
-            //     child: Container(
-            //       decoration: BoxDecoration(
-            //           color: Colors.white,
-            //           borderRadius: BorderRadius.circular(4)),
-            //       child: FlatButton(
-            //           onPressed: () {},
-            //           child: Text(
-            //             'Previous Answered Questions',
-            //             style: TextStyle(
-            //                 color: Colors.black,
-            //                 fontWeight: FontWeight.bold,
-            //                 fontSize: 15),
-            //           )),
-            //     ),
-            //   ),
-            // ]),
+           
 
             Padding(
               padding: const EdgeInsets.only(left: 18.0, bottom: 12.0, top: 18),
@@ -233,7 +133,8 @@ class _ProfileState extends State<Profile> {
             Padding(
               padding: const EdgeInsets.only(left: 18.0, bottom: 12.0),
               child: Text(
-                m.about,
+                controller.myUser.value.about,
+                // "h",
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
@@ -251,16 +152,19 @@ class _ProfileState extends State<Profile> {
                     fontSize: 23),
               ),
             ),
+            controller.myUser.value.skill1==""? Container() : Text(controller.myUser.value.skill1,style: TextStyle(fontWeight: FontWeight.bold)),
+            controller.myUser.value.skill2==""? Container() : Text(controller.myUser.value.skill2,style: TextStyle(fontWeight: FontWeight.bold)),
+            controller.myUser.value.skill3==""? Container() : Text(controller.myUser.value.skill3,style: TextStyle(fontWeight: FontWeight.bold)),
+            controller.myUser.value.skill4==""? Container() : Text(controller.myUser.value.skill4,style: TextStyle(fontWeight: FontWeight.bold)),
+            controller.myUser.value.skill5==""? Container() : Text(controller.myUser.value.skill5,style: TextStyle(fontWeight: FontWeight.bold)),
+            controller.myUser.value.skill6==""? Container() : Text(controller.myUser.value.skill6,style: TextStyle(fontWeight: FontWeight.bold),)
 
-            skillsListWidget,
-            // ListTile(
-            //       title: Text("Become a Pro member"),)
 
-            // ListView(
-            //       physics: BouncingScrollPhysics(),
-            //       children: [
-            //         SkillsList(skillslst)],
-            //       )
+
+
+
+      
+
           ],
         ),
       ),

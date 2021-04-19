@@ -1,3 +1,4 @@
+import 'package:firebase_app/pages/user_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,26 +11,22 @@ class editProfile extends StatefulWidget {
 }
 
 void goto() {
-  Get.to(Profile());
+  Get.back()  ; 
 }
 
 class _editProfileState extends State<editProfile> {
-  final _controller = new TextEditingController(text: (Get.arguments).name);
-  final _controller1 = new TextEditingController(text: (Get.arguments).about);
-  final _controller2 = new TextEditingController(text: (Get.arguments).price);
-  final _controller3 =
-      new TextEditingController(text: (Get.arguments).skillslst[0]);
-  final _controller4 =
-      new TextEditingController(text: (Get.arguments).skillslst[1]);
-  final _controller5 =
-      new TextEditingController(text: (Get.arguments).skillslst[2]);
-  final _controller6 =
-      new TextEditingController(text: (Get.arguments).skillslst[3]);
-  final _controller7 =
-      new TextEditingController(text: (Get.arguments).skillslst[4]);
-  final _controller8 =
-      new TextEditingController(text: (Get.arguments).skillslst[5]);
-  @override
+  
+  String about ;
+  String skill1 ; 
+  String skill2 ; 
+  String skill3 ; 
+  String skill4 ; 
+  String skill5 ; 
+  String skill6 ; 
+
+  UserController controller = Get.put(UserController());
+
+  
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -40,47 +37,10 @@ class _editProfileState extends State<editProfile> {
             ),
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: TextField(
-                controller: _controller,
-                decoration: InputDecoration(
-                    labelText: "Name",
-                    labelStyle: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 23),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      borderSide: BorderSide(
-                        width: 2,
-                        color: Colors.blue,
-                      ),
-                    )),
-              ),
-            ),
-            // Padding(
-            //   padding: const EdgeInsets.all(15.0),
-            //   child: TextField(
-            //     controller: _controller2,
-            //     decoration: InputDecoration(
-            //         labelText: "Price Range Per Question",
-            //         labelStyle: TextStyle(
-            //             color: Colors.black,
-            //             fontWeight: FontWeight.bold,
-            //             fontSize: 23),
-            //         border: OutlineInputBorder(
-            //           borderRadius: BorderRadius.circular(5),
-            //           borderSide: BorderSide(
-            //             width: 2,
-            //             color: Colors.blue,
-            //           ),
-            //         )),
-            //   ),
-            // ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: TextField(
+              child: TextFormField(
+                initialValue: controller.myUser.value.about,
+                onChanged: (newText) {about = newText ; },
                 maxLines: 5,
-                controller: _controller1,
                 decoration: InputDecoration(
                     labelText: "About",
                     labelStyle: TextStyle(
@@ -98,8 +58,9 @@ class _editProfileState extends State<editProfile> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(15, 15, 15, 10),
-              child: TextField(
-                controller: _controller3,
+              child: TextFormField(
+                initialValue: controller.myUser.value.skill1,
+                onChanged: (newText) {skill1 = newText ; },
                 decoration: InputDecoration(
                     labelText: "Skill 1",
                     labelStyle: TextStyle(
@@ -117,8 +78,10 @@ class _editProfileState extends State<editProfile> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-              child: TextField(
-                controller: _controller4,
+              child: TextFormField(
+                
+                initialValue: controller.myUser.value.skill2,
+                onChanged: (newText) {skill2 = newText ; },
                 decoration: InputDecoration(
                     labelText: "Skill 2",
                     labelStyle: TextStyle(
@@ -136,8 +99,9 @@ class _editProfileState extends State<editProfile> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-              child: TextField(
-                controller: _controller5,
+              child: TextFormField(
+                initialValue: controller.myUser.value.skill3,
+                onChanged: (newText) {skill3 = newText ; },
                 decoration: InputDecoration(
                     labelText: "Skill 3",
                     labelStyle: TextStyle(
@@ -155,8 +119,9 @@ class _editProfileState extends State<editProfile> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-              child: TextField(
-                controller: _controller6,
+              child: TextFormField(
+                initialValue: controller.myUser.value.skill4,
+                onChanged: (newText) {skill4 = newText ; },
                 decoration: InputDecoration(
                     labelText: "Skill 4",
                     labelStyle: TextStyle(
@@ -174,8 +139,9 @@ class _editProfileState extends State<editProfile> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-              child: TextField(
-                controller: _controller7,
+              child: TextFormField(
+                initialValue: controller.myUser.value.skill5,
+                onChanged: (newText) {skill5 = newText ; },
                 decoration: InputDecoration(
                     labelText: "Skill 5",
                     labelStyle: TextStyle(
@@ -193,8 +159,9 @@ class _editProfileState extends State<editProfile> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-              child: TextField(
-                controller: _controller8,
+              child: TextFormField(
+                initialValue: controller.myUser.value.skill6,
+               onChanged: (newText) {skill6 = newText ; },
                 decoration: InputDecoration(
                     labelText: "Skill 6",
                     labelStyle: TextStyle(
@@ -213,18 +180,8 @@ class _editProfileState extends State<editProfile> {
             Padding(
               padding: const EdgeInsets.fromLTRB(200, 10, 10, 40),
               child: FlatButton(
-                onPressed: () {
-                  setState(() {
-                    Get.arguments.name = _controller.text;
-                    Get.arguments.price = _controller2.text;
-                    Get.arguments.about = _controller1.text;
-                    Get.arguments.skillslst[0] = _controller3.text;
-                    Get.arguments.skillslst[1] = _controller4.text;
-                    Get.arguments.skillslst[2] = _controller5.text;
-                    Get.arguments.skillslst[3] = _controller6.text;
-                    Get.arguments.skillslst[4] = _controller7.text;
-                    Get.arguments.skillslst[5] = _controller8.text;
-                  });
+                onPressed: () async {
+                 await controller.setProfile(about,skill1,skill2,skill3,skill4,skill5,skill6) ; 
                   goto();
                 },
                 color: Colors.blue,

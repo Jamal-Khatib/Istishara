@@ -6,9 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-
-
 class Messages extends StatelessWidget {
 
   String me ; 
@@ -29,7 +26,7 @@ class Messages extends StatelessWidget {
       builder: (context, AsyncSnapshot<QuerySnapshot>chatSnapshot) {
         if(chatSnapshot.connectionState==ConnectionState.waiting) 
         {
-          return(Center(child: CircularProgressIndicator(),)) ; 
+          return(Center(child: CircularProgressIndicator(),)) ;    
         }
         final chatdocs =  chatSnapshot.data.docs ; 
           return ListView.builder(
@@ -44,7 +41,7 @@ class Messages extends StatelessWidget {
                )
                ) ; 
           
-    ; 
+    
         
       },
     );

@@ -34,6 +34,16 @@ class MyUser {
 
   List chatPeople = []; 
 
+  String imageURL = "" ; 
+
+  int rating = 0 ; 
+  String about="" ; 
+  String skill1 = ""; 
+  String skill2 = "";
+  String skill3 = "";
+  String skill4 = "";
+  String skill5 = "";
+  String skill6 = "";
 
   // String currentfield = "" ; 
 

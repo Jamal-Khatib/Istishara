@@ -17,6 +17,83 @@ class UserController extends GetxController {
     print("2222222222222222222");
   }
 
+  Future<void> setProfile(String about, String skill1, String skill2, String skill3, String skill4, String skill5, String skill6) async
+  {
+    if(about!=myUser.value.about && about!=null) 
+    {
+       myUser.update((val) {val.about = about ; }) ; 
+       FirebaseFirestore.instance.collection("users").doc(myUser.value.uid).update({"about": about}) ; 
+    }
+   
+    if(about!=myUser.value.skill1 && skill1!=null) 
+    {
+      myUser.update((val) {val.skill1 = skill1 ; }) ;
+      FirebaseFirestore.instance.collection("users").doc(myUser.value.uid).update({"skill1": skill1}) ; 
+    }
+
+    if(about!=myUser.value.skill2  && skill2!=null) 
+    {
+      myUser.update((val) {val.skill2 = skill2 ; }) ;
+      FirebaseFirestore.instance.collection("users").doc(myUser.value.uid).update({"skill2": skill2}) ;
+
+    }
+   
+    if(about!=myUser.value.skill3  && skill3!=null) 
+    {
+      myUser.update((val) {val.skill3 = skill3 ; }) ;
+      FirebaseFirestore.instance.collection("users").doc(myUser.value.uid).update({"skill3": skill3}) ;
+    }
+    
+    if(about!=myUser.value.skill4  && skill4!=null) 
+    {
+       myUser.update((val) {val.skill4 = skill4 ; }) ;
+       FirebaseFirestore.instance.collection("users").doc(myUser.value.uid).update({"skill4": skill4})  ; 
+    }
+   
+    if(about!=myUser.value.skill5  && skill5!=null) 
+    {
+      myUser.update((val) {val.skill5 = skill5 ; }) ; 
+      FirebaseFirestore.instance.collection("users").doc(myUser.value.uid).update({"skill5": skill5}) ;
+    }
+    
+    if(about!=myUser.value.skill6  && skill6!=null)
+    {
+      myUser.update((val) {val.skill6 = skill6 ; }) ;
+      FirebaseFirestore.instance.collection("users").doc(myUser.value.uid).update({"skill6": skill6})  ;
+    }
+     
+
+
+
+    if(skill1 ==null|| skill1=="") skill1=myUser.value.skill1;
+    if(skill2 ==null|| skill2=="") skill2=myUser.value.skill2;
+    if(skill3 ==null|| skill3=="") skill3=myUser.value.skill3;
+    if(skill4 ==null|| skill4=="") skill4=myUser.value.skill4;
+    if(skill5 ==null|| skill5=="") skill5=myUser.value.skill5;
+    if(skill6 ==null || skill6=="") skill6=myUser.value.skill6;
+    if(about==null || about=="") about=myUser.value.skill6;
+
+    myUser.update((val) {
+      val.about = about ; 
+      val.skill1 = skill1 ; 
+      val.skill2 = skill2 ;
+      val.skill3 = skill3 ;                         
+      val.skill4 = skill4 ;
+      val.skill5 = skill5 ;
+      val.skill6 = skill6 ;
+     }) ; 
+     await FirebaseFirestore.instance.collection("users").doc(myUser.value.uid).update(
+       {
+         "about": about, 
+         "skill1" : skill1,
+         "skill2" : skill2,
+         "skill3" : skill3,
+         "skill4" : skill4,
+         "skill5" : skill5,
+         "skill6" : skill6,
+       }
+     ) ; 
+  }
 
   List get_list(String category) 
   { 
@@ -95,7 +172,8 @@ class UserController extends GetxController {
           value.interestedPsych = c["interestedPsych"] ; 
           value.uid = c["uid"] ;
           value.chatPeople = c["chatPeople"] ; 
-          
+          value.imageURL = c["imageURL"] ; 
+
 
         });
         update();
@@ -108,6 +186,15 @@ class UserController extends GetxController {
           value.field = c["field"];
           value.uid = c["uid"] ;
           value.chatPeople = c["chatPeople"] ; 
+          value.imageURL = c["imageURL"] ; 
+          value.about = c["about"] ; 
+          value.skill1 = c["skill1"] ;
+          value.skill2 = c["skill2"] ;
+          value.skill3 = c["skill3"] ;
+          value.skill4 = c["skill4"] ; 
+          value.skill5 = c["skill5"] ;
+          value.skill6 = c["skill6"] ;
+
         });
 
         update();

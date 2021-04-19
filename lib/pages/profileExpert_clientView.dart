@@ -6,21 +6,6 @@ import 'package:get/get.dart';
 import 'package:firebase_app/widgets/SkillsList.dart';
 import 'package:rating_bar/rating_bar.dart';
 
-class MyController extends GetxController {
-  String name = "Malaz Tamim".obs();
-  String about =
-      "My name is Malaz Tamim. I am  Computer Science studnet at the American University of Beirut."
-          .obs();
-  String price = "8-12\$".obs();
-  List<String> skillslst = [
-    "Flutter",
-    "Software Development",
-    "Java",
-    "Data analysis",
-    "Data visualization",
-    "Data visualization",
-  ];
-}
 
 class ProfileClientView extends StatefulWidget {
   @override
@@ -28,23 +13,11 @@ class ProfileClientView extends StatefulWidget {
 }
 
 class _ProfileClientViewState extends State<ProfileClientView> {
-  List<String> skillslst = [
-    "Flutter",
-    "Software Development",
-    "Java",
-    "Data analysis",
-    "Data visualization",
-    "Data visualization",
-  ];
+  
 
   @override
   Widget build(BuildContext context) {
-    List<double> rate = [2.5, 1.5, 1.0, 1];
-    var mean = rate.reduce((a, b) => a + b) / rate.length;
-    MyController m = Get.put(MyController());
-    final skillsListWidget =
-        Padding(padding: EdgeInsets.all(4), child: SkillsList(m.skillslst));
-
+    
     return Scaffold(
       body: SafeArea(
         child: ListView(
