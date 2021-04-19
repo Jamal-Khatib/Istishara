@@ -61,8 +61,8 @@ class _ProfileState extends State<Profile> {
                 child: FlatButton(
                   onPressed: () {},
                   child: TextButton(
-                    onPressed: () async {
-                      await Get.to(
+                    onPressed: ()  {
+                       Get.off(
                         editProfile() 
                         
                       );

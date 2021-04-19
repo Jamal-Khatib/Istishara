@@ -80,7 +80,7 @@ class _ExpertProfileState extends State<ExpertProfile> {
                 await ref.putFile(pickedImageFile) ; 
                 String imageURL = await ref.getDownloadURL() ; 
                 controller.myUser.value.imageURL = imageURL ; 
-                FirebaseFirestore.instance.collection("users").doc(controller.myUser.value.uid).update(
+                await FirebaseFirestore.instance.collection("users").doc(controller.myUser.value.uid).update(
                   {
                     "imageURL" : imageURL 
                   }

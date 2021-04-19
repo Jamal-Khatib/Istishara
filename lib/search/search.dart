@@ -124,7 +124,7 @@ class _SearchState extends State<Search> {
                       ),
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage("https://cdn4.iconfinder.com/data/icons/instagram-ui-twotone/48/Paul-18-512.png")
+                        image: NetworkImage(x["imageURL"]),
                       )
                     ),
                   ),

@@ -1,9 +1,9 @@
+import 'package:firebase_app/pages/Profile.dart';
 import 'package:firebase_app/pages/user_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_app/widgets/SkillsList.dart';
-import 'profile.dart';
 
 class editProfile extends StatefulWidget {
   @override
@@ -11,7 +11,10 @@ class editProfile extends StatefulWidget {
 }
 
 void goto() {
-  Get.back()  ; 
+ 
+ Get.off(Profile()) ; 
+
+
 }
 
 class _editProfileState extends State<editProfile> {
@@ -181,6 +184,8 @@ class _editProfileState extends State<editProfile> {
               padding: const EdgeInsets.fromLTRB(200, 10, 10, 40),
               child: FlatButton(
                 onPressed: () async {
+                  if(about=="") { about=controller.myUser.value.about ; }
+                  print("this isssssssssssssss  $about")  ; 
                  await controller.setProfile(about,skill1,skill2,skill3,skill4,skill5,skill6) ; 
                   goto();
                 },
