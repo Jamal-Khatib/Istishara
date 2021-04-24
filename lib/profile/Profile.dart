@@ -317,16 +317,16 @@ class _ProfileState extends State<Profile> {
               ),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(top: 4, left: 18.0, bottom: 0.0),
-              child: Text(
-                'Answered questions History',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 19),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 4, left: 18.0, bottom: 0.0),
+            //   child: Text(
+            //     'Answered questions History',
+            //     style: TextStyle(
+            //         color: Colors.black,
+            //         fontWeight: FontWeight.bold,
+            //         fontSize: 19),
+            //   ),
+            // ),
 
             // m.questionsList == null
             //     ? "No Question Answered yet"

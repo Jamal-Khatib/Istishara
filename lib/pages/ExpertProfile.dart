@@ -173,27 +173,34 @@ class _ExpertProfileState extends State<ExpertProfile> {
       body: ListView(
         children: <Widget>[
           SizedBox(height: 20),
+          // Center(
+          //     child: Obx(() => CircleAvatar(
+          //           child: Padding(
+          //             padding: const EdgeInsets.only(top: 85, left: 100),
+                      
+          //           ),
+          //           radius: 70,
+          //           backgroundImage: controller.myUser.value.imageURL == ""
+          //               ? AssetImage("assets\\blank-profile-picture")
+          //               : NetworkImage(controller.myUser.value.imageURL),
+          //           backgroundColor: Colors.blue,
+          //         ))),
+          // 
           Center(
-              child: Obx(() => CircleAvatar(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 85, left: 100),
-                      // child: IconButton(
-                      //   //highlightColor: Colors.grey,
-                      //   color: Colors.grey[600],
-                      //   //focusColor: Colors.grey[600],
-                      //   icon: Icon(
-                      //     Icons.mode_edit,
-                      //     size: 30,
-                      //   ),
-                      //   onPressed: () {},
-                      // ),
-                    ),
+            child: Obx(() => CircleAvatar(
+                  radius: 70,
+                  backgroundImage: AssetImage("assets/images/loading.gif"),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.transparent,
                     radius: 70,
-                    backgroundImage: controller.myUser.value.imageURL == ""
-                        ? AssetImage("assets\\blank-profile-picture")
-                        : NetworkImage(controller.myUser.value.imageURL),
-                    backgroundColor: Colors.blue,
-                  ))),
+                    backgroundImage: NetworkImage(
+                      controller.myUser.value.imageURL,
+                    ),
+                  ),
+                  // backgroundColor: Colors.blue,
+                )),
+          ),
+          
           TextButton.icon(
               onPressed: () async {
                 pickedImage = await picker.getImage(
@@ -281,20 +288,7 @@ class _ExpertProfileState extends State<ExpertProfile> {
             ),
           ),
           SizedBox(height: 5),
-          // Center(
-          //   child: Container(
-          //     child: Obx( () =>
-          //     Text(
-          //       "${controller.myUser.value.email}",
-          //       style: TextStyle(
-          //         fontSize: 20,
-          //         color: Colors.blue[200],
-          //         fontWeight: FontWeight.bold,
-          //       ),
-          //     ),
-          //      ),
-          //   ),
-          // ),
+          
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Divider(
@@ -322,21 +316,7 @@ class _ExpertProfileState extends State<ExpertProfile> {
                       SizedBox(
                         width: 7,
                       ),
-                      // Icon(
-                      //   Icons.notifications,
-                      //   color: Colors.blue,
-                      // ),
-                      // TextButton(
-                      //   onPressed: () {},
-                      //   child: Text(
-                      //     "Notifications",
-                      //     style: TextStyle(
-                      //       fontSize: 20,
-                      //       color: Colors.black,
-                      //       fontWeight: FontWeight.bold,
-                      //     ),
-                      //   ),
-                      // ),
+                      
                       Icon(
                           Icons.edit,
                           color: Colors.blue,
@@ -359,47 +339,47 @@ class _ExpertProfileState extends State<ExpertProfile> {
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              shape: StadiumBorder(
-                //Card with stadium border
-                side: BorderSide(
-                  color: Colors.blue,
-                  width: 2.0,
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                    //Padding: EdgeInsets.all(value)
-                    //mainAxisAlignment: MainAxisAlignment.,
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: Card(
+          //     shape: StadiumBorder(
+          //       //Card with stadium border
+          //       side: BorderSide(
+          //         color: Colors.blue,
+          //         width: 2.0,
+          //       ),
+          //     ),
+          //     child: Padding(
+          //       padding: const EdgeInsets.all(8.0),
+          //       child: Row(
+          //           //Padding: EdgeInsets.all(value)
+          //           //mainAxisAlignment: MainAxisAlignment.,
 
-                    children: <Widget>[
-                      SizedBox(
-                        width: 7,
-                      ),
-                      Icon(
-                        Icons.settings,
-                        color: Colors.blue,
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          createAlertDialogNotificationSettings(context);
-                        },
-                        child: Text(
-                          "Notification Settings",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ]),
-              ),
-            ),
-          ),
+          //           children: <Widget>[
+          //             SizedBox(
+          //               width: 7,
+          //             ),
+          //             Icon(
+          //               Icons.settings,
+          //               color: Colors.blue,
+          //             ),
+          //             TextButton(
+          //               onPressed: () {
+          //                 createAlertDialogNotificationSettings(context);
+          //               },
+          //               child: Text(
+          //                 "Notification Settings",
+          //                 style: TextStyle(
+          //                   fontSize: 20,
+          //                   color: Colors.black,
+          //                   fontWeight: FontWeight.bold,
+          //                 ),
+          //               ),
+          //             ),
+          //           ]),
+          //     ),
+          //   ),
+          // ),
 
           Padding(
             padding: const EdgeInsets.all(8.0),
