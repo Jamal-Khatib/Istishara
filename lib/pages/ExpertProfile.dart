@@ -1,13 +1,14 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_app/pages/Profile.dart';
+import '../profile//Profile.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:firebase_app/pages/user_controller.dart';
 import 'package:image_picker/image_picker.dart';
+import '../profile/editProfile.dart';
 
 class ExpertProfile extends StatefulWidget {
   @override
@@ -17,130 +18,142 @@ class ExpertProfile extends StatefulWidget {
 class _ExpertProfileState extends State<ExpertProfile> {
   UserController controller = Get.put(UserController());
 
-  File pickedImageFile ; 
+  File pickedImageFile;
 
-  PickedFile pickedImage ; 
+  PickedFile pickedImage;
 
   final picker = ImagePicker();
 
-  List<bool> _selections=List.generate(2,(_)=>false);
-  
+  List<bool> _selections = List.generate(2, (_) => false);
 
-  createAlertDialogAboutApp(BuildContext context){
-    return showDialog(context: context, builder: (context){
-      return AlertDialog(
-        title: Text("Istishara is a Mobile App that connects clients seeking help with experts in a specific field.\n\nIf you are a client and need help, go post your question or search for an expert! If you are an expert, go pick a question!",
-          style: TextStyle(
-            fontSize: 18.0,
-          ),
-        ),
-        actions: <Widget>[
-          MaterialButton(
-              elevation: 5.0,
-              child: Text(
-                "OK",
-                style: TextStyle(
-                  color: Colors.blue,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.0,
-                ),
+  createAlertDialogAboutApp(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+              "Istishara is a Mobile App that connects clients seeking help with experts in a specific field.\n\nIf you are a client and need help, go post your question or search for an expert! If you are an expert, go pick a question!",
+              style: TextStyle(
+                fontSize: 18.0,
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              }
-          ),
-        ],
-      );
-    });
-  }
-  createAlertDialogContactUs(BuildContext context){
-      return showDialog(context: context, builder: (context){
-        return AlertDialog(
-          title: Text("\nFor more information, don't hesitate to contact us at"),
-          content: Text("istishara0@gmail.com .",
-            style: TextStyle(
-              color: Colors.blue,
-              fontWeight: FontWeight.bold,
             ),
-          ),
-          actions: <Widget>[
-            MaterialButton(
-                elevation: 5.0,
-                child: Text(
-                  "Done",
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
+            actions: <Widget>[
+              MaterialButton(
+                  elevation: 5.0,
+                  child: Text(
+                    "OK",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                    ),
                   ),
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                }
-            ),
-          ],
-        );
-      });
-    }
-    createAlertDialogNotificationSettings(BuildContext context){
-    return showDialog(context: context, builder: (context){
-      return AlertDialog(
-        title: Text("Notification Settings",
-          style: TextStyle(fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-          ),
-
-        ),
-        actions: <Widget>[
-          ToggleButtons(
-            children: [
-              Text("OFF", style: TextStyle(fontSize: 18.0),),
-              Text("ON",style: TextStyle(fontSize: 18.0),),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }),
             ],
-            isSelected: _selections,
-            onPressed: (int index){
-
-            },
-            //selectedColor: Colors.blue,
-            borderRadius:BorderRadius.circular(22.0),
-            borderWidth:5,
-            borderColor: Colors.blue,
-
-          ),
-
-        ],
-      );
-    });
+          );
+        });
   }
 
-  createAlertDialogPassword(BuildContext context){
-    return showDialog(context: context, builder: (context){
-      return AlertDialog(
-
-        title: Text("Reset password", style: TextStyle(fontWeight:FontWeight.bold)),
-        content: Text(
-          "\nCheck your email to reset your password!",
-          style: TextStyle(fontSize: 20.0),
-        ),
-
-        actions: <Widget>[
-          MaterialButton(
-              elevation: 5.0,
-              child: Text(
-                "OK",
-                style: TextStyle(
-                  color: Colors.blue,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
-                ),
+  createAlertDialogContactUs(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title:
+                Text("\nFor more information, don't hesitate to contact us at"),
+            content: Text(
+              "istishara0@gmail.com .",
+              style: TextStyle(
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              }
-          ),
-        ],
-      );
-    });
+            ),
+            actions: <Widget>[
+              MaterialButton(
+                  elevation: 5.0,
+                  child: Text(
+                    "Done",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }),
+            ],
+          );
+        });
   }
+
+  createAlertDialogNotificationSettings(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+              "Notification Settings",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20.0,
+              ),
+            ),
+            actions: <Widget>[
+              ToggleButtons(
+                children: [
+                  Text(
+                    "OFF",
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                  Text(
+                    "ON",
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                ],
+                isSelected: _selections,
+                onPressed: (int index) {},
+                //selectedColor: Colors.blue,
+                borderRadius: BorderRadius.circular(22.0),
+                borderWidth: 5,
+                borderColor: Colors.blue,
+              ),
+            ],
+          );
+        });
+  }
+
+  createAlertDialogPassword(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Reset password",
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            content: Text(
+              "\nCheck your email to reset your password!",
+              style: TextStyle(fontSize: 20.0),
+            ),
+            actions: <Widget>[
+              MaterialButton(
+                  elevation: 5.0,
+                  child: Text(
+                    "OK",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     var count = 100.obs;
@@ -149,13 +162,11 @@ class _ExpertProfileState extends State<ExpertProfile> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Center(
-          child: Text(
-            "My Profile",
-            style: TextStyle(
-              fontSize: 25,
-              color: Colors.white,
-            ),
+        title: Text(
+          "My Profile",
+          style: TextStyle(
+            fontSize: 25,
+            color: Colors.white,
           ),
         ),
       ),
@@ -163,59 +174,53 @@ class _ExpertProfileState extends State<ExpertProfile> {
         children: <Widget>[
           SizedBox(height: 20),
           Center(
-            child: Obx( () => CircleAvatar(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 85, left: 100),
-                child: IconButton(
-                  //highlightColor: Colors.grey,
-                  color: Colors.grey[600],
-                  //focusColor: Colors.grey[600],
-                  icon: Icon(
-                    Icons.mode_edit,
-                    size: 30,
-                  ),
-                  onPressed: () {},
-                ),
-              ),
-              radius: 70,
-              backgroundImage: controller.myUser.value.imageURL==""?  
-              AssetImage("assets\\blank-profile-picture")
-              : NetworkImage(controller.myUser.value.imageURL)               
-              ,
-              
-                
-              backgroundColor: Colors.blue,
-            ))),
-          TextButton.icon( 
-            onPressed: ()  async{
-               pickedImage = await picker.getImage(source: ImageSource.gallery, imageQuality: 50) ;  
-              setState(() async {
-
-                if(pickedImage!=null) 
-                {
-                pickedImageFile = File(pickedImage.path) ;
-                String s = pickedImage.hashCode.toString() ; 
-                final ref =  FirebaseStorage.instance.ref().child("profiles").child("$s.jpg") ; 
-                await ref.putFile(pickedImageFile) ; 
-                String imageURL = await ref.getDownloadURL() ; 
-                controller.myUser.value.imageURL = imageURL ; 
-                await FirebaseFirestore.instance.collection("users").doc(controller.myUser.value.uid).update(
-                  {
-                    "imageURL" : imageURL 
+              child: Obx(() => CircleAvatar(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 85, left: 100),
+                      // child: IconButton(
+                      //   //highlightColor: Colors.grey,
+                      //   color: Colors.grey[600],
+                      //   //focusColor: Colors.grey[600],
+                      //   icon: Icon(
+                      //     Icons.mode_edit,
+                      //     size: 30,
+                      //   ),
+                      //   onPressed: () {},
+                      // ),
+                    ),
+                    radius: 70,
+                    backgroundImage: controller.myUser.value.imageURL == ""
+                        ? AssetImage("assets\\blank-profile-picture")
+                        : NetworkImage(controller.myUser.value.imageURL),
+                    backgroundColor: Colors.blue,
+                  ))),
+          TextButton.icon(
+              onPressed: () async {
+                pickedImage = await picker.getImage(
+                    source: ImageSource.gallery, imageQuality: 50);
+                setState(() async {
+                  if (pickedImage != null) {
+                    pickedImageFile = File(pickedImage.path);
+                    String s = pickedImage.hashCode.toString();
+                    final ref = FirebaseStorage.instance
+                        .ref()
+                        .child("profiles")
+                        .child("$s.jpg");
+                    await ref.putFile(pickedImageFile);
+                    String imageURL = await ref.getDownloadURL();
+                    controller.myUser.value.imageURL = imageURL;
+                    await FirebaseFirestore.instance
+                        .collection("users")
+                        .doc(controller.myUser.value.uid)
+                        .update({"imageURL": imageURL});
+                  } else {
+                    print("No image was picked siiiiiiiiiiiiiiiiiiiiiiiiiiii");
                   }
-                ) ; 
-                }
-                else
-                {
-                  print("No image was picked siiiiiiiiiiiiiiiiiiiiiiiiiiii") ; 
-                }
-
-              });
-
-            }, 
-            icon: Icon(Icons.image), 
-            label:  Text("Change image")), 
-          SizedBox(height: 20),
+                });
+              },
+              icon: Icon(Icons.image),
+              label: Text("Change image")),
+          // SizedBox(height: 10),
           Center(
             child: Container(
               child: TextButton(
@@ -317,14 +322,31 @@ class _ExpertProfileState extends State<ExpertProfile> {
                       SizedBox(
                         width: 7,
                       ),
+                      // Icon(
+                      //   Icons.notifications,
+                      //   color: Colors.blue,
+                      // ),
+                      // TextButton(
+                      //   onPressed: () {},
+                      //   child: Text(
+                      //     "Notifications",
+                      //     style: TextStyle(
+                      //       fontSize: 20,
+                      //       color: Colors.black,
+                      //       fontWeight: FontWeight.bold,
+                      //     ),
+                      //   ),
+                      // ),
                       Icon(
-                        Icons.notifications,
-                        color: Colors.blue,
-                      ),
+                          Icons.edit,
+                          color: Colors.blue,
+                        ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(editProfile());
+                        },
                         child: Text(
-                          "Notifications",
+                          " Edit profile",
                           style: TextStyle(
                             fontSize: 20,
                             color: Colors.black,
@@ -362,7 +384,9 @@ class _ExpertProfileState extends State<ExpertProfile> {
                         color: Colors.blue,
                       ),
                       TextButton(
-                        onPressed: () { createAlertDialogNotificationSettings(context); },
+                        onPressed: () {
+                          createAlertDialogNotificationSettings(context);
+                        },
                         child: Text(
                           "Notification Settings",
                           style: TextStyle(
@@ -402,7 +426,9 @@ class _ExpertProfileState extends State<ExpertProfile> {
                         color: Colors.blue,
                       ),
                       TextButton(
-                        onPressed: () { createAlertDialogPassword(context);},
+                        onPressed: () {
+                          createAlertDialogPassword(context);
+                        },
                         child: Text(
                           "Password and Security",
                           style: TextStyle(
@@ -441,7 +467,9 @@ class _ExpertProfileState extends State<ExpertProfile> {
                         color: Colors.blue,
                       ),
                       TextButton(
-                        onPressed: () { createAlertDialogAboutApp(context) ; },
+                        onPressed: () {
+                          createAlertDialogAboutApp(context);
+                        },
                         child: Text(
                           "About App",
                           style: TextStyle(
@@ -480,7 +508,9 @@ class _ExpertProfileState extends State<ExpertProfile> {
                       color: Colors.blue,
                     ),
                     TextButton(
-                      onPressed: () { createAlertDialogContactUs(context) ; },
+                      onPressed: () {
+                        createAlertDialogContactUs(context);
+                      },
                       child: Text(
                         "Contact Us",
                         style: TextStyle(

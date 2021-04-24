@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_app/pages/click_expert.dart';
-import 'package:firebase_app/pages/list_of_categories.dart';
+import '../grid/list_of_categories.dart';
 import 'package:firebase_app/pages/navigationClient.dart';
 import 'package:firebase_app/pages/user.dart';
 import 'package:flutter/material.dart';

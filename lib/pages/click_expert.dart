@@ -1,6 +1,6 @@
 import 'package:firebase_app/pages/user.dart';
 
-import 'editProfile.dart';
+import '../profile/editProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 //import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -9,26 +9,7 @@ import 'package:firebase_app/pages/AnsweredQuestionsList.dart';
 import 'package:rating_bar/rating_bar.dart';
 import 'package:firebase_app/pages/user_controller.dart';
 
-// class MyController extends GetxController {
-//   String name = "Malaz Tamim".obs();
-//   String about =
-//       ""
-//           .obs();
-//   String price = "8-12\$".obs();
-//   List<String> questionsList = [
-//     // "What are covid symptoms?",
-//     // "How to avoid covid",
-//   ];
 
-//   List<String> skillslst = [
-//     // "Flutter",
-//     // "Software Development",
-//     // "Java",
-//     // "Data analysis",
-//     // "Data visualization",
-//     // "Data visualization",
-//   ];
-// }
 
 class ClickProfile extends StatelessWidget {
   

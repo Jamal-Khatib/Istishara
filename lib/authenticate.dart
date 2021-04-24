@@ -6,15 +6,13 @@ import 'package:firebase_app/pages/navigationExpert.dart';
 import 'package:firebase_app/pages/user_controller.dart';
 // import 'package:firebase_app/pages/Profile.dart';
 // import 'package:firebase_app/pages/list_of_categories.dart';
-import 'package:firebase_app/pages/log_in.dart';
+import 'login/log_in.dart';
 // import 'package:firebase_app/pages/verify.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-
-
 
 class Authenticate extends StatelessWidget {
   List<PageViewModel> getPages() {
@@ -23,7 +21,7 @@ class Authenticate extends StatelessWidget {
           // image :Image.asset("assets/images/signup.png"),
           titleWidget: Column(
             children: <Widget>[
-                            Container(height: 30),
+              Container(height: 30),
               Image.asset("assets/images/signup.png"),
               Container(height: 30),
               Text("Never miss an opportunity",
@@ -31,18 +29,18 @@ class Authenticate extends StatelessWidget {
                       color: const Color(0xD8172221),
                       fontWeight: FontWeight.bold,
                       fontSize: 22)),
-               
             ],
           ),
           bodyWidget: Column(
-                      children: <Widget> [Text(
-              "Easily find a question to answer, chat, and collaborate on the go.",
-              style: TextStyle(
-                  color: const Color(0xD8172221),
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16),
-              textAlign: TextAlign.center,
-            ),
+            children: <Widget>[
+              Text(
+                "Easily find a question to answer, chat, and collaborate on the go.",
+                style: TextStyle(
+                    color: const Color(0xD8172221),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16),
+                textAlign: TextAlign.center,
+              ),
 //             Container(height:22,),
 // Container(
 //               height:42,
@@ -75,13 +73,8 @@ class Authenticate extends StatelessWidget {
 //                   ),
 //                 ),
 //               ),),
-
-
-
-                      ],
+            ],
           ),
-
-          
 
           // footer: Text("Easily find a question to answer, chat, and collaborate on the go. "),
           decoration: const PageDecoration(
@@ -98,13 +91,15 @@ class Authenticate extends StatelessWidget {
           )),
       PageViewModel(
           image: Image.asset("assets/images/onboarding1.jpg"),
-          titleWidget: Text(
+          // titleWidget: Text(
+          title:
             "Find interesting questions and answer them.",
-            style: TextStyle(
-                color: const Color(0xD8172221),
-                fontWeight: FontWeight.w600,
-                fontSize: 16),
-          ),
+          //   style: TextStyle(
+          //       color: const Color(0xD8172221),
+          //       fontWeight: FontWeight.bold,
+                
+          //       fontSize: 16),
+          // ),
           body: "Stand out by replying to clients quickly and getting to work.",
           // footer: Text("Footer Text  here "),
           decoration: const PageDecoration(
@@ -156,7 +151,6 @@ class Authenticate extends StatelessWidget {
           },
         ),
       );
-      
     }
   }
 }

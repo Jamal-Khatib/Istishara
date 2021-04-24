@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_app/pages/Profile.dart';
-import 'package:firebase_app/pages/list_of_categories.dart';
-import 'package:firebase_app/pages/navigationClient.dart';
-import 'package:firebase_app/pages/navigationExpert.dart';
-import 'package:firebase_app/pages/verify.dart';
+import 'profile/Profile.dart';
+import 'grid/list_of_categories.dart';
+import 'pages/navigationClient.dart';
+import 'pages/navigationExpert.dart';
+import 'login/verify.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 // import 'package:flutter/material.dart';

@@ -5,12 +5,12 @@ import 'package:firebase_app/pages/user_controller.dart';
 import 'package:firebase_app/search/search.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'categories_build.dart';
-import 'package:firebase_app/pages/log_in.dart';
+import '../login/log_in.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_app/authenticationProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
-import 'navigationClient.dart';
+import '../pages/navigationClient.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:file_picker/file_picker.dart';
 

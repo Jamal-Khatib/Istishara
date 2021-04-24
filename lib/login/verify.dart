@@ -1,13 +1,13 @@
 // import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_app/pages/Profile.dart';
+import '../profile/Profile.dart';
 // import 'package:firebase_app/models/client.dart';
 // import 'package:firebase_app/models/expert.dart';
 // import 'package:firebase_app/pages/categories_build.dart';
-import 'package:firebase_app/pages/list_of_categories.dart';
+import '../grid/list_of_categories.dart';
 import 'package:firebase_app/pages/navigationExpert.dart';
-import 'package:firebase_app/pages/sign_up.dart';
+import 'sign_up.dart';
 // import 'package:firebase_app/pages/testpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:firebase_core/firebase_core.dart';
@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:get/get.dart';
 
-import 'navigationClient.dart';
+import '../pages/navigationClient.dart';
 // import 'ask_question.dart';
 
 class Verify extends StatefulWidget {

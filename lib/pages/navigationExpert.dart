@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import '../ExpertProfile.dart';
+import 'ExpertProfile.dart';
 import 'chatExpert.dart';
 import 'Experthome.dart';
 

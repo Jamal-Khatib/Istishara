@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_app/pages/allQuestions.dart';
+import 'package:firebase_app/profile/editProfile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -45,20 +46,19 @@ class _myProfileState extends State<myProfile> {
       body: ListView(
         children: <Widget>[
           SizedBox(height: 20),
-          Center(
-            child: Obx( () => CircleAvatar(
+            Obx( () => CircleAvatar(
               child: Padding(
                 padding: const EdgeInsets.only(top: 85, left: 100),
-                child: IconButton(
-                  //highlightColor: Colors.grey,
-                  color: Colors.grey[600],
-                  //focusColor: Colors.grey[600],
-                  icon: Icon(
-                    Icons.mode_edit,
-                    size: 30,
-                  ),
-                  onPressed: () {},
-                ),
+                // child: IconButton(
+                //   //highlightColor: Colors.grey,
+                //   color: Colors.grey[600],
+                //   //focusColor: Colors.grey[600],
+                //   icon: Icon(
+                //     Icons.mode_edit,
+                //     size: 30,
+                //   ),
+                //   onPressed: () {},
+                // ),
               ),
               radius: 70,
               backgroundImage: controller.myUser.value.imageURL==""?  
@@ -68,7 +68,7 @@ class _myProfileState extends State<myProfile> {
                 
               backgroundColor: Colors.blue,
             )),
-          ),
+          
           TextButton.icon( 
             onPressed: ()  async{
                pickedImage = await picker.getImage(source: ImageSource.gallery, imageQuality: 50) ;  
@@ -244,48 +244,63 @@ class _myProfileState extends State<myProfile> {
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              shape: StadiumBorder(
-                //Card with stadium border
-                side: BorderSide(
-                  color: Colors.blue,
-                  width: 2.0,
-                ),
-              ),
-              child: InkWell(
-                  onTap: () {},
-                              child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                      //Padding: EdgeInsets.all(value)
-                      //mainAxisAlignment: MainAxisAlignment.,
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: Card(
+          //     shape: StadiumBorder(
+          //       //Card with stadium border
+          //       side: BorderSide(
+          //         color: Colors.blue,
+          //         width: 2.0,
+          //       ),
+              // ),
+              // child: InkWell(
+              //     onTap: () {},
+              //                 child: Padding(
+              //     padding: const EdgeInsets.all(8.0),
+              //     child: Row(
+              //         //Padding: EdgeInsets.all(value)
+              //         //mainAxisAlignment: MainAxisAlignment.,
 
-                      children: <Widget>[
-                        SizedBox(
-                          width: 7,
-                        ),
-                        Icon(
-                          Icons.settings,
-                          color: Colors.blue,
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Notification Settings",
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ]),
-                ),
-              ),
-            ),
-          ),
+              //         children: <Widget>[
+              //           SizedBox(
+              //             width: 7,
+              //           ),
+              //           // Icon(
+              //           //   Icons.settings,
+              //           //   color: Colors.blue,
+              //           // ),
+              //           // TextButton(
+              //           //   onPressed: () {},
+              //           //   child: Text(
+              //           //     "Notification Settings",
+              //           //     style: TextStyle(
+              //           //       fontSize: 20,
+              //           //       color: Colors.black,
+              //           //       fontWeight: FontWeight.bold,
+              //           //     ),
+              //           //   ),
+              //           // ),
+              //           // Icon(
+              //           //   Icons.edit,
+              //           //   color: Colors.blue,
+              //           // ),
+              //           // TextButton(
+              //           //   onPressed: () {Get.to(editProfile());},
+              //           //   child: Text(
+              //           //     " Edit profile",
+              //           //     style: TextStyle(
+              //           //       fontSize: 20,
+              //           //       color: Colors.black,
+              //           //       fontWeight: FontWeight.bold,
+              //           //     ),
+              //           //   ),
+              //           // ),
+              //         ]),
+              //   ),
+              // ),
+          //   ),
+          // ),
           InkWell(
                   onTap: () {
                         Get.to(AllQuestions()) ; 

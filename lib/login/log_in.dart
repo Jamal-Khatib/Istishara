@@ -1,13 +1,13 @@
-import 'package:firebase_app/pages/list_of_categories.dart';
-import 'package:firebase_app/pages/reset.dart';
-import 'package:firebase_app/pages/sign_up.dart';
+import '../grid/list_of_categories.dart';
+import 'reset.dart';
+import 'sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_app/authenticationProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'ask_question.dart';
-import 'navigationClient.dart';
+import '../pages/ask_question.dart';
+import '../pages/navigationClient.dart';
 
 class Login extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -44,18 +44,15 @@ class Login extends StatelessWidget {
                 child: TextField(
                   controller: emailController,
 
-
 // shadows: [Shadow(color: Colors.yellow, blurRadius: 2)],
-
-
 
                   decoration: new InputDecoration(
                     border: new OutlineInputBorder(
                         borderSide: new BorderSide(color: Colors.blue)),
 
                     // border: OutlineInputBorder(),
-                  
-                  prefixIcon: Icon(Icons.email),
+
+                    prefixIcon: Icon(Icons.email),
                     labelText: 'Email',
                   ),
                 ),
@@ -78,15 +75,11 @@ class Login extends StatelessWidget {
                   primaryColorDark: Colors.blue,
                 ),
                 child: TextField(
-                  
                   controller: passwordController,
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(),                  
-                   
-                  prefixIcon: Icon(Icons.lock),
-                    
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.lock),
                     labelText: 'Password',
-                    
                   ),
                 ),
               ),

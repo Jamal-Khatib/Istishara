@@ -8,10 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:firebase_app/pages/list_of_categories.dart';
-import 'list_of_categories.dart';
-import 'myProfile.dart';
-import 'search.dart';
+import '../grid/list_of_categories.dart';
+import '../grid/list_of_categories.dart';
+import 'ClientProfile.dart';
 import 'myQuestions.dart';
 
 class navController extends GetxController {

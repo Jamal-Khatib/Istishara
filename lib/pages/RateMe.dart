@@ -24,7 +24,21 @@ class _RateMeState extends State<RateMe> {
     return Scaffold(
           body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget> [ RatingBar(
+            children: <Widget> [ 
+
+
+              Image.asset(
+              "assets\images\rateMe.jpg",
+              fit: BoxFit.contain,
+              // height: MediaQuery.of(context).size.height,
+              // width: MediaQuery.of(context).size.width,
+              // height: 300,
+              // width: 200,
+            ),
+
+              
+              
+              RatingBar(
           onRatingChanged: (rating) =>
               setState(() => x = rating),
           filledIcon: Icons.star,

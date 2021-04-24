@@ -1,5 +1,5 @@
 import 'package:firebase_app/pages/PostingQuestion.dart';
-import 'package:firebase_app/pages/list_of_categories.dart';
+import '../grid/list_of_categories.dart';
 import 'package:firebase_app/widgets/SearchingExpert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

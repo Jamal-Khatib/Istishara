@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_app/pages/experthome_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_app/authenticationProvider.dart';
-import 'package:firebase_app/pages/log_in.dart';
+import '../login/log_in.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_app/pages/user_controller.dart';
@@ -71,18 +71,36 @@ class Experthome extends StatelessWidget {
                             Container(
                                   padding:  EdgeInsets.all(3),
 
-                              child: CircleAvatar(
-                                child: Padding(
-                                  padding:  EdgeInsets.all(115),
+                              // child: CircleAvatar(
+                              //   child: Padding(
+                              //     padding:  EdgeInsets.all(115),
                                   
-                                ),
-                                radius: 40,
-                                backgroundImage: document.data()["imageURL"] !="" ?
-                                NetworkImage(document.data()["imageURL"] )
-                                : AssetImage("assets/blank-profile-picture.png")
-                                ,
-                                backgroundColor: Colors.blue,
-                              ),
+                              //   ),
+                              //   radius: 40,
+                              //   backgroundImage: document.data()["imageURL"] !="" ?
+                              //   NetworkImage(document.data()["imageURL"] )
+                              //   : AssetImage("assets/blank-profile-picture.png")
+                              //   ,
+                              //   backgroundColor: Colors.blue,
+                              // ),
+
+                              
+                              child:CircleAvatar(
+
+                  radius: 40,
+                  backgroundImage: AssetImage("assets/images/loading.gif"),
+                  child: Padding(
+                    padding: const EdgeInsets.all(0),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      radius: 40,
+                      backgroundImage: NetworkImage(
+                        document.data()["imageURL"],
+                      ),
+                    ),
+                  ),
+                  // backgroundColor: Colors.transparent,
+                ),
                             ),
 
                             Container(

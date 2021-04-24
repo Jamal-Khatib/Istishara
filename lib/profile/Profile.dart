@@ -7,26 +7,7 @@ import 'package:firebase_app/pages/AnsweredQuestionsList.dart';
 import 'package:rating_bar/rating_bar.dart';
 import 'package:firebase_app/pages/user_controller.dart';
 
-// class MyController extends GetxController {
-//   String name = "Malaz Tamim".obs();
-//   String about =
-//       ""
-//           .obs();
-//   String price = "8-12\$".obs();
-//   List<String> questionsList = [
-//     // "What are covid symptoms?",
-//     // "How to avoid covid",
-//   ];
 
-//   List<String> skillslst = [
-//     // "Flutter",
-//     // "Software Development",
-//     // "Java",
-//     // "Data analysis",
-//     // "Data visualization",
-//     // "Data visualization",
-//   ];
-// }
 
 class Profile extends StatefulWidget {
   @override
@@ -87,14 +68,19 @@ class _ProfileState extends State<Profile> {
                 children: <Widget>[
                   Padding(
                    padding:  EdgeInsets.only(
-                     top: MediaQuery.of(context).size.height*0.1, bottom:11, left: 15, right: 28),
+                     top: MediaQuery.of(context).size.height * 0.1,
+                        bottom: 11,
+                        left: MediaQuery.of(context).size.width * 0.07,
+                        right: MediaQuery.of(context).size.width * 0.07
+                     
+                     ),
                 
                    child: CircleAvatar(
                      child: Padding(
                     padding: const EdgeInsets.only(top: 85, left: 100),
                   
                     ),
-                  radius: 70,
+                  radius: MediaQuery.of(context).size.width * 0.2,
                   backgroundImage: NetworkImage(controller.myUser.value.imageURL),
                   backgroundColor: Colors.blue,
                 ),
@@ -102,8 +88,9 @@ class _ProfileState extends State<Profile> {
                       Padding(
                         padding: EdgeInsets.only(
                             top: MediaQuery.of(context).size.height * 0.2,
-                            left: MediaQuery.of(context).size.height * 0.02,
-                            bottom: MediaQuery.of(context).size.height * 0.02),
+                        left: MediaQuery.of(context).size.width * 0.02,
+                        right: MediaQuery.of(context).size.width * 0.04,
+                        bottom: MediaQuery.of(context).size.height * 0.02),
                         child: Row(
                           children: <Widget>[
                             // Text(
@@ -122,7 +109,7 @@ class _ProfileState extends State<Profile> {
                               halfFilledIcon: Icons.star_half,
                               filledIcon: Icons.star,
                               emptyIcon: Icons.star_border,
-                              size: 30,
+                              size: MediaQuery.of(context).size.width * 0.08,
                             ),
                           ],
                         ),
