@@ -86,6 +86,7 @@ flutter:
     - assets/images/icons/
     # - assets/images/expert.jpg
     - assets/images/
+    # - assets/images/rateMe.png
 
 
   #   - images/a_dot_ham.jpeg

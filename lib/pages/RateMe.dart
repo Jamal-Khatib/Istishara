@@ -23,19 +23,26 @@ class _RateMeState extends State<RateMe> {
   Widget build(BuildContext context) {
     return Scaffold(
           body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget> [ 
 
-
+SizedBox(height:34),
               Image.asset(
-              "assets\images\rateMe.jpg",
+              "assets/images/rateMe.png",
               fit: BoxFit.contain,
               // height: MediaQuery.of(context).size.height,
-              // width: MediaQuery.of(context).size.width,
+              width: MediaQuery.of(context).size.width,
               // height: 300,
               // width: 200,
             ),
 
+SizedBox(height:55),
+
+Center(child: Text("How would you rate you experience with the expert?",
+style: TextStyle(color: Colors.black,
+fontWeight: FontWeight.bold)
+)),
+SizedBox(height:15),
               
               
               RatingBar(
@@ -51,18 +58,29 @@ class _RateMeState extends State<RateMe> {
           size: 48,
                          
         ),
-        Container(
-          margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                height: 45,
-                width: 100,
-                decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(20)),
-          child: FlatButton(onPressed: () async {
-          var data = await FirebaseFirestore.instance.collection("users").where("name", isEqualTo: name1).limit(1).get() ; 
-          var y = data.docs ;  
-          for(var expert  in y) 
-          {
+        // Container(
+        //   margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+        //         height: 45,
+        //         width: 100,
+        //         decoration: BoxDecoration(
+        //             color: Colors.blue,
+        //             borderRadius: BorderRadius.circular(20)),
+          Row(
+                      children: <Widget> [
+                        SizedBox(width: MediaQuery.of(context).size.width*0.78),
+                        
+                        
+                        TextButton(
+              child: Container(
+                width: MediaQuery.of(context).size.width*0.17,
+                child: Text("Submit", style: TextStyle(color:Colors.black, fontWeight: FontWeight.bold,
+                )),
+              ),
+              onPressed: () async {
+            var data = await FirebaseFirestore.instance.collection("users").where("name", isEqualTo: name1).limit(1).get() ; 
+            var y = data.docs ;  
+            for(var expert  in y) 
+            {
         var ex = expert.data() ;  
         var old = ex["rating"] ; 
         print("hahahahahhahahahahahaha") ; 
@@ -73,16 +91,15 @@ class _RateMeState extends State<RateMe> {
          print(old) ; 
          print(n) ; 
          await FirebaseFirestore.instance.collection("users").doc(uid).update({
-           "rating": n 
+             "rating": n 
          });
          Get.back() ; 
       
-    }
+    }        
 
+            }, ),]
+          ),
         
-
-          }, child: Text("Submit")),
-        )
             ],),
     );
   }
