@@ -1,8 +1,10 @@
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_app/pages/click_expert.dart';
 import 'package:firebase_app/pages/list_of_categories.dart';
 import 'package:firebase_app/pages/navigationClient.dart';
+import 'package:firebase_app/pages/user.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_app/pages/user_controller.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -53,6 +55,21 @@ class _InterestedExpertsState extends State<InterestedExperts> {
          toastLength: Toast.LENGTH_LONG,
         fontSize: 15,
       );
+  }
+   Future<MyUser> getExpert(String name) async 
+  {
+    var data  = await FirebaseFirestore.instance.collection("users").limit(1).where("name", isEqualTo: "$name").get() ;
+    var x = data.docs ;  
+    for(var expert  in x) 
+    {
+      var ex = expert.data() ;  
+      return MyUser.expert(name:ex["name"],about: ex["about"], skill1: ex["skill1"],skill2: ex["skill2"],skill3: ex["skill3"],skill4: ex["skill4"],skill5: ex["skill5"],skill6: ex["skill6"],rating: ex["rating"],imageURL: ex["imageURL"]); 
+      // print(u.about) ; 
+      // print(u.skill1) ; 
+      // print(u.imageURL) ;
+      // print(u.name) ;  
+    }
+   
   }
 
   Widget build(BuildContext context) {
@@ -140,7 +157,8 @@ class _InterestedExpertsState extends State<InterestedExperts> {
                           title: TextButton(
                             child: Text(experts[index]),
                             onPressed: () async{
-
+                                MyUser u = await getExpert(experts[index]) ; 
+                                Get.to(ClickProfile(expert:u)) ; 
                               // var f  = await FirebaseFirestore.instance.collection("users").limit(1).where("name", isEqualTo: experts[index]).get(); 
                               // print(f.docs.first.id);
                               

@@ -1,4 +1,7 @@
+import 'package:firebase_app/pages/click_expert.dart';
+import 'package:firebase_app/pages/user.dart';
 import 'package:firebase_app/pages/user_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -14,6 +17,9 @@ class _SearchState extends State<Search> {
 
   TextEditingController searchcontroller = TextEditingController() ; 
   UserController controller = Get.put(UserController());
+
+
+
 
   
   String resultLoaded ; 
@@ -41,6 +47,22 @@ class _SearchState extends State<Search> {
       resultLoaded =   getExperts().toString()     ; 
     }
 
+
+    Future<MyUser> getExpert(String name) async 
+  {
+    var data  = await FirebaseFirestore.instance.collection("users").limit(1).where("name", isEqualTo: "$name").get() ;
+    var x = data.docs ;  
+    for(var expert  in x) 
+    {
+      var ex = expert.data() ;  
+      return MyUser.expert(name:ex["name"],about: ex["about"], skill1: ex["skill1"],skill2: ex["skill2"],skill3: ex["skill3"],skill4: ex["skill4"],skill5: ex["skill5"],skill6: ex["skill6"],rating: ex["rating"],imageURL: ex["imageURL"]); 
+      // print(u.about) ; 
+      // print(u.skill1) ; 
+      // print(u.imageURL) ;
+      // print(u.name) ;  
+    }
+   
+  }
 
   void searchChange() 
   {
@@ -114,9 +136,45 @@ class _SearchState extends State<Search> {
     // return(Card(child: Text("$s"),)) ; 
     return Row(
                 children: <Widget>[
+
+
+
+                  
+                  Container(
+                    height: MediaQuery.of(context).size.width*0.0,
+                    width: MediaQuery.of(context).size.width*0.02,
+                    padding: EdgeInsets.only(right:68), 
+                    
+                      // 
+                      // 
+                      // 
+                      // 
+                      child:  CircleAvatar(
+              
+              radius: 200,
+              backgroundImage: controller.myUser.value.imageURL==""?  
+              AssetImage("assets/blank-profile-picture.png") 
+              : NetworkImage(x["imageURL"])            
+              ,
+                
+              // backgroundColor: Colors.blue,
+            ),
+                //       child:CircleAvatar(
+                //   child: Padding(
+                //     padding: const EdgeInsets.only(top: 5, left: 10),
+                   
+                //   ),
+                //   // radius: 70,
+                //   backgroundImage: NetworkImage(x["imageURL"]),
+                //   backgroundColor: Colors.blue,
+                // // ),
+                //     ),
+                  ),
+
                   Container(
                     height: MediaQuery.of(context).size.width*0.12,
                     width: MediaQuery.of(context).size.width*0.14,
+                    padding: EdgeInsets.only(right:68), 
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(5),
@@ -124,13 +182,39 @@ class _SearchState extends State<Search> {
                       ),
                       image: DecorationImage(
                         fit: BoxFit.cover,
+                        scale: 1.4,
                         image: NetworkImage(x["imageURL"]),
-                      )
-                    ),
+                      ),
+                      ),
+                      // 
+                      // 
+                      // 
+                      // 
+                      child: Obx( () => CircleAvatar(
+              
+              radius: 70,
+              backgroundImage: controller.myUser.value.imageURL==""?  
+              AssetImage("assets\\blank-profile-picture")
+              : NetworkImage(x["imageURL"])            
+              ,
+                
+              backgroundColor: Colors.blue,
+            )),
+
+                //       child:CircleAvatar(
+                //   child: Padding(
+                //     padding: const EdgeInsets.only(top: 5, left: 10),
+                   
+                //   ),
+                //   // radius: 70,
+                //   backgroundImage: NetworkImage(x["imageURL"]),
+                //   backgroundColor: Colors.blue,
+                // // ),
+                //     ),
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.width*0.2,
-                    width: MediaQuery.of(context).size.width*0.5,
+                    height: MediaQuery.of(context).size.width*0.27,
+                    width: MediaQuery.of(context).size.width*0.44,
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(20,0,0,0),
                       child: Column(
@@ -139,16 +223,18 @@ class _SearchState extends State<Search> {
                           TextButton(
                             child: Text("$s",
                               style: TextStyle(fontWeight: FontWeight.bold,fontSize: AdaptiveTextSize()
-                                  .getadaptiveTextSize(context, 20)),
+                                  .getadaptiveTextSize(context, 17)),
 
                             ),
-                            onPressed: (){
-
+                            onPressed: () async{
+                              // getExpert(s) ; 
+                              MyUser u = await getExpert(s) ; 
+                              Get.to(ClickProfile(expert:u));  
                             },
                           ),
                           // SizedBox(height: 30),
                           Text("$s2",style: TextStyle(fontWeight: FontWeight.bold,fontSize: AdaptiveTextSize()
-                                  .getadaptiveTextSize(context, 17)),)
+                                  .getadaptiveTextSize(context, 15)),)
 
                          
                         ],
@@ -156,21 +242,24 @@ class _SearchState extends State<Search> {
                     ),
                   ),
                   // SizedBox(width: 10),
-                 ElevatedButton.icon(
-                      // color: Colors.blue,
-                      onPressed: () {
-                        alreadypicked(s)?  
-                               Fluttertoast.showToast(
-                                      msg:
-                                          "You have already picked this expert, Check the chat page", //yalla
-                                      gravity: ToastGravity.CENTER,
-                                      toastLength: Toast.LENGTH_LONG,
-                                      fontSize: 15,
-                                    ) :  pick(s) ; 
-                      },
-                      icon: Icon(Icons.chat,color: Colors.white,),
-                      label: Text("Contact",style: TextStyle(color: Colors.white),)
-                       ),
+                 Container(
+                   width: MediaQuery.of(context).size.width*0.38,
+                   child: ElevatedButton.icon(
+                        // color: Colors.blue,
+                        onPressed: () {
+                          alreadypicked(s)?  
+                                 Fluttertoast.showToast(
+                                        msg:
+                                            "You have already picked this expert, Check the chat page", //yalla
+                                        gravity: ToastGravity.CENTER,
+                                        toastLength: Toast.LENGTH_LONG,
+                                        fontSize: 15,
+                                      ) :  pick(s) ; 
+                        },
+                        icon: Icon(Icons.chat,color: Colors.white,),
+                        label: Text("Contact",style: TextStyle(fontSize:14,color: Colors.white),)
+                         ),
+                 ),
                 
                 ],
               ) ; 

@@ -163,7 +163,16 @@ class _VerifyState extends State<Verify> {
           "interestedPsych": [],
 
            "chatPeople" : [],
-           "imageURL" : data["imageURL"]
+           "imageURL" : data["imageURL"],
+           "about" : "",
+           "skill1" : "",
+            "skill2": "",
+            "skill3": "",
+            "skill4": "",
+            "skill5": "",
+            "skill6": "",
+            "rating":0,
+
         });
         Get.off(navigationClient());
       }

@@ -3,7 +3,7 @@ import 'package:firebase_app/pages/user_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:firebase_app/widgets/SkillsList.dart';
+import 'package:firebase_app/pages/AnsweredQuestionsList.dart';
 
 class editProfile extends StatefulWidget {
   @override

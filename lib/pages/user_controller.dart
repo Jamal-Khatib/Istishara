@@ -427,9 +427,6 @@ class UserController extends GetxController {
 
     }
 
-   Map get_questions() 
-   {
-     
-   }
+   
 
 }

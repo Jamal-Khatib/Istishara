@@ -23,6 +23,124 @@ class _ExpertProfileState extends State<ExpertProfile> {
 
   final picker = ImagePicker();
 
+  List<bool> _selections=List.generate(2,(_)=>false);
+  
+
+  createAlertDialogAboutApp(BuildContext context){
+    return showDialog(context: context, builder: (context){
+      return AlertDialog(
+        title: Text("Istishara is a Mobile App that connects clients seeking help with experts in a specific field.\n\nIf you are a client and need help, go post your question or search for an expert! If you are an expert, go pick a question!",
+          style: TextStyle(
+            fontSize: 18.0,
+          ),
+        ),
+        actions: <Widget>[
+          MaterialButton(
+              elevation: 5.0,
+              child: Text(
+                "OK",
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.0,
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              }
+          ),
+        ],
+      );
+    });
+  }
+  createAlertDialogContactUs(BuildContext context){
+      return showDialog(context: context, builder: (context){
+        return AlertDialog(
+          title: Text("\nFor more information, don't hesitate to contact us at"),
+          content: Text("istishara0@gmail.com .",
+            style: TextStyle(
+              color: Colors.blue,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          actions: <Widget>[
+            MaterialButton(
+                elevation: 5.0,
+                child: Text(
+                  "Done",
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                }
+            ),
+          ],
+        );
+      });
+    }
+    createAlertDialogNotificationSettings(BuildContext context){
+    return showDialog(context: context, builder: (context){
+      return AlertDialog(
+        title: Text("Notification Settings",
+          style: TextStyle(fontWeight: FontWeight.bold,
+            fontSize: 20.0,
+          ),
+
+        ),
+        actions: <Widget>[
+          ToggleButtons(
+            children: [
+              Text("OFF", style: TextStyle(fontSize: 18.0),),
+              Text("ON",style: TextStyle(fontSize: 18.0),),
+            ],
+            isSelected: _selections,
+            onPressed: (int index){
+
+            },
+            //selectedColor: Colors.blue,
+            borderRadius:BorderRadius.circular(22.0),
+            borderWidth:5,
+            borderColor: Colors.blue,
+
+          ),
+
+        ],
+      );
+    });
+  }
+
+  createAlertDialogPassword(BuildContext context){
+    return showDialog(context: context, builder: (context){
+      return AlertDialog(
+
+        title: Text("Reset password", style: TextStyle(fontWeight:FontWeight.bold)),
+        content: Text(
+          "\nCheck your email to reset your password!",
+          style: TextStyle(fontSize: 20.0),
+        ),
+
+        actions: <Widget>[
+          MaterialButton(
+              elevation: 5.0,
+              child: Text(
+                "OK",
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              }
+          ),
+        ],
+      );
+    });
+  }
   @override
   Widget build(BuildContext context) {
     var count = 100.obs;
@@ -64,6 +182,7 @@ class _ExpertProfileState extends State<ExpertProfile> {
               AssetImage("assets\\blank-profile-picture")
               : NetworkImage(controller.myUser.value.imageURL)               
               ,
+              
                 
               backgroundColor: Colors.blue,
             ))),
@@ -243,7 +362,7 @@ class _ExpertProfileState extends State<ExpertProfile> {
                         color: Colors.blue,
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () { createAlertDialogNotificationSettings(context); },
                         child: Text(
                           "Notification Settings",
                           style: TextStyle(
@@ -283,7 +402,7 @@ class _ExpertProfileState extends State<ExpertProfile> {
                         color: Colors.blue,
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () { createAlertDialogPassword(context);},
                         child: Text(
                           "Password and Security",
                           style: TextStyle(
@@ -322,7 +441,7 @@ class _ExpertProfileState extends State<ExpertProfile> {
                         color: Colors.blue,
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () { createAlertDialogAboutApp(context) ; },
                         child: Text(
                           "About App",
                           style: TextStyle(
@@ -361,7 +480,7 @@ class _ExpertProfileState extends State<ExpertProfile> {
                       color: Colors.blue,
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () { createAlertDialogContactUs(context) ; },
                       child: Text(
                         "Contact Us",
                         style: TextStyle(

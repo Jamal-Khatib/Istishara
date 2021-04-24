@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MyUser {
 
+
   String uid ; 
   String name;
   String email;
@@ -36,7 +37,7 @@ class MyUser {
 
   String imageURL = "" ; 
 
-  int rating = 0 ; 
+  double rating = 0 ; 
   String about="" ; 
   String skill1 = ""; 
   String skill2 = "";
@@ -47,6 +48,7 @@ class MyUser {
 
   // String currentfield = "" ; 
 
+  MyUser.expert({this.name,this.about,this.skill1,this.skill2,this.skill3,this.skill4,this.skill5,this.skill6,this.rating,this.imageURL});
 
   MyUser({this.name, this.field, this.email, this.type, this.phoneNumber});
 
@@ -80,6 +82,9 @@ class MyUser {
     );
 
   }
+
+
+
 
   
 

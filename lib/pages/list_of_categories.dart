@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'dart:async';
+import 'package:firebase_app/chat/pdfi.dart';
 import 'package:firebase_app/pages/user_controller.dart';
 import 'package:firebase_app/search/search.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'categories_build.dart';
 import 'package:firebase_app/pages/log_in.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +12,11 @@ import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'navigationClient.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:file_picker/file_picker.dart';
 
 
-// import 'myProfile.dart';
+
+// import 'myProfile.dart'; 
 
 final List<String> categoriesList = [
   "Architect",
@@ -70,11 +74,14 @@ class _ListCategoriesState extends State<ListCategories> {
               context.read<AuthenticationProvider>().signOut();
               Get.off(Login());
               
+              
+              
             },
                 ),
             onPressed: ()  async{
               context.read<AuthenticationProvider>().signOut();
               Get.off(Login());
+              
               
             },
             label: Text(
@@ -107,6 +114,28 @@ class _ListCategoriesState extends State<ListCategories> {
             onPressed: ()  async{
               context.read<AuthenticationProvider>().signOut();
               Get.off(Login());
+              // Get.to(PDFI()) ; 
+          //     print("attachhhhhhhhhhhhhhhh") ; 
+          //     FilePickerResult result = await FilePicker.platform.pickFiles(type: FileType.custom,
+          // allowedExtensions: ['pdf', 'doc'],);
+
+          //     if(result != null) {
+          //   File file = File(result.files.single.path);
+          //   PlatformFile pfile = result.files.first;
+          //   if(pfile.extension=="pdf")
+          //   {
+          //     print("Ohoooooooooo") ; 
+          //     print(pfile.path);
+          //     print(file.path) ; 
+          //     String s = file.hashCode.toString(); 
+          //     final ref =  FirebaseStorage.instance.ref().child("users").child("$s.pdf") ; 
+          //     await ref.putFile(file) ;
+          //     // final url = await ref.getDownloadURL() ; 
+
+          //   }
+          //   } else {
+          // // User canceled the picker
+          // }
               
             },
             label: Text(

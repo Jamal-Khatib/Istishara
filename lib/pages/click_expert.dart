@@ -1,3 +1,5 @@
+import 'package:firebase_app/pages/user.dart';
+
 import 'editProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,13 +30,11 @@ import 'package:firebase_app/pages/user_controller.dart';
 //   ];
 // }
 
-class Profile extends StatefulWidget {
-  @override
-  _ProfileState createState() => _ProfileState();
-}
-
-class _ProfileState extends State<Profile> {
-  UserController controller = Get.put(UserController());
+class ClickProfile extends StatelessWidget {
+  
+  // UserController controller = Get.put(UserController());
+  MyUser expert ; 
+  ClickProfile({this.expert}) ; 
   Widget _buildChip(String label, Color color) {
     return Chip(
       labelPadding: EdgeInsets.all(2.0),
@@ -60,7 +60,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     List<double> rate = [5, 4.5, 5.0, 3.5];
 
-    // var mean = rate.reduce((a, b) => a + b) / rate.length;
+    var mean = rate.reduce((a, b) => a + b) / rate.length;
 
     
     // final skillsListWidget =
@@ -95,7 +95,7 @@ class _ProfileState extends State<Profile> {
                   
                     ),
                   radius: 70,
-                  backgroundImage: NetworkImage(controller.myUser.value.imageURL),
+                  backgroundImage: NetworkImage(expert.imageURL),
                   backgroundColor: Colors.blue,
                 ),
               ),
@@ -117,7 +117,7 @@ class _ProfileState extends State<Profile> {
                               filledColor: Colors.yellow[700],
                               emptyColor: Colors.yellow[700],
                               halfFilledColor: Colors.yellow[700],
-                              initialRating: controller.myUser.value.rating,
+                              initialRating: expert.rating,
                               isHalfAllowed: true,
                               halfFilledIcon: Icons.star_half,
                               filledIcon: Icons.star,
@@ -163,7 +163,7 @@ class _ProfileState extends State<Profile> {
                 Padding(
                   padding: const EdgeInsets.only(left: 14.0, bottom: 18.0),
                   child: Text(
-                    controller.myUser.value.name,
+                    expert.name,
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -191,12 +191,12 @@ class _ProfileState extends State<Profile> {
                 spacing: 6.0,
                 runSpacing: 6.0,
                 children: <Widget>[
-                  controller.myUser.value.skill1=="" ? Container() : _buildChip(controller.myUser.value.skill1, Color(0xFFff6666)),
-                  controller.myUser.value.skill2=="" ? Container() : _buildChip(controller.myUser.value.skill2, Color(0xFF007f5c)),
-                  controller.myUser.value.skill3=="" ? Container() : _buildChip(controller.myUser.value.skill3, Color(0xFF5f65d3)),
-                  controller.myUser.value.skill4=="" ? Container() : _buildChip(controller.myUser.value.skill4, Color(0xFF19ca21)),
-                  controller.myUser.value.skill5=="" ? Container() : _buildChip(controller.myUser.value.skill5, Color(0xFF60230b)),
-                  controller.myUser.value.skill6=="" ? Container() : _buildChip(controller.myUser.value.skill6, Color(0xFF16B2DA)),
+                  expert.skill1=="" ? Container() : _buildChip(expert.skill1, Color(0xFFff6666)),
+                  expert.skill2=="" ? Container() : _buildChip(expert.skill2, Color(0xFF007f5c)),
+                  expert.skill3=="" ? Container() : _buildChip(expert.skill3, Color(0xFF5f65d3)),
+                  expert.skill4=="" ? Container() : _buildChip(expert.skill4, Color(0xFF19ca21)),
+                 expert.skill5=="" ? Container() : _buildChip(expert.skill5, Color(0xFF60230b)),
+                expert.skill6=="" ? Container() : _buildChip(expert.skill6, Color(0xFF16B2DA)),
                 ],
               ),
             ),
@@ -322,7 +322,7 @@ class _ProfileState extends State<Profile> {
             Padding(
               padding: const EdgeInsets.only(left: 18.0, bottom: 12.0),
               child: Text(
-                controller.myUser.value.about,
+                expert.about,
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
@@ -355,21 +355,21 @@ class _ProfileState extends State<Profile> {
             //         SkillsList(skillslst)],
             //       )
             // 
-            Container(
-              padding: EdgeInsets.only(left:20,right: 20,top: 10,bottom: 10),
-              width: double.infinity,
-              height: 70,
-              child: MaterialButton(
-                child: Text("Edit Profile"),
-                color: Colors.orangeAccent,
-                onPressed: () {
-                  Get.off(
-                          editProfile(),
-                          // arguments: m,
-                        );
-                },
-              ),
-            ),
+            // Container(
+            //   padding: EdgeInsets.only(left:20,right: 20,top: 10,bottom: 10),
+            //   width: double.infinity,
+            //   height: 70,
+            //   child: MaterialButton(
+            //     child: Text("Edit Profile"),
+            //     color: Colors.orangeAccent,
+            //     onPressed: () {
+            //       Get.off(
+            //               editProfile(),
+            //               // arguments: m,
+            //             );
+            //     },
+            //   ),
+            // ),
             // controller.myUser.value.skill1==""? Container() : Text(controller.myUser.value.skill1,style: TextStyle(fontWeight: FontWeight.bold)),
             // controller.myUser.value.skill2==""? Container() : Text(controller.myUser.value.skill2,style: TextStyle(fontWeight: FontWeight.bold)),
             // controller.myUser.value.skill3==""? Container() : Text(controller.myUser.value.skill3,style: TextStyle(fontWeight: FontWeight.bold)),

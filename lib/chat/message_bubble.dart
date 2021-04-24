@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import 'package:firebase_app/chat/pdfview.dart';
 
 
 class MessageBubble extends StatelessWidget {
@@ -68,8 +69,17 @@ class MessageBubble extends StatelessWidget {
       ) ; 
       
     }
-    
 
-   
+    else if(type=="pdf")       
+    {
+      return Row(
+       mainAxisAlignment: isMe? MainAxisAlignment.end : MainAxisAlignment.start,   
+       children: [Container( margin: EdgeInsets.symmetric(vertical: 1, horizontal: 8),child: IconButton(icon:Icon(Icons.picture_as_pdf),color: Colors.blue,onPressed: () { Get.to(PFDV(url:message));   })),
+      
+    Text(gettime(time),style: TextStyle(color: Colors.grey),) , 
+       ],
+      ) ; 
+    }
   }
 }
+

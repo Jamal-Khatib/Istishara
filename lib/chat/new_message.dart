@@ -1,7 +1,7 @@
 
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
 // import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -10,8 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_app/pages/user_controller.dart';
 import 'package:image_picker/image_picker.dart';
-
-
 
 
 class NewMessage extends StatefulWidget {
@@ -33,19 +31,18 @@ class _NewMessageState extends State<NewMessage> {
 
   final mycontroller = new TextEditingController() ; 
 
-
-   File _image;
+  File _image;
   final picker = ImagePicker();
 
-
   Future<void> sendImage() async {
+    
     final pickedImage = await picker.getImage(source: ImageSource.gallery, imageQuality: 50) ; 
     setState (() async  {
       if (pickedImage != null) {
        _image = File(pickedImage.path);
        String s = pickedImage.hashCode.toString() ; 
       final ref =  FirebaseStorage.instance.ref().child("users").child("$s.jpg") ; 
-       await ref.putFile(_image) ; 
+      await ref.putFile(_image) ; 
       // to get it 
       final url = await ref.getDownloadURL() ; 
       // NetworkImage(url) ;  
@@ -57,17 +54,48 @@ class _NewMessageState extends State<NewMessage> {
         "time" :  Timestamp.now(), //created time
         "uid" : FirebaseAuth.instance.currentUser.uid,
         "type" : "image"
-
       });
    
-       
       } else {
         print('No image selected.');
       }
     });
   }
 
-  
+
+   Future<void> sendPDF() async {
+     FilePickerResult result = await FilePicker.platform.pickFiles(type: FileType.custom,
+          allowedExtensions: ['pdf', 'doc'],);
+     if(result != null) {
+            File file = File(result.files.single.path);
+            PlatformFile pfile = result.files.first;
+            if(pfile.extension=="pdf")
+            {
+              print("Ohoooooooooo") ; 
+              print(pfile.path);
+              print(file.path) ; 
+              String s = file.hashCode.toString(); 
+              final ref =  FirebaseStorage.instance.ref().child("users").child("$s.pdf") ; 
+              await ref.putFile(file) ;
+              final url = await ref.getDownloadURL() ; 
+              String collection ; 
+              controller.myUser.value.type=="client" ? collection = me+"_"+other : collection = other+"_"+me ; 
+              FirebaseFirestore.instance.collection("$collection").add(
+            {
+            "text" : url, 
+            "time" :  Timestamp.now(), //created time
+            "uid" : FirebaseAuth.instance.currentUser.uid,
+            "type" : "pdf"
+           });
+          }
+     }
+     else{
+        print('No image selected.');
+
+     }
+   }
+
+
 
   void sendMessage(String me, String other) async
   {
@@ -118,9 +146,14 @@ class _NewMessageState extends State<NewMessage> {
             icon: Icon(Icons.image),
             onPressed:   sendImage,
             ),
-          
+          IconButton(
+            color: Colors.blue,
+            icon: Icon(Icons.attachment),
+            onPressed:  sendPDF,
+            ),
         ],
       ),
     );
   }
 }
+
