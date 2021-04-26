@@ -6,7 +6,7 @@ import 'InterestedExperts.dart';
 // import 'backgroundExperts.dart';
 import 'package:firebase_app/pages/user_controller.dart';
 import 'package:auto_direction/auto_direction.dart';
-
+import '../search/search.dart';
 /*class PostingQuestion extends StatelessWidget {
   TextEditingController mycontroller = TextEditingController();
   UserController controller = Get.put(UserController());
@@ -230,7 +230,7 @@ class _PostingQuestionState extends State<PostingQuestion> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Get.to(SearchingExpert());
+                    Get.to(Search());
                   },
                   child: Text(
                     "Click Here!",

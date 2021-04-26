@@ -103,7 +103,7 @@ class ClickProfile extends StatelessWidget {
                               halfFilledIcon: Icons.star_half,
                               filledIcon: Icons.star,
                               emptyIcon: Icons.star_border,
-                              size: 30,
+                              size: MediaQuery.of(context).size.width * 0.07,
                             ),
                           ],
                         ),
@@ -311,16 +311,7 @@ class ClickProfile extends StatelessWidget {
               ),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(top: 4, left: 18.0, bottom: 0.0),
-              child: Text(
-                'Answered questions History',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 19),
-              ),
-            ),
+        
 
             // m.questionsList == null
             //     ? "No Question Answered yet"

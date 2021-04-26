@@ -14,6 +14,7 @@ class _ResetScreenState extends State<ResetScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(  
+      resizeToAvoidBottomInset : false,
       appBar: AppBar(title: Text('Reset Password'),),
       body: Column(
         children: [
@@ -50,5 +51,3 @@ class _ResetScreenState extends State<ResetScreen> {
     );
   }
 }
-
-

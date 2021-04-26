@@ -16,6 +16,7 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   UserController controller = Get.put(UserController());
+  
   Widget _buildChip(String label, Color color) {
     return Chip(
       labelPadding: EdgeInsets.all(2.0),
@@ -39,7 +40,7 @@ class _ProfileState extends State<Profile> {
   
   @override
   Widget build(BuildContext context) {
-    List<double> rate = [5, 4.5, 5.0, 3.5];
+    // List<double> rate = [5, 4.5, 5.0, 3.5];
 
     // var mean = rate.reduce((a, b) => a + b) / rate.length;
 
@@ -88,7 +89,7 @@ class _ProfileState extends State<Profile> {
                       Padding(
                         padding: EdgeInsets.only(
                             top: MediaQuery.of(context).size.height * 0.2,
-                        left: MediaQuery.of(context).size.width * 0.02,
+                        // left: MediaQuery.of(context).size.width * 0.02,
                         right: MediaQuery.of(context).size.width * 0.04,
                         bottom: MediaQuery.of(context).size.height * 0.02),
                         child: Row(
@@ -100,16 +101,18 @@ class _ProfileState extends State<Profile> {
                             //       fontWeight: FontWeight.bold,
                             //       fontSize: 23),
                             // ),
+                            // double x = controller.myUser.value.rating;
                             RatingBar.readOnly(
                               filledColor: Colors.yellow[700],
                               emptyColor: Colors.yellow[700],
                               halfFilledColor: Colors.yellow[700],
                               initialRating: controller.myUser.value.rating,
+                              //  == null ? 4 : controller.myUser.value.rating.toDouble() ,
                               isHalfAllowed: true,
                               halfFilledIcon: Icons.star_half,
                               filledIcon: Icons.star,
                               emptyIcon: Icons.star_border,
-                              size: MediaQuery.of(context).size.width * 0.08,
+                              size: MediaQuery.of(context).size.width * 0.070,
                             ),
                           ],
                         ),
@@ -117,30 +120,7 @@ class _ProfileState extends State<Profile> {
                    
                 ],
 
-                // SizedBox(height:233)
 
-                // Container(
-                //   width: MediaQuery.of(context).size.width*0.44,
-                //   height: MediaQuery.of(context).size.height*0.07,
-                //   decoration: BoxDecoration(
-                //       color: Colors.blue, borderRadius: BorderRadius.circular(8)),
-                //   child: FlatButton(
-                //     onPressed: () {},
-                //     child: TextButton(
-                //       onPressed: () {
-                //         Get.to(
-                //           editProfile(),
-                //           arguments: m,
-                //         );
-                //       },
-                //       child: Text(
-                //         'EDIT PROFILE',
-                //         // textAlign: TextAlign.start,
-                //         style: TextStyle( color: Colors.white,  fontSize: MediaQuery.of(context).size.height*0.02),
-                //       ),
-                //     ),
-                //   ),
-                // ),
               ),
             ]),
 
@@ -347,8 +327,8 @@ class _ProfileState extends State<Profile> {
               width: double.infinity,
               height: 70,
               child: MaterialButton(
-                child: Text("Edit Profile"),
-                color: Colors.orangeAccent,
+                child: Text("Edit Profile", style:TextStyle(fontSize: 21,color: Colors.white)),
+                color: Colors.blue,
                 onPressed: () {
                   Get.off(
                           editProfile(),

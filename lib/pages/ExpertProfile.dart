@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:firebase_app/pages/user_controller.dart';
 import 'package:image_picker/image_picker.dart';
 import '../profile/editProfile.dart';
+import '../login/reset.dart';
 
 class ExpertProfile extends StatefulWidget {
   @override
@@ -24,7 +25,7 @@ class _ExpertProfileState extends State<ExpertProfile> {
 
   final picker = ImagePicker();
 
-  List<bool> _selections = List.generate(2, (_) => false);
+  // List<bool> selections = List.generate(2, () => false);
 
   createAlertDialogAboutApp(BuildContext context) {
     return showDialog(
@@ -64,7 +65,7 @@ class _ExpertProfileState extends State<ExpertProfile> {
             title:
                 Text("\nFor more information, don't hesitate to contact us at"),
             content: Text(
-              "istishara0@gmail.com .",
+              "istishara0@gmail.com",
               style: TextStyle(
                 color: Colors.blue,
                 fontWeight: FontWeight.bold,
@@ -88,41 +89,41 @@ class _ExpertProfileState extends State<ExpertProfile> {
         });
   }
 
-  createAlertDialogNotificationSettings(BuildContext context) {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text(
-              "Notification Settings",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20.0,
-              ),
-            ),
-            actions: <Widget>[
-              ToggleButtons(
-                children: [
-                  Text(
-                    "OFF",
-                    style: TextStyle(fontSize: 18.0),
-                  ),
-                  Text(
-                    "ON",
-                    style: TextStyle(fontSize: 18.0),
-                  ),
-                ],
-                isSelected: _selections,
-                onPressed: (int index) {},
-                //selectedColor: Colors.blue,
-                borderRadius: BorderRadius.circular(22.0),
-                borderWidth: 5,
-                borderColor: Colors.blue,
-              ),
-            ],
-          );
-        });
-  }
+  // createAlertDialogNotificationSettings(BuildContext context) {
+  //   return showDialog(
+  //       context: context,
+  //       builder: (context) {
+  //         return AlertDialog(
+  //           title: Text(
+  //             "Notification Settings",
+  //             style: TextStyle(
+  //               fontWeight: FontWeight.bold,
+  //               fontSize: 20.0,
+  //             ),
+  //           ),
+  //           actions: <Widget>[
+  //             ToggleButtons(
+  //               children: [
+  //                 Text(
+  //                   "OFF",
+  //                   style: TextStyle(fontSize: 18.0),
+  //                 ),
+  //                 Text(
+  //                   "ON",
+  //                   style: TextStyle(fontSize: 18.0),
+  //                 ),
+  //               ],
+  //               isSelected: _selections,
+  //               onPressed: (int index) {},
+  //               //selectedColor: Colors.blue,
+  //               borderRadius: BorderRadius.circular(22.0),
+  //               borderWidth: 5,
+  //               borderColor: Colors.blue,
+  //             ),
+  //           ],
+  //         );
+  //       });
+  // }
 
   createAlertDialogPassword(BuildContext context) {
     return showDialog(
@@ -177,7 +178,7 @@ class _ExpertProfileState extends State<ExpertProfile> {
           //     child: Obx(() => CircleAvatar(
           //           child: Padding(
           //             padding: const EdgeInsets.only(top: 85, left: 100),
-                      
+
           //           ),
           //           radius: 70,
           //           backgroundImage: controller.myUser.value.imageURL == ""
@@ -185,7 +186,7 @@ class _ExpertProfileState extends State<ExpertProfile> {
           //               : NetworkImage(controller.myUser.value.imageURL),
           //           backgroundColor: Colors.blue,
           //         ))),
-          // 
+          //
           Center(
             child: Obx(() => CircleAvatar(
                   radius: 70,
@@ -200,7 +201,7 @@ class _ExpertProfileState extends State<ExpertProfile> {
                   // backgroundColor: Colors.blue,
                 )),
           ),
-          
+
           TextButton.icon(
               onPressed: () async {
                 pickedImage = await picker.getImage(
@@ -288,7 +289,7 @@ class _ExpertProfileState extends State<ExpertProfile> {
             ),
           ),
           SizedBox(height: 5),
-          
+
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Divider(
@@ -296,45 +297,49 @@ class _ExpertProfileState extends State<ExpertProfile> {
             ),
           ),
           SizedBox(height: 5),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              shape: StadiumBorder(
-                //Card with stadium border
-                side: BorderSide(
-                  color: Colors.blue,
-                  width: 2.0,
+          InkWell(
+            onTap: () {
+              Get.to(editProfile());
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                shape: StadiumBorder(
+                  //Card with stadium border
+                  side: BorderSide(
+                    color: Colors.blue,
+                    width: 2.0,
+                  ),
                 ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                    //Padding: EdgeInsets.all(value)
-                    //mainAxisAlignment: MainAxisAlignment.,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                      //Padding: EdgeInsets.all(value)
+                      //mainAxisAlignment: MainAxisAlignment.,
 
-                    children: <Widget>[
-                      SizedBox(
-                        width: 7,
-                      ),
-                      
-                      Icon(
+                      children: <Widget>[
+                        SizedBox(
+                          width: 7,
+                        ),
+                        Icon(
                           Icons.edit,
                           color: Colors.blue,
                         ),
-                      TextButton(
-                        onPressed: () {
-                          Get.to(editProfile());
-                        },
-                        child: Text(
-                          " Edit profile",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
+                        TextButton(
+                          onPressed: () {
+                            Get.to(editProfile());
+                          },
+                          child: Text(
+                            " Edit profile",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                    ]),
+                      ]),
+                ),
               ),
             ),
           ),
@@ -381,19 +386,127 @@ class _ExpertProfileState extends State<ExpertProfile> {
           //   ),
           // ),
 
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              shape: StadiumBorder(
-                //Card with stadium border
-                side: BorderSide(
-                  color: Colors.blue,
-                  width: 2.0,
+          InkWell(
+            onTap: () {
+              // createAlertDialogPassword(context);
+              Get.to(ResetScreen());
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                shape: StadiumBorder(
+                  //Card with stadium border
+                  side: BorderSide(
+                    color: Colors.blue,
+                    width: 2.0,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                      //Padding: EdgeInsets.all(value)
+                      //mainAxisAlignment: MainAxisAlignment.,
+
+                      children: <Widget>[
+                        SizedBox(
+                          width: 7,
+                        ),
+                        Icon(
+                          Icons.assignment,
+                          color: Colors.blue,
+                        ),
+                        // TextButton(
+                        //   onPressed: () {
+                        //     createAlertDialogPassword(context);
+                        //   },
+                        //   child: 
+                          
+                          TextButton(
+                            child: Text("Password and Security",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),),
+                            onPressed: () {
+                              Get.to(ResetScreen());
+                            },
+                          ),
+                        
+                      ]),
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              createAlertDialogAboutApp(context);
+            },
+                      child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                shape: StadiumBorder(
+                  //Card with stadium border
+                  side: BorderSide(
+                    color: Colors.blue,
+                    width: 2.0,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                      //Padding: EdgeInsets.all(value)
+                      //mainAxisAlignment: MainAxisAlignment.,
+
+                      children: <Widget>[
+                        SizedBox(
+                          width: 7,
+                        ),
+                        Icon(
+                          Icons.info,
+                          color: Colors.blue,
+                        ),
+                        // TextButton(
+                        //   onPressed: () {
+                        //     createAlertDialogAboutApp(context);
+                        //   },
+                        //   child: 
+                          TextButton(
+                            onPressed: ()  {
+                              createAlertDialogAboutApp(context);
+                            } ,
+                            child:Text( "About App",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),),
+                          ),
+                        
+                      ]),
+                ),
+              ),
+            ),
+          ),
+
+
+          InkWell(
+            onTap: () {
+              createAlertDialogContactUs(context);
+            },
+                      child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                shape: StadiumBorder(
+                  //Card with stadium border
+                  side: BorderSide(
+                    color: Colors.blue,
+                    width: 2.0,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
                     //Padding: EdgeInsets.all(value)
                     //mainAxisAlignment: MainAxisAlignment.,
 
@@ -402,105 +515,29 @@ class _ExpertProfileState extends State<ExpertProfile> {
                         width: 7,
                       ),
                       Icon(
-                        Icons.assignment,
+                        Icons.contact_phone,
                         color: Colors.blue,
                       ),
                       TextButton(
                         onPressed: () {
-                          createAlertDialogPassword(context);
+                          createAlertDialogContactUs(context);
                         },
-                        child: Text(
-                          "Password and Security",
+                        // child: TextButton(
+                        //   onPressed: () {
+                        //     createAlertDialogContactUs(context);
+                        //   },
+                          child: 
+                          Text(
+                          "Contact Us",
                           style: TextStyle(
                             fontSize: 20,
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                          ),),
+                        
                       ),
-                    ]),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              shape: StadiumBorder(
-                //Card with stadium border
-                side: BorderSide(
-                  color: Colors.blue,
-                  width: 2.0,
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                    //Padding: EdgeInsets.all(value)
-                    //mainAxisAlignment: MainAxisAlignment.,
-
-                    children: <Widget>[
-                      SizedBox(
-                        width: 7,
-                      ),
-                      Icon(
-                        Icons.info,
-                        color: Colors.blue,
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          createAlertDialogAboutApp(context);
-                        },
-                        child: Text(
-                          "About App",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ]),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              shape: StadiumBorder(
-                //Card with stadium border
-                side: BorderSide(
-                  color: Colors.blue,
-                  width: 2.0,
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  //Padding: EdgeInsets.all(value)
-                  //mainAxisAlignment: MainAxisAlignment.,
-
-                  children: <Widget>[
-                    SizedBox(
-                      width: 7,
-                    ),
-                    Icon(
-                      Icons.contact_phone,
-                      color: Colors.blue,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        createAlertDialogContactUs(context);
-                      },
-                      child: Text(
-                        "Contact Us",
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

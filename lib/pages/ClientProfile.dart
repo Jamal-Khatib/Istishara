@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 // import 'profile.dart';
 import 'package:firebase_app/pages/user_controller.dart';
 import 'package:image_picker/image_picker.dart';
+import '../login/reset.dart';
 
 class myProfile extends StatefulWidget {
   @override
@@ -21,11 +22,141 @@ class _myProfileState extends State<myProfile> {
   @override
   UserController controller = Get.put(UserController());
 
-  File pickedImageFile ; 
+  File pickedImageFile;
 
-  PickedFile pickedImage ; 
+  PickedFile pickedImage;
 
   final picker = ImagePicker();
+
+  // List<bool> selections = List.generate(2, () => false);
+
+  createAlertDialogAboutApp(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+              "Istishara is a Mobile App that connects clients seeking help with experts in a specific field.\n\nIf you are a client and need help, go post your question or search for an expert! If you are an expert, go pick a question!",
+              style: TextStyle(
+                fontSize: 18.0,
+              ),
+            ),
+            actions: <Widget>[
+              MaterialButton(
+                  elevation: 5.0,
+                  child: Text(
+                    "OK",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }),
+            ],
+          );
+        });
+  }
+
+  createAlertDialogContactUs(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title:
+                Text("\nFor more information, don't hesitate to contact us at"),
+            content: Text(
+              "istishara0@gmail.com",
+              style: TextStyle(
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            actions: <Widget>[
+              MaterialButton(
+                  elevation: 5.0,
+                  child: Text(
+                    "Done",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }),
+            ],
+          );
+        });
+  }
+
+  // createAlertDialogNotificationSettings(BuildContext context) {
+  //   return showDialog(
+  //       context: context,
+  //       builder: (context) {
+  //         return AlertDialog(
+  //           title: Text(
+  //             "Notification Settings",
+  //             style: TextStyle(
+  //               fontWeight: FontWeight.bold,
+  //               fontSize: 20.0,
+  //             ),
+  //           ),
+  //           actions: <Widget>[
+  //             ToggleButtons(
+  //               children: [
+  //                 Text(
+  //                   "OFF",
+  //                   style: TextStyle(fontSize: 18.0),
+  //                 ),
+  //                 Text(
+  //                   "ON",
+  //                   style: TextStyle(fontSize: 18.0),
+  //                 ),
+  //               ],
+  //               isSelected: _selections,
+  //               onPressed: (int index) {},
+  //               //selectedColor: Colors.blue,
+  //               borderRadius: BorderRadius.circular(22.0),
+  //               borderWidth: 5,
+  //               borderColor: Colors.blue,
+  //             ),
+  //           ],
+  //         );
+  //       });
+  // }
+
+  createAlertDialogPassword(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Reset password",
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            content: Text(
+              "\nCheck your email to reset your password!",
+              style: TextStyle(fontSize: 20.0),
+            ),
+            actions: <Widget>[
+              MaterialButton(
+                  elevation: 5.0,
+                  child: Text(
+                    "OK",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }),
+            ],
+          );
+        });
+  }
 
   Widget build(BuildContext context) {
     var counter = 10.obs;
@@ -35,41 +166,40 @@ class _myProfileState extends State<myProfile> {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
-            "My Profile",
-            style: TextStyle(
-              fontSize: 23,
-              color: Colors.white,
-            ),
+          "My Profile",
+          style: TextStyle(
+            fontSize: 23,
+            color: Colors.white,
           ),
-        
+        ),
       ),
       body: ListView(
         children: <Widget>[
           SizedBox(height: 20),
-            // Obx( () => CircleAvatar(
-            //   child: Padding(
-            //     padding: const EdgeInsets.only(top: 85, left: 100),
-            //     // child: IconButton(
-            //     //   //highlightColor: Colors.grey,
-            //     //   color: Colors.grey[600],
-            //     //   //focusColor: Colors.grey[600],
-            //     //   icon: Icon(
-            //     //     Icons.mode_edit,
-            //     //     size: 30,
-            //     //   ),
-            //     //   onPressed: () {},
-            //     // ),
-            //   ),
-            //   radius: 70,
-            //   backgroundImage: controller.myUser.value.imageURL==""?  
-            //   AssetImage("assets\\blank-profile-picture")
-            //   : NetworkImage(controller.myUser.value.imageURL)               
-            //   ,
-                
-            //   backgroundColor: Colors.blue,
-            // )),
-            // 
-            Center(
+          // Obx( () => CircleAvatar(
+          //   child: Padding(
+          //     padding: const EdgeInsets.only(top: 85, left: 100),
+          //     // child: IconButton(
+          //     //   //highlightColor: Colors.grey,
+          //     //   color: Colors.grey[600],
+          //     //   //focusColor: Colors.grey[600],
+          //     //   icon: Icon(
+          //     //     Icons.mode_edit,
+          //     //     size: 30,
+          //     //   ),
+          //     //   onPressed: () {},
+          //     // ),
+          //   ),
+          //   radius: 70,
+          //   backgroundImage: controller.myUser.value.imageURL==""?
+          //   AssetImage("assets\\blank-profile-picture")
+          //   : NetworkImage(controller.myUser.value.imageURL)
+          //   ,
+
+          //   backgroundColor: Colors.blue,
+          // )),
+          //
+          Center(
             child: Obx(() => CircleAvatar(
                   radius: 70,
                   backgroundImage: AssetImage("assets/images/loading.gif"),
@@ -83,36 +213,33 @@ class _myProfileState extends State<myProfile> {
                   // backgroundColor: Colors.blue,
                 )),
           ),
-          
-          TextButton.icon( 
-            onPressed: ()  async{
-               pickedImage = await picker.getImage(source: ImageSource.gallery, imageQuality: 50) ;  
-              setState(() async {
 
-                if(pickedImage!=null) 
-                {
-                pickedImageFile = File(pickedImage.path) ;
-                String s = pickedImage.hashCode.toString() ; 
-                final ref =  FirebaseStorage.instance.ref().child("profiles").child("$s.jpg") ; 
-                await ref.putFile(pickedImageFile) ; 
-                String imageURL = await ref.getDownloadURL() ; 
-                controller.myUser.value.imageURL = imageURL ; 
-                FirebaseFirestore.instance.collection("users").doc(controller.myUser.value.uid).update(
-                  {
-                    "imageURL" : imageURL 
+          TextButton.icon(
+              onPressed: () async {
+                pickedImage = await picker.getImage(
+                    source: ImageSource.gallery, imageQuality: 50);
+                setState(() async {
+                  if (pickedImage != null) {
+                    pickedImageFile = File(pickedImage.path);
+                    String s = pickedImage.hashCode.toString();
+                    final ref = FirebaseStorage.instance
+                        .ref()
+                        .child("profiles")
+                        .child("$s.jpg");
+                    await ref.putFile(pickedImageFile);
+                    String imageURL = await ref.getDownloadURL();
+                    controller.myUser.value.imageURL = imageURL;
+                    FirebaseFirestore.instance
+                        .collection("users")
+                        .doc(controller.myUser.value.uid)
+                        .update({"imageURL": imageURL});
+                  } else {
+                    print("No image was picked siiiiiiiiiiiiiiiiiiiiiiiiiiii");
                   }
-                ) ; 
-                }
-                else
-                {
-                  print("No image was picked siiiiiiiiiiiiiiiiiiiiiiiiiiii") ; 
-                }
-
-              });
-
-            }, 
-            icon: Icon(Icons.image), 
-            label:  Text("Change image")),
+                });
+              },
+              icon: Icon(Icons.image),
+              label: Text("Change image")),
           SizedBox(height: 20),
           Center(
             child: Container(
@@ -163,7 +290,7 @@ class _myProfileState extends State<myProfile> {
                         " My Balance:  ",
                         style: TextStyle(
                           fontSize: AdaptiveTextSize()
-                                  .getadaptiveTextSize(context, 20),
+                              .getadaptiveTextSize(context, 20),
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                         ),
@@ -208,14 +335,12 @@ class _myProfileState extends State<myProfile> {
               ),
             ),
           ),
-          
 
           InkWell(
-                  onTap: () {
-                        Get.to(AllQuestions()) ; 
-
-                  },
-                      child: Padding(
+            onTap: () {
+              Get.to(AllQuestions());
+            },
+            child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
                 shape: StadiumBorder(
@@ -237,10 +362,9 @@ class _myProfileState extends State<myProfile> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Get.to(AllQuestions()) ; 
+                        Get.to(AllQuestions());
                       },
-                      child:
-                       Text(
+                      child: Text(
                         "My Questions",
                         style: TextStyle(
                           fontSize: 20,
@@ -255,12 +379,11 @@ class _myProfileState extends State<myProfile> {
             ),
           ),
           InkWell(
-                  onTap: () {
-                         
-
-                  },
-                  
-                      child: Padding(
+            onTap: () {
+              // createAlertDialogPassword(context);
+              Get.to(ResetScreen());
+            },
+            child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
                 shape: StadiumBorder(
@@ -284,28 +407,31 @@ class _myProfileState extends State<myProfile> {
                           Icons.lock,
                           color: Colors.blue,
                         ),
+                       
                         TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Password and Security",
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
+                            child: Text(
+                              "Password and Security",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
+                            onPressed: () {
+                              Get.to(ResetScreen());
+                            },
                           ),
-                        ),
+                        
                       ]),
                 ),
               ),
             ),
           ),
-           InkWell(
-                  onTap: () {
-                         
-
-                  },
-                      child: Padding(
+          InkWell(
+            onTap: () {
+              createAlertDialogAboutApp(context);
+            },
+            child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
                 shape: StadiumBorder(
@@ -329,28 +455,30 @@ class _myProfileState extends State<myProfile> {
                           Icons.info,
                           color: Colors.blue,
                         ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "About App",
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
+                         TextButton(
+                              child: Text(
+                                "About App",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              onPressed: () {
+                                createAlertDialogAboutApp(context);
+                              }),
+                        
                       ]),
                 ),
               ),
             ),
           ),
-          InkWell(
-                  onTap: () {
-                         
 
-                  },
-                      child: Padding(
+          InkWell(
+            onTap: () {
+              createAlertDialogContactUs(context);
+            },
+            child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
                 shape: StadiumBorder(
@@ -374,17 +502,23 @@ class _myProfileState extends State<myProfile> {
                         Icons.contact_phone,
                         color: Colors.blue,
                       ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Contact Us",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
+                      // TextButton(
+                      //   onPressed: () {},
+                      //   child:
+                         TextButton(
+                          child: Text(
+                            "Contact Us",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
+                          onPressed: () {
+                            createAlertDialogContactUs(context);
+                          },
                         ),
-                      ),
+                      
                     ],
                   ),
                 ),
@@ -396,10 +530,6 @@ class _myProfileState extends State<myProfile> {
     );
   }
 }
-
-
-
-
 
 class AdaptiveTextSize {
   const AdaptiveTextSize();

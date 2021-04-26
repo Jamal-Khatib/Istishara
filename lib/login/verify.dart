@@ -53,46 +53,98 @@ class _VerifyState extends State<Verify> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: AlertDialog(
-          backgroundColor: Colors.grey[200],
-          title: Text(
-            "Email Confirmation",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
+        // child: AlertDialog(
+          // backgroundColor: Colors.grey[200],
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+          Image.asset(
+              "assets/images/email.png",
+              fit: BoxFit.contain,
+              // height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              // height: 300,
+              // width: 200,
             ),
-          ),
-          content: SingleChildScrollView(
+            SizedBox(height:22),
+           SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text(
-                  'An email has been sent to ${user.email}. ',
-                  style: TextStyle(
-                    // fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
+               
+
+             Center(
+               child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+                "Email Confirmation",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                  color: Colors.blue
                 ),
+            ),
+          ),
+             ),
+                
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'An email has been sent to ${user.email}. ',
+                      style: TextStyle(
+                        // fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 19
+                      ),
+                    ),
+                  ),
+                
                 SizedBox(
                   height: 2,
                 ),
-                Text(
-                  'Please verify your email.',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(children: [ Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Please verify your email',
+                      style: TextStyle(
+                        // fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 18
+                      ),
+                    ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      ' Wait in this page untill we direct you.',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 18
+                      ),
+                    ),
+                  ),
+                  ],)
                 ),
+
+                
+
               ],
             ),
           ),
-          actions: <Widget>[
-            TextButton(
-              child: Text('Ok'),
-              onPressed: () {
-                Get.back();
-              },
-            ),
-          ],
-        ),
+
+          ],)
+           
+          // actions: <Widget>[
+          //   TextButton(
+          //     child: Text('Ok'),
+          //     onPressed: () {
+          //       Get.back();
+          //     },
+          //   ),
+          // ],
+        // ),
       ),
     );
   }
@@ -129,7 +181,16 @@ class _VerifyState extends State<Verify> {
           "uid": FirebaseAuth.instance.currentUser.uid,
           
           "chatPeople" : [],
-          "imageURL" : data["imageURL"]
+          "imageURL" : data["imageURL"],
+          "about" : "",
+           "skill1" : "",
+          "skill2": "",
+          "skill3": "",
+          "skill4": "",
+          "skill5": "",
+          "skill6": "",
+          "rating":0.1,
+
         });
         Get.off(navigationExpert());
       } else {
@@ -162,17 +223,9 @@ class _VerifyState extends State<Verify> {
           "interestedMechanical": [],
           "interestedPsych": [],
 
-           "chatPeople" : [],
-           "imageURL" : data["imageURL"],
-           "about" : "",
-           "skill1" : "",
-            "skill2": "",
-            "skill3": "",
-            "skill4": "",
-            "skill5": "",
-            "skill6": "",
-            "rating":0,
-
+          "chatPeople" : [],
+          "imageURL" : data["imageURL"],
+         
         });
         Get.off(navigationClient());
       }

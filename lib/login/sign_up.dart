@@ -42,9 +42,15 @@ class _Sign_upState extends State<Sign_up> {
       body: ListView(
         children: [
           // SizedBox(height: 30),
-           CircleAvatar(radius: 70,  backgroundColor: Colors.blue,
-           backgroundImage: pickedImageFile==null ? null : FileImage(pickedImageFile),
+           Padding(
+             padding: const EdgeInsets.only(top:4.0),
+             child: CircleAvatar(radius: 60,  backgroundColor: Colors.blue[600],
+             
+             backgroundImage: pickedImageFile==null ? null : FileImage(pickedImageFile),
+             ),
            ),
+
+           
           TextButton.icon( 
             onPressed: ()  async{
                pickedImage = await picker.getImage(source: ImageSource.gallery, imageQuality: 50) ;  
@@ -114,10 +120,10 @@ class _Sign_upState extends State<Sign_up> {
           ),
           Row(
             children: [
-              SizedBox(width: 60),
+              // SizedBox(width: 29),
               Text(
                 "Expert",
-                style: TextStyle(color: Colors.black, fontSize: 18),
+                style: TextStyle(color: Colors.black, fontSize: 14),
               ),
               Checkbox(
                   checkColor: Colors.white,
@@ -133,39 +139,42 @@ class _Sign_upState extends State<Sign_up> {
                     ? Container(
                         width: 0,
                       )
-                    : DropdownButton<String>(
-                        hint: Text("Field"),
-                        value: dropdownValue,
-                        // icon: Icon(Icons.check_box_outline_blank_sharp, color: Colors.blue,),
-                        iconSize: 50,
-                        elevation: 30,
-                        style: TextStyle(color: Colors.black, fontSize: 15),
-                        underline: Container(
-                          height: 2,
-                          color: Colors.black,
+                    : Container(
+                      width: 230,
+                      child: DropdownButton<String>(
+                          hint: Text("Field"),
+                          value: dropdownValue,
+                          // icon: Icon(Icons.check_box_outline_blank_sharp, color: Colors.blue,),
+                          iconSize: 10,
+                          elevation: 10,
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                          underline: Container(
+                            height: 2,
+                            color: Colors.black,
+                          ),
+                          onChanged: (String newValue) {
+                            setState(() {
+                              dropdownValue = newValue;
+                            });
+                          },
+                          items: <String>[
+                            'Doctor',
+                            'Electrical Engineer',
+                            'Civil Engineer',
+                            'Construction Engineer',
+                            'Architect',
+                            'Psychologist',
+                            'Mechanical Enginner',
+                            'Heating & cooling Engineer',
+                            'Family practitioner'
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
                         ),
-                        onChanged: (String newValue) {
-                          setState(() {
-                            dropdownValue = newValue;
-                          });
-                        },
-                        items: <String>[
-                          'Doctor',
-                          'Electrical Engineer',
-                          'Civil Engineer',
-                          'Construction Engineer',
-                          'Architect',
-                          'Psychologist',
-                          'Mechanical Enginner',
-                          'Heating & cooling Engineer',
-                          'Family practitioner'
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                      ),
+                    ),
               ),
             ],
           ),

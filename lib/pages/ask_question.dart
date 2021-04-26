@@ -3,7 +3,7 @@ import '../grid/list_of_categories.dart';
 import 'package:firebase_app/widgets/SearchingExpert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import '../search/search.dart';
 class AskQuestion extends StatefulWidget {
   @override
   _AskQuestionState createState() => _AskQuestionState();
@@ -21,13 +21,13 @@ class _AskQuestionState extends State<AskQuestion> {
         child: ListView(children: <Widget>[
           Image.asset(
             "assets/ask.jpg",
-            fit: BoxFit.cover,
-            height: 300,
-            width: 300,
+            fit: BoxFit.contain,
+            // height: 20,
+            // width: 300,
           ),
           SizedBox(
-              height: 50.0,
-              width: 150.0,
+              height: 20.0,
+              width: 15.0,
               child: Divider(
                 color: Colors.white,
               )),
@@ -71,22 +71,22 @@ class _AskQuestionState extends State<AskQuestion> {
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 25),
+                        fontSize: 23),
                   ),
                 ),
               ),
               TextButton(
                 child: Text(
-                  "Search for an expert",
+                  "or Search for an expert",
                   style: TextStyle(
-                    color: Colors.blue,
+                    color: Colors.black,
                     fontWeight: FontWeight.bold,
-                    fontSize: 19,
+                    fontSize: 17,
                   ),
                   textAlign: TextAlign.center,
                 ),
                 onPressed: () {
-                  Get.to(SearchingExpert());
+                  Get.to(Search());
                 },
               ),
             ],
