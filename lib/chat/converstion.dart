@@ -3,6 +3,8 @@ import 'package:firebase_app/chat/messages.dart';
 import 'package:firebase_app/chat/new_message.dart';
 import 'package:firebase_app/pages/RateMe.dart';
 import 'package:firebase_app/pages/user_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rating_bar/rating_bar.dart';
@@ -16,6 +18,34 @@ class Converstion extends StatefulWidget {
 }
 
 class _ConverstionState extends State<Converstion> {
+  @override
+  void initState() {
+    super.initState();
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      RemoteNotification notification = message.notification;
+      AndroidNotification android = message.notification?.android;
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print("on open messageeeeeeeeeeeeeeeee");
+    });
+    final FirebaseMessaging fcm = FirebaseMessaging.instance;
+    fcm.getToken().then((token) {
+      //print("siiiiiiiiiiiiiiiiii  " + token);
+      FirebaseFirestore.instance.collection("tokens").add({"token": token});
+    });
+
+    getToken();
+  }
+
+  String token;
+  getToken() async {
+    String t = await FirebaseMessaging.instance.getToken();
+    await FirebaseFirestore.instance
+        .collection("tokens")
+        .doc(FirebaseAuth.instance.currentUser.uid)
+        .update({'token': t});
+  }
+
   String me;
   String other;
   _ConverstionState({this.me, this.other});
@@ -61,87 +91,84 @@ class _ConverstionState extends State<Converstion> {
                 //   width: 100,
                 //   decoration: BoxDecoration(
                 //       color: Colors.blue,
-                      // borderRadius: BorderRadius.circular(20)),
-                  // child: FlatButton(
-                  //     onPressed: () async {
-                  //       var data = await FirebaseFirestore.instance
-                  //           .collection("users")
-                  //           .where("name", isEqualTo: name1)
-                  //           .limit(1)
-                  //           .get();
-                  //       var y = data.docs;
-                  //       for (var expert in y) {
-                  //         var ex = expert.data();
-                  //         var old = ex["rating"];
-                  //         print("hahahahahhahahahahahaha");
-                  //         double n;
-                  //         if (old == 0)
-                  //           n = x;
-                  //         else
-                  //           n = (old + x) / 2;
-                  //         var uid = ex["uid"];
-                  //         print(old);
-                  //         print(n);
-                  //         await FirebaseFirestore.instance
-                  //             .collection("users")
-                  //             .doc(uid)
-                  //             .update({"rating": n});
-                  //         // Get.back();
-                  //         Navigator.of(context).pop();
-                  //       }
-                  //       Navigator.of(context).pop();
-                  //     },
-                  //     child: Text("Submit", style: TextStyle(color: Colors.white)),
-                        // onPressed: () {
-                        //   Navigator.of(context).pop();
-                        // },
-                      // ),
+                // borderRadius: BorderRadius.circular(20)),
+                // child: FlatButton(
+                //     onPressed: () async {
+                //       var data = await FirebaseFirestore.instance
+                //           .collection("users")
+                //           .where("name", isEqualTo: name1)
+                //           .limit(1)
+                //           .get();
+                //       var y = data.docs;
+                //       for (var expert in y) {
+                //         var ex = expert.data();
+                //         var old = ex["rating"];
+                //         print("hahahahahhahahahahahaha");
+                //         double n;
+                //         if (old == 0)
+                //           n = x;
+                //         else
+                //           n = (old + x) / 2;
+                //         var uid = ex["uid"];
+                //         print(old);
+                //         print(n);
+                //         await FirebaseFirestore.instance
+                //             .collection("users")
+                //             .doc(uid)
+                //             .update({"rating": n});
+                //         // Get.back();
+                //         Navigator.of(context).pop();
+                //       }
+                //       Navigator.of(context).pop();
+                //     },
+                //     child: Text("Submit", style: TextStyle(color: Colors.white)),
+                // onPressed: () {
+                //   Navigator.of(context).pop();
+                // },
+                // ),
                 // )
               ],
             ),
             actions: <Widget>[
               MaterialButton(
-                  elevation: 5.0,
-                  child: Text(
-                    "OK",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
-                    ),
+                elevation: 5.0,
+                child: Text(
+                  "OK",
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16.0,
                   ),
-                  onPressed: () async {
+                ),
+                onPressed: () async {
+                  // Navigator.of(context).pop();
+                  var data = await FirebaseFirestore.instance
+                      .collection("users")
+                      .where("name", isEqualTo: name1)
+                      .limit(1)
+                      .get();
+                  var y = data.docs;
+                  for (var expert in y) {
+                    var ex = expert.data();
+                    var old = ex["rating"];
+                    print("hahahahahhahahahahahaha");
+                    double n;
+                    if (old == 0)
+                      n = x;
+                    else
+                      n = (old + x) / 2;
+                    var uid = ex["uid"];
+                    print(old);
+                    print(n);
+                    await FirebaseFirestore.instance
+                        .collection("users")
+                        .doc(uid)
+                        .update({"rating": n});
+                    // Get.back();
                     // Navigator.of(context).pop();
-                        var data = await FirebaseFirestore.instance
-                            .collection("users")
-                            .where("name", isEqualTo: name1)
-                            .limit(1)
-                            .get();
-                        var y = data.docs;
-                        for (var expert in y) {
-                          var ex = expert.data();
-                          var old = ex["rating"];
-                          print("hahahahahhahahahahahaha");
-                          double n;
-                          if (old == 0)
-                            n = x;
-                          else
-                            n = (old + x) / 2;
-                          var uid = ex["uid"];
-                          print(old);
-                          print(n);
-                          await FirebaseFirestore.instance
-                              .collection("users")
-                              .doc(uid)
-                              .update({"rating": n});
-                          // Get.back();
-                          // Navigator.of(context).pop();
-                        }
-                        Navigator.of(context).pop();
-                      },
-                        
-
-                      
+                  }
+                  Navigator.of(context).pop();
+                },
               ),
             ],
           );
@@ -184,7 +211,7 @@ class _ConverstionState extends State<Converstion> {
                           color: Colors.white,
                         )),
                     onPressed: () {
-                      Get.to(RateMe(name:other));
+                      Get.to(RateMe(name: other));
                       // RateMeDialogp(context);
                     },
                   )
