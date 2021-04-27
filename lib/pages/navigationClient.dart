@@ -31,7 +31,7 @@ class navigationClient extends StatelessWidget {
       ListCategories(),
       Search(),
       // Converstion(),
-      controller.myUser.value.chatPeople.isEmpty? AskQuestion(): Contacts(),
+      Contacts(),
       // Contacts(),
       
       myProfile(),

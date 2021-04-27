@@ -24,7 +24,7 @@ class navigationExpert extends StatelessWidget {
     final List<Widget> bodyContent = [
       Experthome(),
       // chatExpert(),
-      controller.myUser.value.chatPeople.isEmpty? chatExpert() : Contacts(),
+      Contacts(),
       ExpertProfile()
 
       // put here all pages you need
